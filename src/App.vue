@@ -1,9 +1,13 @@
 <script setup>
-
+import Navbar from './components/Navbar.vue';
+import RecipesPage from './pages/RecipesPage.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <h1>レシピ登録画面</h1>
+  <Navbar />
+  <RecipesPage />
+  <Footer />
 </template>
 
 <style scoped>

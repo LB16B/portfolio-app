@@ -45,6 +45,7 @@ const inputtingTime = ref('')
 const inputtingPrice = ref('')
 const inputtingFilename = ref('')
 const selectedFile = ref(null);
+const unixTimestamp = ref(0);
 
 const newRecipe = reactive({
     title: '',
@@ -65,15 +66,53 @@ const onFileChange = event => {
 const emit = defineEmits(['added'])
 
 const addNewRecipe = event => {
+
+    if (selectedFile.value) {
+    const formData = new FormData();
+    formData.append('file', selectedFile.value);
+
+      // Laravelのアップロードエンドポイントにファイルを送信
+      fetch('http://localhost:8000/api/v1/upload', {
+    //   fetch('api/v1/upload', {
+      method: 'POST',
+      body: formData
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('File upload failed.');
+      }
+    }).then(result => {
+      // ファイルのアップロードが成功した場合の処理をここに記述する
+    }).catch(error => {
+      // エラーが発生した場合の処理をここに記述する
+    });
+}
+
+  // 現在のUNIXタイムスタンプを取得する
+    // unixTimestamp.value = Math.floor(Date.now() / 1000);
+    // console.log('タイム瀬端プ', unixTimestamp)
     const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().slice(0, 10);
-    const formattedTime = currentDate.toLocaleTimeString().replace(/:/g, '-');
+    const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+    const formatter = new Intl.DateTimeFormat('ja-JP', options);
+    const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
+    // const formattedDateTime = formatter.format(currentDate).replace(/\//g, '').replace(/,|-|:/g, '');
+    // const formattedDateTime = formatter.format(currentDate).replace(/\//g, '').replace(/,|-|:/g, '');
+
+
+    console.log(formattedDateTime); // 現在の日本時間をフォーマットした文字列が表示されます
+
+    // const currentDate = new Date();
+    // const formattedDate = currentDate.toISOString().slice(0, 10);
+    // const formattedTime = currentDate.toLocaleTimeString().replace(/:/g, '-');
 
     // if (event.target.value.trim()) {
         newRecipe.title = inputtingTitle.value
         newRecipe.time = inputtingTime.value
         newRecipe.price = inputtingPrice.value
-        newRecipe.filename =  `${formattedDate}_${formattedTime}_${selectedFile.value.name}`;
+        // newRecipe.filename =  selectedFile.value.name
+        newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
+        // newRecipe.filename =  `${formattedDate}_${formattedTime}_${selectedFile.value.name}`;
         event.target.value = ""
         emit('added', newRecipe)
     // }

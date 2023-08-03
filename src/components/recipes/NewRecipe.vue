@@ -89,24 +89,11 @@ const addNewRecipe = event => {
     });
 }
 
-  // 現在のUNIXタイムスタンプを取得する
-    // unixTimestamp.value = Math.floor(Date.now() / 1000);
-    // console.log('タイム瀬端プ', unixTimestamp)
     const currentDate = new Date();
     const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
     const formatter = new Intl.DateTimeFormat('ja-JP', options);
     const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
-    // const formattedDateTime = formatter.format(currentDate).replace(/\//g, '').replace(/,|-|:/g, '');
-    // const formattedDateTime = formatter.format(currentDate).replace(/\//g, '').replace(/,|-|:/g, '');
 
-
-    console.log(formattedDateTime); // 現在の日本時間をフォーマットした文字列が表示されます
-
-    // const currentDate = new Date();
-    // const formattedDate = currentDate.toISOString().slice(0, 10);
-    // const formattedTime = currentDate.toLocaleTimeString().replace(/:/g, '-');
-
-    // if (event.target.value.trim()) {
         newRecipe.title = inputtingTitle.value
         newRecipe.time = inputtingTime.value
         newRecipe.price = inputtingPrice.value
@@ -115,7 +102,6 @@ const addNewRecipe = event => {
         // newRecipe.filename =  `${formattedDate}_${formattedTime}_${selectedFile.value.name}`;
         event.target.value = ""
         emit('added', newRecipe)
-    // }
 }
 
 </script>

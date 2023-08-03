@@ -7,7 +7,10 @@
                     <!-- <NewRecipe /> -->
                     <NewRecipe @added="handleAddedRecipe" />
                     <!-- List of Recipes -->
-                    <Recipes :recipes="recipes" />
+                    <Recipes :recipes="recipes" 
+                        @updated="handleUpdatedRecipe"
+                        @removed="handleRemovedRecipe"
+                    />
                 </div>
             </div>
         </div>
@@ -16,7 +19,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { allRecipes, createRecipe } from "../http/recipe-api";
+import { allRecipes, createRecipe, removeRecipe, updateRecipe } from "../http/recipe-api";
 import Recipes from '../components/recipes/Recipes.vue';
 import NewRecipe from "../components/recipes/NewRecipe.vue";
 
@@ -28,8 +31,21 @@ onMounted(async() => {
 });
 
 const handleAddedRecipe = async (newRecipe) => {
-    console.log(newRecipe); // 新しいレシピデータを表示
     const { data: createdRecipe } = await createRecipe(newRecipe);
     recipes.value.unshift(createdRecipe.data);
+}
+
+const handleUpdatedRecipe = async (recipe) => {
+    const { data: updatedRecipe } = await updateRecipe(recipe.id, {
+        title: recipe.title
+    })
+    const currentRecipe = recipes.value.find(item => item.id === recipe.id)
+    currentRecipe.title = updatedRecipe.data.title
+}
+
+const handleRemovedRecipe = async (recipe) => {
+    await removeRecipe(recipe.id)
+    const index = recipes.value.findIndex(item => item.id === recipe.id )
+    recipes.value.splice(index, 1)
 }
 </script>

@@ -15,9 +15,17 @@
                         v-model="editingRecipe"
                     />
                 </div>
-                    <span v-else>{{ recipe.title }}</span>
-                    <!-- <span>{{ recipe.time }}</span>
-                    <span>{{ recipe.filename }}</span> -->
+                <div v-else class="">
+                    <span>{{ recipe.title }}</span>
+                    <span>{{ recipe.time }}</span>
+                    <!-- 取り合えずここに画像を表示したい -->
+                    <div class="m-6 space-x-3">
+                        <a class="w-20 h-20 inline-block">
+                            <img class="object-contain w-20 h-20" :src="getImagePath(recipe.filename)" alt="uu">
+                        </a>
+                    </div>
+                    <!-- <span>{{ recipe.filename }}</span> -->
+                </div>
             </div>
             <!-- <div class="task-date">24 Feb 12:00</div> -->
         </div>
@@ -32,6 +40,13 @@
 
 import { ref } from "vue";
 import RecipeActions from './RecipeActions.vue';
+
+const path = "http://localhost:8000/recipe_images/";
+const filename = "202308060848_42fb87160b1b862507ba226e778d2ffd-12.jpg"; // ファイル名を変数に設定
+
+function getImagePath(filename) {
+  return path + filename;
+}
 
 const props = defineProps({
     recipe: Object

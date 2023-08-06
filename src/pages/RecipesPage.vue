@@ -37,10 +37,16 @@ const handleAddedRecipe = async (newRecipe) => {
 
 const handleUpdatedRecipe = async (recipe) => {
     const { data: updatedRecipe } = await updateRecipe(recipe.id, {
-        title: recipe.title
+        title: recipe.title,
+        time: recipe.time,
+        price: recipe.price,
+        filename: recipe.filename
     })
     const currentRecipe = recipes.value.find(item => item.id === recipe.id)
     currentRecipe.title = updatedRecipe.data.title
+    currentRecipe.time = updatedRecipe.data.time
+    currentRecipe.price = updatedRecipe.data.price
+    currentRecipe.filename = updatedRecipe.data.filename
 }
 
 const handleRemovedRecipe = async (recipe) => {

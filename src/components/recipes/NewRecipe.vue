@@ -54,11 +54,9 @@ const newRecipe = reactive({
     filename: ''
 })
 
-// ファイルが選択された際に呼ばれる処理
 const onFileChange = event => {
     const file = event.target.files[0];
     if (file) {
-    // 選択されたファイルをリアクティブな変数にセット
     selectedFile.value = file;
     }
 };
@@ -97,9 +95,7 @@ const addNewRecipe = event => {
         newRecipe.title = inputtingTitle.value
         newRecipe.time = inputtingTime.value
         newRecipe.price = inputtingPrice.value
-        // newRecipe.filename =  selectedFile.value.name
         newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
-        // newRecipe.filename =  `${formattedDate}_${formattedTime}_${selectedFile.value.name}`;
         event.target.value = ""
         emit('added', newRecipe)
 }

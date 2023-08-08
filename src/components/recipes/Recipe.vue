@@ -2,7 +2,6 @@
 
     <li class="list-group-item py-3">
         <div class="d-flex justify-content-start align-items-center">
-            <input class="form-check-input mt-0 completed" type="checkbox" />
             <div class="ms-2 flex-grow-1" 
                 title="Double click the text to edit or remove"
                 @dblclick="$event => isEdit = true"
@@ -77,13 +76,10 @@ const selectedFile = ref(null);
 const editingSelectedFile = ref(null); // 追加
 
 
-
-
-// `handleFileChange` 関数の修正
 const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-        editingSelectedFile.value = file;  // `editingSelectedFile` を更新
+        editingSelectedFile.value = file;  
     }
 };
 const vFocus = {
@@ -91,7 +87,7 @@ const vFocus = {
 }
 
 const UpdateRecipe = async () => {
-    
+
     if (editingSelectedFile.value) {
         const formData = new FormData();
         formData.append('file', editingSelectedFile.value);
@@ -105,11 +101,16 @@ const UpdateRecipe = async () => {
             if (response.ok) {
                 const result = await response.json();
                 const updatedRecipe = {
+                    // ...props.recipe スプレッド演算子
+                    // 既存のデータを展開して新しいオブジェクトを生成
+                    // 既存のデータが保持され、編集されたデータを追加できる
                     ...props.recipe,
                     title: editingRecipeTitle.value,
                     time: editingRecipeTime.value,
                     price: editingRecipePrice.value,
-                    filename: result.filename, // Use the uploaded filename from the server response
+                    // サーバーから返されるレスポンスに含まれるファイル名を
+                    // resultオブジェクトから取得し、filenameプロパティに設定
+                    filename: result.filename,
                 };
 
                 isEdit.value = false;
@@ -133,49 +134,6 @@ const UpdateRecipe = async () => {
         emit('updated', updatedRecipe);
     }
 };
-
-
-
-// const UpdateRecipe = () => {
-
-//     if (editingSelectedFile.value) {
-//         const formData = new FormData();
-//         formData.append('file', editingSelectedFile.value); // 修正
-
-//       // Laravelのアップロードエンドポイントにファイルを送信
-//       fetch('http://localhost:8000/api/v1/upload', {
-//     //   fetch('api/v1/upload', {
-//     method: 'POST',
-//      body: formData
-//     }).then(response => {
-//     if (response.ok) {
-//         return response.json();
-//     } else {
-//         throw new Error('File upload failed.');
-//     }
-//     }).then(result => {
-//       // ファイルのアップロードが成功した場合の処理をここに記述する
-//     }).catch(error => {
-//       // エラーが発生した場合の処理をここに記述する
-//     });
-// }
-
-// const currentDate = new Date();
-//     const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-//     const formatter = new Intl.DateTimeFormat('ja-JP', options);
-//     const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
-    
-//     const updatedRecipe = {
-//             ...props.recipe,
-//             title: editingRecipeTitle.value,
-//             time: editingRecipeTime.value,
-//             price: editingRecipePrice.value,
-//             // filename: `${formattedDateTime}_${editingSelectedFile.value.name}`,
-//         }
-//     isEdit.value = false
-//     emit('updated', updatedRecipe)
-// }
-
 
 const undo = () => {
     isEdit.value = false

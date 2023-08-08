@@ -1,4 +1,6 @@
 <template>
+    <RecipeCropper />
+
     <div class="relative">
         <span>Title</span>
         <input
@@ -40,12 +42,14 @@
 
 <script setup>
 import { ref, reactive, defineEmits } from 'vue'
+import RecipeCropper from './RecipeCropper.vue';
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
 const inputtingPrice = ref('')
 const inputtingFilename = ref('')
 const selectedFile = ref(null);
-const unixTimestamp = ref(0);
+
+
 
 const newRecipe = reactive({
     title: '',

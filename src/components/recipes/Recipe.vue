@@ -51,7 +51,7 @@
 
 <script setup>
 
-import { ref } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 import RecipeActions from './RecipeActions.vue';
 
 const path = "http://localhost:8000/recipe_images/";

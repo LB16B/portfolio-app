@@ -28,15 +28,9 @@
             />
             <!-- @keydown.enter="addNewRecipe" -->
     </div>
-    <!-- <div class="relative">
-        <span>Filename</span>
-        <input
-            class="form-control form-control-lg padding-right-lg"
-            placeholder="+ Add new recipe. Press enter to save."
-            v-model="inputtingFilename" type="text"
-            />
-    </div> -->
+
     <input type="file" @change="onFileChange" />
+
     <button @click="addNewRecipe">create</button>
 </template>
 

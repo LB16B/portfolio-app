@@ -187,44 +187,44 @@ methods: {
     },
 //   水平方向への反転
     flipX() {
-    const dom = this.$refs.flipX;
-    // data-scale属性の値を取得。画像の水平方向スケールを表す値を保持
-    let scale = dom.getAttribute('data-scale');
-    scale = scale ? -scale : -1;
-    // 実際に反転を行う
-    this.$refs.cropper.scaleX(scale);
-    // 更新されたスケール値をdata-scale属性に再設定して、値を保持
-    dom.setAttribute('data-scale', scale);
+        const dom = this.$refs.flipX;
+        // data-scale属性の値を取得。画像の水平方向スケールを表す値を保持
+        let scale = dom.getAttribute('data-scale');
+        scale = scale ? -scale : -1;
+        // 実際に反転を行う
+        this.$refs.cropper.scaleX(scale);
+        // 更新されたスケール値をdata-scale属性に再設定して、値を保持
+        dom.setAttribute('data-scale', scale);
     },
     flipY() {
-    const dom = this.$refs.flipY;
-    let scale = dom.getAttribute('data-scale');
-    scale = scale ? -scale : -1;
-    this.$refs.cropper.scaleY(scale);
-    dom.setAttribute('data-scale', scale);
+        const dom = this.$refs.flipY;
+        let scale = dom.getAttribute('data-scale');
+        scale = scale ? -scale : -1;
+        this.$refs.cropper.scaleY(scale);
+        dom.setAttribute('data-scale', scale);
     },
     getCropBoxData() {
     // 画像のクロップボックスのデータをJSON形式の文字列として格納
     // 第二引数nullでデフォルトの置換関数を指定
     // 第三比引数4でインシデントレベルを指定
-    this.data = JSON.stringify(this.$refs.cropper.getCropBoxData(), null, 4);
+        this.data = JSON.stringify(this.$refs.cropper.getCropBoxData(), null, 4);
     },
     getData() {
-    this.data = JSON.stringify(this.$refs.cropper.getData(), null, 4);
+        const trimmingData = this.$refs.cropper.getData(); // トリミング情報を取得
+        this.data = JSON.stringify(this.$refs.cropper.getData(), null, 4);
+        // console.log(trimmingData)
+
+        // イベントを発火してトリミング情報を親コンポーネントに送信
+        this.$emit('trimming-data', trimmingData);
     },
-// 画像のクロップボックスの移動
-// offsetX, offsetY 水平方向、垂直方向の移動量を指定する引数
     move(offsetX, offsetY) {
-    // 画像のクロップボックスを指定されたオフセット値だけ移動させる
-    this.$refs.cropper.move(offsetX, offsetY);
+        this.$refs.cropper.move(offsetX, offsetY);
     },
     reset() {
-    this.$refs.cropper.reset();
+        this.$refs.cropper.reset();
     },
-// deg 回転角度を指定する引数
     rotate(deg) {
-    // 画像のクロップボックスを指定されたオフセット値だけ回転させる
-    this.$refs.cropper.rotate(deg);
+        this.$refs.cropper.rotate(deg);
     },
 // 保存されたクロップボックスのデータを読み込んで、
 // それを基に画像のクロップボックスを指定
@@ -248,7 +248,6 @@ methods: {
         alert('Please select an image file');
         return;
     }
-      // 親コンポーネントにファイル名を渡す
       this.$emit('file-selected', file.name); // 'file-selected' イベントを発行
     // ブラウザがFileReader APIをサポートしているか確認
     // FileReader API 非同期で読み込むためのAPI

@@ -179,6 +179,7 @@ data() {
     data: null,
     };
 },
+props: ['fileName'], // 親コンポーネントから受け取るプロパティを定義
 methods: {
     cropImage() {
     // クロップされた画像の一部をCanvasに描画し、それをデータURLとして取得し格納
@@ -240,15 +241,15 @@ methods: {
 
     this.$refs.cropper.setData(JSON.parse(this.data));
     },
-// ユーザーが選択して画像ファイルを読み込んで処理
-    setImage(e) {
-    // ユーザーが選択したファイルの一つ目を取得
-    const file = e.target.files[0];
-    // ファイルのMIMEタイプがimage/で始まらない場合(画像ファイルでない場合)にアラート表示
+    setImage(e) { 
+        const file = e.target.files[0];
+        // console.log(file)
     if (file.type.indexOf('image/') === -1) {
         alert('Please select an image file');
         return;
     }
+      // 親コンポーネントにファイル名を渡す
+      this.$emit('file-selected', file.name); // 'file-selected' イベントを発行
     // ブラウザがFileReader APIをサポートしているか確認
     // FileReader API 非同期で読み込むためのAPI
     if (typeof FileReader === 'function') {

@@ -43,7 +43,7 @@
 
 
 <script setup>
-import { ref, reactive, defineEmits, onMounted  } from 'vue'
+import { ref, reactive, defineEmits, defineProps } from 'vue'
 import RecipeCropper from './RecipeCropper.vue';
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
@@ -96,8 +96,12 @@ const addNewRecipe = event => {
     const formData = new FormData();
     formData.append('file', selectedFile.value);
 
+    //   const formData = new FormData();
+    formData.append('x', trimmingInfo.value.x);
+    formData.append('y', trimmingInfo.value.y);
+    formData.append('height', trimmingInfo.value.height);
+    formData.append('width', trimmingInfo.value.width);
 
-      // Laravelのアップロードエンドポイントにファイルを送信
       fetch('http://localhost:8000/api/v1/upload', {
         method: 'POST',
         body: formData
@@ -120,13 +124,8 @@ const addNewRecipe = event => {
         newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
         event.target.value = ""
 
-        const formData = new FormData();
-      formData.append('x', trimmingInfo.value.x);
-      formData.append('y', trimmingInfo.value.y);
-      formData.append('height', trimmingInfo.value.height);
-      formData.append('width', trimmingInfo.value.width);
 
-
+      //   emit('file-selected', formData)
         emit('added', newRecipe)
       }).catch(error => {
         // エラーが発生した場合の処理をここに記述する

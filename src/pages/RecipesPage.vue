@@ -1,10 +1,8 @@
 <template>
-    <main style="min-height: 50vh; margin-top: 2rem;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <!-- Add new Recipe -->
-                    <!-- <NewRecipe /> -->
+    <main>
+        <div>
+            <div>
+                <div>
                     <NewRecipe @added="handleAddedRecipe" />
                     <!-- List of Recipes -->
                     <Recipes :recipes="recipes" 

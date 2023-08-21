@@ -1,9 +1,24 @@
 <template>
+    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+        <a class="block relative h-48 rounded overflow-hidden">
+            <img 
+                alt="recipe image" 
+                class="object-cover object-center w-full h-full block" 
+                :src="getImagePath(recipe.filename)"
+            >
+        </a>
+        <div class="mt-4">
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.title }}</h3>
+            <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
+            <span class="mt-1 mr-3">{{ recipe.time }}分</span><span class="mt-1">{{ recipe.price }}円</span>
+        </div>
+    </div>
 
-    <li class="list-group-item py-3">
-        <div class="d-flex justify-content-start align-items-center">
-            <div class="ms-2 flex-grow-1" 
-                title="Double click the text to edit or remove"
+
+    <!-- <li class="">
+        <div class="">
+            <div class="" 
+                title=""
                 @dblclick="$event => isEdit = true"
             >
                 <div class="relative" v-if="isEdit">
@@ -33,25 +48,19 @@
                     <p>Time : {{ recipe.time }}</p>
                     <p>Price : {{ recipe.price }}</p>
                     <p>filename : {{ recipe.filename }}</p>
-                    <!-- <div class="m-6 space-x-3">
-                        <a class="w-20 h-20 inline-block">
-                            <img class="object-contain w-20 h-20" :src="getImagePath(recipe.filename)" alt="uu">
-                        </a>
-                    </div> -->
                 </div>
             </div>
-            <!-- <div class="task-date">24 Feb 12:00</div> -->
         </div>
         <RecipeActions
             @edit="isEdit = true" v-show="!isEdit"
             @remove="removeRecipe"
         />
-    </li>
+    </li> -->
 </template>
 
 <script setup>
 
-import { ref, defineProps, defineEmits } from "vue";
+import { ref } from "vue";
 import RecipeActions from './RecipeActions.vue';
 
 const path = "http://localhost:8000/recipe_images/";

@@ -1,49 +1,58 @@
 <template>
-    <RecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
+  <RecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
 
-    <div>
-      x: {{ trimmingInfo.x }}<br>
-      y: {{ trimmingInfo.y }}<br>
-      高さ: {{ trimmingInfo.height }}<br>
-      幅: {{ trimmingInfo.width }}
-    </div>
-
-    <div class="relative">
-        <span>Title</span>
-        <input
-            class="form-control form-control-lg padding-right-lg"
-            placeholder="+ Add new recipe. Press enter to save."
-            v-model="inputtingTitle" type="text"
-            />
-            <!-- @keydown.enter="addNewRecipe" -->
-    </div>
-    <div class="relative">
-        <span>Time</span>
-        <input
-            class="form-control form-control-lg padding-right-lg"
-            placeholder="+ Add new recipe. Press enter to save."
-            v-model="inputtingTime" type="number"
-            />
-            <!-- @keydown.enter="addNewRecipe" -->
-    </div>
-    <div class="relative">
-        <span>Price</span>
-        <input
-            class="form-control form-control-lg padding-right-lg"
-            placeholder="+ Add new recipe. Press enter to save."
-            v-model="inputtingPrice" type="number"
-            />
-            <!-- @keydown.enter="addNewRecipe" -->
-          </div>
-          
-          <!-- <input type="file" @change="onFileChange" /> -->
+  <section class="text-gray-600 body-font relative">
+    <div class="container px-5 py-24 mx-auto">
     
-    <button @click="addNewRecipe">create</button>
+      <div class="lg:w-1/2 md:w-2/3 mx-auto">
+        <div class="flex flex-wrap -m-2">
+          <div class="p-2 w-full">
+            <div class="relative">
+              <label for="name" class="leading-7 text-sm text-gray-600">Title</label>
+              <input 
+                type="text" 
+                placeholder="+ Add new recipe. Press enter to save."
+                v-model="inputtingTitle"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              >
+            </div>
+          </div>
+          <div class="p-2 w-full">
+            <div class="relative">
+              <label for="email" class="leading-7 text-sm text-gray-600">Time</label>
+              <input 
+                type="number"
+                placeholder="+ Add new recipe. Press enter to save."
+                v-model="inputtingTime"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+          </div>
+          <div class="p-2 w-full">
+            <div class="relative">
+              <label for="email" class="leading-7 text-sm text-gray-600">Price</label>
+              <input 
+                type="number"
+                placeholder="+ Add new recipe. Press enter to save."
+                v-model="inputtingPrice"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+          </div>
+          <div class="p-2 w-full">
+            <button 
+              @click="addNewRecipe"
+              class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              Button
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 
 <script setup>
-import { ref, reactive, defineEmits, defineProps } from 'vue'
+import { ref, reactive } from 'vue'
 import RecipeCropper from './RecipeCropper.vue';
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
@@ -56,81 +65,77 @@ const emit  = defineEmits(['file-selected', 'added']);
 const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 }); // リアクティブなデータとして定義
 
 const handleTrimmingData = (data) => {
-  // console.log(data);
-    // trimmingInfoに値を更新する
-    trimmingInfo.value = {
-    x: data.x,
-    y: data.y,
-    height: data.height,
-    width: data.width
-  };
+  trimmingInfo.value = {
+  x: data.x,
+  y: data.y,
+  height: data.height,
+  width: data.width
+};
 
 
-    const formData = new FormData();
-    formData.append('x', trimmingInfo.value.x);
-    formData.append('y', trimmingInfo.value.y);
-    formData.append('height', trimmingInfo.value.height);
-    formData.append('width', trimmingInfo.value.width);
+const formData = new FormData();
+  formData.append('x', trimmingInfo.value.x);
+  formData.append('y', trimmingInfo.value.y);
+  formData.append('height', trimmingInfo.value.height);
+  formData.append('width', trimmingInfo.value.width);
 
 };
 
 const newRecipe = reactive({
-    title: '',
-    time: '',
-    price: '',
-    filename: ''
+  title: '',
+  time: '',
+  price: '',
+  filename: ''
 })
 
 const handleFileSelected = (fileName) => {
-  const file = event.target.files[0];
-  if (file) {
-    selectedFile.value = file;
+const file = event.target.files[0];
+if (file) {
+  selectedFile.value = file;
 
-    }
+  }
 };
 
 
 const addNewRecipe = event => {
+
+if (selectedFile.value) {
+  const formData = new FormData();
+  formData.append('file', selectedFile.value);
+  formData.append('x', trimmingInfo.value.x);
+  formData.append('y', trimmingInfo.value.y);
+  formData.append('height', trimmingInfo.value.height);
+  formData.append('width', trimmingInfo.value.width);
+
+    fetch('http://localhost:8000/api/v1/upload', {
+      method: 'POST',
+      body: formData
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('File upload failed.');
+      }
+    }).then(result => {
+      const currentDate = new Date();
+      const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+      const formatter = new Intl.DateTimeFormat('ja-JP', options);
+      const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
   
-  if (selectedFile.value) {
-    const formData = new FormData();
-    formData.append('file', selectedFile.value);
+      newRecipe.title = inputtingTitle.value
+      newRecipe.time = inputtingTime.value
+      newRecipe.price = inputtingPrice.value
+      newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
+      
+      inputtingTitle.value = '';
+      inputtingTime.value = '';
+      inputtingPrice.value = '';
 
-    //   const formData = new FormData();
-    formData.append('x', trimmingInfo.value.x);
-    formData.append('y', trimmingInfo.value.y);
-    formData.append('height', trimmingInfo.value.height);
-    formData.append('width', trimmingInfo.value.width);
-
-      fetch('http://localhost:8000/api/v1/upload', {
-        method: 'POST',
-        body: formData
-      }).then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('File upload failed.');
-        }
-      }).then(result => {
-        // ファイルのアップロードが成功した場合の処理をここに記述する
-        const currentDate = new Date();
-        const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-        const formatter = new Intl.DateTimeFormat('ja-JP', options);
-        const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
-    
-        newRecipe.title = inputtingTitle.value
-        newRecipe.time = inputtingTime.value
-        newRecipe.price = inputtingPrice.value
-        newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
-        event.target.value = ""
-
-
-      //   emit('file-selected', formData)
-        emit('added', newRecipe)
-      }).catch(error => {
-        // エラーが発生した場合の処理をここに記述する
-      });
-  }
+      emit('added', newRecipe)
+    }).catch(error => {
+      console.error('An error occurred:', error);
+    });
+}
 }
 
 

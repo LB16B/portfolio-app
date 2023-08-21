@@ -1,35 +1,24 @@
 <template>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <div class="container py-2">
-                <a href="#" class="navbar-brand">
-                    <span>Recipe</span>
-                    <strong>Index</strong>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="my-tasks.html" class="nav-link">Tasks</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Summary</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a href="#" class="btn btn-outline-secondary ms-2">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="btn btn-danger ms-2">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="btn btn-outline-secondary ms-2">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <div class="text-gray-600 body-font bg-red-100">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Tailblocks</span>
+          </a>
+          <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center justify-center text-xl">
+            <a class="mr-5 hover:text-gray-900">Recipes</a>
+            <a class="mr-5 hover:text-gray-900">Summary</a>
+            <a class="mr-5 hover:text-gray-900">Third Link</a>
+            <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+          </nav>
+          <button class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 mr-8 text-xl">
+            Login
+          </button>
+          <button class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
+            Register
+          </button>
+        </div>
+      </div>
 </template>

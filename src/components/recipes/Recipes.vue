@@ -1,14 +1,16 @@
 <template>
-    <div class="card mt-2">
-        <ul class="list-group list-group-flush">
-            <Recipe v-for="recipe in recipes" 
-                :recipe="recipe" 
-                :key="recipe.id" 
-                @updated="$event => $emit('updated', $event)" 
-                @removed="$event => $emit('removed', $event)"
-            />
-        </ul>
-    </div>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4">
+                <Recipe v-for="recipe in recipes" 
+                    :recipe="recipe" 
+                    :key="recipe.id" 
+                    @updated="$event => $emit('updated', $event)" 
+                    @removed="$event => $emit('removed', $event)"
+                />
+            </div>
+        </div>
+    </section>
 </template>
 
 <script setup>

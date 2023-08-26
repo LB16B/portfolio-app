@@ -1,6 +1,10 @@
-import './assets/style/tailwind.css'
-
 import { createApp } from 'vue'
+import { createPinia } from "pinia";
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import './assets/style/tailwind.css'
+
+
+const app = createApp(App);
+app.use(createPinia());
+app.mount('#app');

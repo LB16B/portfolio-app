@@ -5,6 +5,7 @@
                 <div>
                     <NewRecipe @added="handleAddedRecipe" />
                     <!-- List of Recipes -->
+                    <p>合計レシピ数 :  {{ totalRecipeCount }} 件</p>
                     <Recipes :recipes="recipes" 
                         @updated="handleUpdatedRecipe"
                         @removed="handleRemovedRecipe"
@@ -16,16 +17,26 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
+import { storeToRefs } from "pinia"
+import { useRecipeStore } from "../stores/recipe";
 import { allRecipes, createRecipe, removeRecipe, updateRecipe } from "../http/recipe-api";
 import Recipes from '../components/recipes/Recipes.vue';
 import NewRecipe from "../components/recipes/NewRecipe.vue";
 
-const recipes = ref([]);
+const store = useRecipeStore()
+const { recipes } = storeToRefs(store)
+const { fetchAllRecipes } = store
+const totalRecipeCount = computed(() => store.totalRecipes);
+
+// const recipes = ref([])
 
 onMounted(async() => {
-    const { data } = await allRecipes();
-    recipes.value = data.data;
+    console.log("Fetching recipes...");
+    await fetchAllRecipes();
+    console.log("Fetched recipes:", recipes.value);
+    console.log(recipes.value[1].title);
+
 });
 
 const handleAddedRecipe = async (newRecipe) => {

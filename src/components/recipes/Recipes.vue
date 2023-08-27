@@ -5,8 +5,8 @@
                 <Recipe v-for="recipe in recipes" 
                     :recipe="recipe" 
                     :key="recipe.id" 
-                    @updated="$event => $emit('updated', $event)" 
-                    @removed="$event => $emit('removed', $event)"
+                    @updated="handleUpdatedRecipe" 
+                    @removed="handleRemovedRecipe"
                 />
             </div>
         </div>
@@ -14,7 +14,12 @@
 </template>
 
 <script setup>
-import Recipe from './Recipe.vue'
+import { useRecipeStore } from "../../stores/recipe";
+import Recipe from "./Recipe.vue";
+
+const store = useRecipeStore()
+const { handleUpdatedRecipe, handleRemovedRecipe } = store
+
 defineProps({
     recipes: Array,
     show: {

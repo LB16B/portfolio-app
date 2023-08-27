@@ -53,14 +53,20 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { useRecipeStore } from '../../stores/recipe';
 import RecipeCropper from './RecipeCropper.vue';
+
+const store = useRecipeStore()
+const { handleAddedRecipe } = store
+
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
 const inputtingPrice = ref('')
 const inputtingFilename = ref('')
 
 const selectedFile = ref(null);
-const emit  = defineEmits(['file-selected', 'added']);
+// const emit  = defineEmits(['file-selected', 'added']);
+const emit  = defineEmits('file-selected');
 
 const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 }); // リアクティブなデータとして定義
 
@@ -97,7 +103,7 @@ if (file) {
 };
 
 
-const addNewRecipe = event => {
+const addNewRecipe = async(event) => {
 
 if (selectedFile.value) {
   const formData = new FormData();
@@ -131,7 +137,7 @@ if (selectedFile.value) {
       inputtingTime.value = '';
       inputtingPrice.value = '';
 
-      emit('added', newRecipe)
+      handleAddedRecipe(newRecipe)
     }).catch(error => {
       console.error('An error occurred:', error);
     });

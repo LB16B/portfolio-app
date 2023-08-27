@@ -109,15 +109,10 @@ const UpdateRecipe = async () => {
             if (response.ok) {
                 const result = await response.json();
                 const updatedRecipe = {
-                    // ...props.recipe スプレッド演算子
-                    // 既存のデータを展開して新しいオブジェクトを生成
-                    // 既存のデータが保持され、編集されたデータを追加できる
                     ...props.recipe,
                     title: editingRecipeTitle.value,
                     time: editingRecipeTime.value,
                     price: editingRecipePrice.value,
-                    // サーバーから返されるレスポンスに含まれるファイル名を
-                    // resultオブジェクトから取得し、filenameプロパティに設定
                     filename: result.filename,
                 };
 

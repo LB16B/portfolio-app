@@ -81,20 +81,10 @@
         </a>
         </div>
 
-        <!-- <textarea v-model="data" /> -->
     </section>
     <section class="preview-area">
         <p>Preview</p>
         <div class="preview" />
-        <!-- <p>Cropped Image</p>
-        <div class="cropped-image">
-        <img
-            v-if="cropImg"
-            :src="cropImg"
-            alt="Cropped Image"
-        />
-        <div v-else class="crop-placeholder" />
-        </div> -->
     </section>
     </div>
 </div>

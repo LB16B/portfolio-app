@@ -9,11 +9,17 @@ const routes = [
         path: "/recipes",
         component: RecipesPage,
         name: 'recipes',
+        meta: {
+            auth: true
+        }
     },
     {
         path: "/summary",
         component: SummaryPage,
         name: 'summary',
+        meta: {
+            auth: true
+        }
     },
     {
         path: "/login",

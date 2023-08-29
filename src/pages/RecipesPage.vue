@@ -1,15 +1,9 @@
 <template>
     <main>
-        <div>
-            <div>
-                <div>
-                    <NewRecipe />
-                    <!-- List of Recipes -->
-                    
-                    <Recipes :recipes="recipes" />
-                </div>
-            </div>
-        </div>
+        <NewRecipe />
+        <!-- List of Recipes -->
+        
+        <Recipes :recipes="recipes" />
     </main>
 </template>
 

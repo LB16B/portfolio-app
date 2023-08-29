@@ -7,11 +7,7 @@ import Footer from './components/Footer.vue'
 
 <template>
   <Navbar />
-  <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      
-    </transition>
-  </router-view>
+  <router-view>
   <Footer />
 </template>
 

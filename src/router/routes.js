@@ -10,25 +10,22 @@ const routes = [
         path: "/",
         component: HomePage,
         name: 'home',
-        // meta: {
-        //     auth: true
-        // }
     },
     {
         path: "/recipes",
         component: RecipesPage,
         name: 'recipes',
-        // meta: {
-        //     auth: true
-        // }
+        meta: {
+            auth: true
+        }
     },
     {
         path: "/summary",
         component: SummaryPage,
         name: 'summary',
-        // meta: {
-        //     auth: true
-        // }
+        meta: {
+            auth: true
+        }
     },
     {
         path: "/login",

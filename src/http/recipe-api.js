@@ -1,6 +1,7 @@
 import api from "./api";
 
-const resource = "/recipes";
+const apiPath = import.meta.env.VITE_API_PATH
+const resource = apiPath + "/recipes";
 
 export const allRecipes = () => api.get(resource);
 

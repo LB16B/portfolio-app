@@ -9,4 +9,4 @@ import './assets/style/tailwind.css'
 const app = createApp(App);
 app.use(createPinia());
 app.use(route);
-app.mount('#app');
+app.mount("#app");

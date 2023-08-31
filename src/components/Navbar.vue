@@ -7,7 +7,9 @@
             </svg>
             <span class="ml-3 text-xl">Tailblocks</span>
           </a>
-          <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center justify-center text-xl">
+          <nav 
+            v-if="store.isLoggedIn"
+            class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center justify-center text-xl">
             <!-- <router-link :to="{ name: 'recipes' }" class="mr-5 hover:text-gray-900">Recipes</router-link> -->
             <a 
               href="#"
@@ -24,15 +26,37 @@
             </router-link>
             <a class="mr-5 hover:text-gray-900">Fourth Link</a>
           </nav>
-          <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
-            Login
-          </router-link>
-          <router-link :to="{ name: 'register' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
-            Register
-          </router-link>
+          <template v-if="!store.isLoggedIn">
+            <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
+              Login
+            </router-link>
+            <router-link :to="{ name: 'register' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
+              Register
+            </router-link>
+          </template>
+          <template v-else>
+            <p>{{ store.user.name }}</p>
+            <a href="#" @click.prevent="logout"
+              class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
+              Logout
+            </a>
+          </template>
         </div>
       </div>
 </template>
+
+<script setup>
+import { useRoute, useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/auth';
+
+const router = useRouter
+const store = useAuthStore()
+
+const logout = async () => {
+  await store.handleLogout()
+  router.push({ name: 'login' })
+}
+</script>
 
 <style scoped>
 

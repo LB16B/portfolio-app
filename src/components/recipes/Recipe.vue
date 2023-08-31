@@ -15,47 +15,6 @@
     </div>
 
 
-    <!-- <li class="">
-        <div class="">
-            <div class="" 
-                title=""
-                @dblclick="$event => isEdit = true"
-            >
-                <div class="relative" v-if="isEdit">
-                    <input class="editable-task" 
-                        type="text"
-                        v-focus
-                        @keyup.esc="undo"
-                        v-model="editingRecipeTitle"
-                    />
-                    <input class="editable-task" 
-                        type="number"
-                        v-focus
-                        @keyup.esc="undo"
-                        v-model="editingRecipeTime"
-                    />
-                    <input class="editable-task" 
-                        type="number"
-                        v-focus
-                        @keyup.esc="undo"
-                        v-model="editingRecipePrice"
-                    />
-                    <input type="file" @change="handleFileChange">
-                    <button @click="UpdateRecipe">update</button>
-                </div>
-                <div v-else class="">
-                    <p>Title : {{ recipe.title }}</p>
-                    <p>Time : {{ recipe.time }}</p>
-                    <p>Price : {{ recipe.price }}</p>
-                    <p>filename : {{ recipe.filename }}</p>
-                </div>
-            </div>
-        </div>
-        <RecipeActions
-            @edit="isEdit = true" v-show="!isEdit"
-            @remove="removeRecipe"
-        />
-    </li> -->
 </template>
 
 <script setup>
@@ -84,60 +43,6 @@ const selectedFile = ref(null);
 const editingSelectedFile = ref(null); // 追加
 
 
-const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        editingSelectedFile.value = file;  
-    }
-};
-const vFocus = {
-    mounted: (el) => el.focus()
-}
-
-const UpdateRecipe = async () => {
-
-    if (editingSelectedFile.value) {
-        const formData = new FormData();
-        formData.append('file', editingSelectedFile.value);
-
-        try {
-            const response = await fetch('http://localhost:8000/api/v1/upload', {
-                method: 'POST',
-                body: formData
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                const updatedRecipe = {
-                    ...props.recipe,
-                    title: editingRecipeTitle.value,
-                    time: editingRecipeTime.value,
-                    price: editingRecipePrice.value,
-                    filename: result.filename,
-                };
-
-                isEdit.value = false;
-                emit('updated', updatedRecipe);
-            } else {
-                throw new Error('File upload failed.');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    } else {
-        // If no file is selected, update only other recipe fields
-        const updatedRecipe = {
-            ...props.recipe,
-            title: editingRecipeTitle.value,
-            time: editingRecipeTime.value,
-            price: editingRecipePrice.value,
-        };
-
-        isEdit.value = false;
-        emit('updated', updatedRecipe);
-    }
-};
-
 const undo = () => {
     isEdit.value = false
     editingRecipeTitle.value = props.recipe.title
@@ -146,9 +51,6 @@ const undo = () => {
     editingRecipeFilename.value = props.recipe.Filename
 }
 
-const removeRecipe = () => {
-    if (confirm("Are you sure?")) {
-        emit('removed', props.recipe)
-    }
-}
+
 </script>
+

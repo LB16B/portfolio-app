@@ -113,34 +113,21 @@ if (selectedFile.value) {
   formData.append('height', trimmingInfo.value.height);
   formData.append('width', trimmingInfo.value.width);
 
-    fetch('http://localhost:8000/api/v1/upload', {
-      method: 'POST',
-      body: formData
-    }).then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('File upload failed.');
-      }
-    }).then(result => {
-      const currentDate = new Date();
-      const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-      const formatter = new Intl.DateTimeFormat('ja-JP', options);
-      const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
-  
-      newRecipe.title = inputtingTitle.value
-      newRecipe.time = inputtingTime.value
-      newRecipe.price = inputtingPrice.value
-      newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
-      
-      inputtingTitle.value = '';
-      inputtingTime.value = '';
-      inputtingPrice.value = '';
+  const currentDate = new Date();
+  const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+  const formatter = new Intl.DateTimeFormat('ja-JP', options);
+  const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
 
-      handleAddedRecipe(newRecipe)
-    }).catch(error => {
-      console.error('An error occurred:', error);
-    });
+  newRecipe.title = inputtingTitle.value
+  newRecipe.time = inputtingTime.value
+  newRecipe.price = inputtingPrice.value
+  newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
+  
+  inputtingTitle.value = '';
+  inputtingTime.value = '';
+  inputtingPrice.value = '';
+
+  handleAddedRecipe(newRecipe)
 }
 }
 

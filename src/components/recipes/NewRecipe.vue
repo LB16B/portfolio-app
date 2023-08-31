@@ -43,6 +43,8 @@
               class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
               Button
             </button>
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+
           </div>
         </div>
       </div>
@@ -52,9 +54,26 @@
 
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useRecipeStore } from '../../stores/recipe';
 import RecipeCropper from './RecipeCropper.vue';
+import { csrfCookie } from '../../http/auth-api';
+
+const csrfToken = ref('');
+
+
+onMounted(async () => {
+  try {
+    // await csrfCookie(); // CSRF トークンを取得
+    await csrfCookie()
+      .then(response => console.log(response))
+      .catch(error => console.error('Error fetching CSRF token:', error));
+
+    csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  } catch (error) {
+    console.error('Error fetching CSRF token:', error);
+  }
+});
 
 const store = useRecipeStore()
 const { handleAddedRecipe } = store
@@ -65,8 +84,8 @@ const inputtingPrice = ref('')
 const inputtingFilename = ref('')
 
 const selectedFile = ref(null);
-// const emit  = defineEmits(['file-selected', 'added']);
-const emit  = defineEmits('file-selected');
+const emit  = defineEmits(['file-selected', 'added']);
+// const emit  = defineEmits('file-selected');
 
 const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 }); // リアクティブなデータとして定義
 
@@ -102,7 +121,6 @@ if (file) {
   }
 };
 
-
 const addNewRecipe = async(event) => {
 
 if (selectedFile.value) {
@@ -113,23 +131,68 @@ if (selectedFile.value) {
   formData.append('height', trimmingInfo.value.height);
   formData.append('width', trimmingInfo.value.width);
 
-  const currentDate = new Date();
-  const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-  const formatter = new Intl.DateTimeFormat('ja-JP', options);
-  const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
+  const headers = {
+            'X-CSRF-TOKEN': csrfToken.value, // CSRF トークンの設定
+        };
 
-  newRecipe.title = inputtingTitle.value
-  newRecipe.time = inputtingTime.value
-  newRecipe.price = inputtingPrice.value
-  newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
+    fetch('http://localhost:8000/api/v2/upload', {
+      method: 'POST',
+      body: formData,
+      headers: headers
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('File upload failed.');
+      }
+    }).then(result => {
+      const currentDate = new Date();
+      const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+      const formatter = new Intl.DateTimeFormat('ja-JP', options);
+      const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
   
-  inputtingTitle.value = '';
-  inputtingTime.value = '';
-  inputtingPrice.value = '';
+      newRecipe.title = inputtingTitle.value
+      newRecipe.time = inputtingTime.value
+      newRecipe.price = inputtingPrice.value
+      newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
+      
+      inputtingTitle.value = '';
+      inputtingTime.value = '';
+      inputtingPrice.value = '';
 
-  handleAddedRecipe(newRecipe)
+      handleAddedRecipe(newRecipe)
+    }).catch(error => {
+      console.error('An error occurred:', error);
+    });
 }
 }
+// const addNewRecipe = async(event) => {
+
+// if (selectedFile.value) {
+//   const formData = new FormData();
+//   formData.append('file', selectedFile.value);
+//   formData.append('x', trimmingInfo.value.x);
+//   formData.append('y', trimmingInfo.value.y);
+//   formData.append('height', trimmingInfo.value.height);
+//   formData.append('width', trimmingInfo.value.width);
+
+//   const currentDate = new Date();
+//   const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+//   const formatter = new Intl.DateTimeFormat('ja-JP', options);
+//   const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
+
+//   newRecipe.title = inputtingTitle.value
+//   newRecipe.time = inputtingTime.value
+//   newRecipe.price = inputtingPrice.value
+//   newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
+  
+//   inputtingTitle.value = '';
+//   inputtingTime.value = '';
+//   inputtingPrice.value = '';
+
+//   handleAddedRecipe(newRecipe)
+// }
+// }
 
 
 </script>

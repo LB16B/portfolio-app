@@ -57,26 +57,13 @@
 import { ref, reactive, onMounted } from 'vue'
 import { useRecipeStore } from '../../stores/recipe';
 import RecipeCropper from './RecipeCropper.vue';
-import { csrfCookie } from '../../http/auth-api';
-
-const csrfToken = ref('');
-
-
-onMounted(async () => {
-  try {
-    // await csrfCookie(); // CSRF トークンを取得
-    await csrfCookie()
-      .then(response => console.log(response))
-      .catch(error => console.error('Error fetching CSRF token:', error));
-
-    csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  } catch (error) {
-    console.error('Error fetching CSRF token:', error);
-  }
-});
+import { useUploadStore } from '../../stores/upload';
+import { imageUpload } from '../../http/upload-api';
 
 const store = useRecipeStore()
+const storeUpload = useUploadStore()
 const { handleAddedRecipe } = store
+const { uploadRecipeImage } = storeUpload
 
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
@@ -84,8 +71,7 @@ const inputtingPrice = ref('')
 const inputtingFilename = ref('')
 
 const selectedFile = ref(null);
-const emit  = defineEmits(['file-selected', 'added']);
-// const emit  = defineEmits('file-selected');
+const emit = defineEmits(['file-selected', 'added']);
 
 const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 }); // リアクティブなデータとして定義
 
@@ -124,75 +110,39 @@ if (file) {
 const addNewRecipe = async(event) => {
 
 if (selectedFile.value) {
-  const formData = new FormData();
-  formData.append('file', selectedFile.value);
-  formData.append('x', trimmingInfo.value.x);
-  formData.append('y', trimmingInfo.value.y);
-  formData.append('height', trimmingInfo.value.height);
-  formData.append('width', trimmingInfo.value.width);
+  // const formData = new FormData();
+  // formData.append('file', selectedFile.value);
+  // formData.append('x', trimmingInfo.value.x);
+  // formData.append('y', trimmingInfo.value.y);
+  // formData.append('height', trimmingInfo.value.height);
+  // formData.append('width', trimmingInfo.value.width);
 
-  const headers = {
-            'X-CSRF-TOKEN': csrfToken.value, // CSRF トークンの設定
-        };
+  const currentDate = new Date();
+  const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+  const formatter = new Intl.DateTimeFormat('ja-JP', options);
+  const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
 
-    fetch('http://localhost:8000/api/v2/upload', {
-      method: 'POST',
-      body: formData,
-      headers: headers
-    }).then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('File upload failed.');
-      }
-    }).then(result => {
-      const currentDate = new Date();
-      const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-      const formatter = new Intl.DateTimeFormat('ja-JP', options);
-      const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
+  newRecipe.title = inputtingTitle.value
+  newRecipe.time = inputtingTime.value
+  newRecipe.price = inputtingPrice.value
+  newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
+
+  try {
+      await uploadRecipeImage(selectedFile.value);
+      // アップロード成功時の処理を追加することができます
+      console.log('アップロード成功');
+    } catch (error) {
+      console.error('アップロードエラー:', error);
+    }
+
   
-      newRecipe.title = inputtingTitle.value
-      newRecipe.time = inputtingTime.value
-      newRecipe.price = inputtingPrice.value
-      newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
-      
-      inputtingTitle.value = '';
-      inputtingTime.value = '';
-      inputtingPrice.value = '';
+  inputtingTitle.value = '';
+  inputtingTime.value = '';
+  inputtingPrice.value = '';
 
-      handleAddedRecipe(newRecipe)
-    }).catch(error => {
-      console.error('An error occurred:', error);
-    });
+  handleAddedRecipe(newRecipe)
 }
 }
-// const addNewRecipe = async(event) => {
-
-// if (selectedFile.value) {
-//   const formData = new FormData();
-//   formData.append('file', selectedFile.value);
-//   formData.append('x', trimmingInfo.value.x);
-//   formData.append('y', trimmingInfo.value.y);
-//   formData.append('height', trimmingInfo.value.height);
-//   formData.append('width', trimmingInfo.value.width);
-
-//   const currentDate = new Date();
-//   const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-//   const formatter = new Intl.DateTimeFormat('ja-JP', options);
-//   const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
-
-//   newRecipe.title = inputtingTitle.value
-//   newRecipe.time = inputtingTime.value
-//   newRecipe.price = inputtingPrice.value
-//   newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
-  
-//   inputtingTitle.value = '';
-//   inputtingTime.value = '';
-//   inputtingPrice.value = '';
-
-//   handleAddedRecipe(newRecipe)
-// }
-// }
 
 
 </script>

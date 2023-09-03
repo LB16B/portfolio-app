@@ -6,7 +6,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
     Accept: 'application/json',
-    Authorization: `Bearer ${Cookies.get('auth_token') || ''}`,
+    Authorization: cookies.isKey('auth_token') ? `Bearer ${cookies.get('auth_token')}` : '',
   },
 });
 

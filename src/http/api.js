@@ -1,5 +1,5 @@
 import axios from "axios";
-import Cookies from "js-cookie";
+import cookies from "js-cookie";
 axios.defaults.withCredentials = true;
 
 const api = axios.create({

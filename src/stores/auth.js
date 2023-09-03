@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
+import cookies from "js-cookie";
 import { csrfCookie, login, register, logout, getUser } from "../http/auth-api";
 
 export const useAuthStore = defineStore("authStore", () => {
@@ -20,8 +21,18 @@ export const useAuthStore = defineStore("authStore", () => {
   const handleLogin = async (credentials) => {
     await csrfCookie();
     try {
-      await login(credentials);
+      // const authToken = await login(credentials);
+      const authToken = String(await login(credentials));
+      console.log(authToken)
+      
+      // 認証トークンをクッキーに設定
+      cookies.set('auth_token', authToken);
+      
+      // console.log(authToken)
+      
+      // ユーザー情報を取得
       await fetchUser();
+
       errors.value = {};
     } catch (error) {
       if (error.response && error.response.status === 422) {

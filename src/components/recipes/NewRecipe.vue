@@ -45,6 +45,7 @@
             </button>
             <meta name="csrf-token" content="{{ csrf_token() }}">
 
+            
           </div>
         </div>
       </div>
@@ -129,7 +130,6 @@ if (selectedFile.value) {
 
   try {
       await uploadRecipeImage(selectedFile.value);
-      // アップロード成功時の処理を追加することができます
       console.log('アップロード成功');
     } catch (error) {
       console.error('アップロードエラー:', error);

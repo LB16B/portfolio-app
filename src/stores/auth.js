@@ -21,12 +21,13 @@ export const useAuthStore = defineStore("authStore", () => {
   const handleLogin = async (credentials) => {
     await csrfCookie();
     try {
-      // const authToken = await login(credentials);
-      const authToken = String(await login(credentials));
+      const authToken = await login(credentials);
       console.log(authToken)
       
       // 認証トークンをクッキーに設定
       cookies.set('auth_token', authToken);
+
+
       
       // console.log(authToken)
       

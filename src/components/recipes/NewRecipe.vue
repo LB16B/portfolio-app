@@ -97,7 +97,8 @@ const newRecipe = reactive({
   title: '',
   time: '',
   price: '',
-  filename: ''
+  filename: '',
+  user_id: ''
 })
 
 const handleFileSelected = (fileName) => {
@@ -130,9 +131,8 @@ if (selectedFile.value) {
 
   try {
       await uploadRecipeImage(selectedFile.value);
-      console.log('アップロード成功');
     } catch (error) {
-      console.error('アップロードエラー:', error);
+      // console.error('アップロードエラー:', error);
     }
 
   

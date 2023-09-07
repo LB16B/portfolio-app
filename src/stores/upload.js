@@ -6,16 +6,11 @@ export const useUploadStore = defineStore('uploadStore', () => {
 
     const uploadRecipeImage = async (file) => {
         try {
-          const uploadUrl = "http://localhost:8000/api/v2/upload";
           const formData = new FormData();
           formData.append("file", file);
 
 
-
-          const response = await fetch(uploadUrl, {
-            method: "POST",
-            body: formData,
-          });
+            const response = await imageUpload(formData);
 
           if (!response.ok) {
             // サーバーからエラーレスポンスが返ってきた場合のエラーハンドリング
@@ -28,7 +23,7 @@ export const useUploadStore = defineStore('uploadStore', () => {
       
             // 成功時の処理
           } catch (error) {
-            console.error("アップロードエラー:", error);
+            // console.error("アップロードエラー:", error);
             throw error;
           }
         };

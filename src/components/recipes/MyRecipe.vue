@@ -8,7 +8,7 @@
             >
         </a>
         <div class="mt-4">
-            {{ recipe.user_id }}
+            {{ recipe.id }}
             <!-- <router-link :to="{ name: 'show_recipe', params: { recipeId: recipe.id } }">dddd</router-link> -->
             <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.title }}</h3>
             <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>

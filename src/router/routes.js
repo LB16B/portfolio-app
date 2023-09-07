@@ -1,9 +1,13 @@
 import RecipesPage from '../pages/RecipesPage.vue';
+import NewRecipePage from '../pages/NewRecipePage.vue';
+import MyRecipesPage from '../pages/MyRecipesPage.vue';
+import ShowRecipePage from '../pages/ShowRecipePage.vue';
 import LoginPage from '../pages/LoginPage.vue';
 import RegisterPage from '../pages/RegisterPage.vue';
 import SummaryPage from '../pages/SummaryPage.vue';
 import NotFoundErrorPage from '../pages/errors/NotFoundErrorPage.vue';
 import HomePage from '../pages/HomePage.vue'
+
 
 const routes = [
     {
@@ -15,6 +19,30 @@ const routes = [
         path: "/recipes",
         component: RecipesPage,
         name: 'recipes',
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/show_recipe",
+        component: ShowRecipePage,
+        name: 'show_recipe',
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/my_recipes",
+        component: MyRecipesPage,
+        name: 'my_recipes',
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/new_recipe",
+        component: NewRecipePage,
+        name: 'new_recipe',
         meta: {
             auth: true
         }

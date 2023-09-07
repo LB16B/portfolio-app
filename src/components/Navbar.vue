@@ -18,11 +18,24 @@
             >
               Recipes
             </a>
+            <a 
+              href="#"
+              @click.prevent="$event => $router.push('/show_recipe')" 
+              class="mr-5 hover:text-gray-900"
+            >
+              ShowRecipes
+            </a>
             <router-link 
-              :to="{ name: 'summary' }"
+              :to="{ name: 'new_recipe' }"
               class="mr-5 hover:text-gray-900"
               >
-              Summary
+              NewRecipe
+            </router-link>
+            <router-link 
+              :to="{ name: 'my_recipes' }"
+              class="mr-5 hover:text-gray-900"
+              >
+              MyRecipes
             </router-link>
             <a class="mr-5 hover:text-gray-900">Fourth Link</a>
           </nav>

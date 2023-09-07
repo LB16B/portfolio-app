@@ -1,6 +1,6 @@
 import axios from "axios";
 import cookies from "js-cookie";
-
+// CookieのXSRF-TOKENも値をLaravelに自動で送信
 axios.defaults.withCredentials = true;
 
 

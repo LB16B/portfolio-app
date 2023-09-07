@@ -24,7 +24,7 @@ const routes = [
         }
     },
     {
-        path: "/show_recipe",
+        path: "/show_recipe/:recipeId",
         component: ShowRecipePage,
         name: 'show_recipe',
         meta: {

@@ -1,6 +1,6 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
-import { allRecipes, createRecipe, updateRecipe, removeRecipe, showRecipe } from "../http/recipe-api";
+import { allRecipes, createRecipe, updateRecipe, removeRecipe } from "../http/recipe-api";
 
 export const useRecipeStore = defineStore('recipeStore', () => {
     const recipes = ref([]);
@@ -10,19 +10,6 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         recipes.value = data.data;
     };
 
-    const fetchRecipe = async (recipeId) => {
-        const { data } = await showRecipe(recipeId);
-        recipes.value = data.data;
-    };
-    // // recipes.valueに特定のレシピを追加または更新
-    // const index = recipes.value.findIndex(item => item.id === recipe.id);
-    // if (index !== -1) {
-    //     // レシピが既に存在する場合、更新
-    //     recipes.value[index] = recipe;
-    // } else {
-    //     // レシピが存在しない場合、新規追加
-    //     recipes.value.unshift(recipe);
-    // }
 
 
     const handleAddedRecipe = async (newRecipe) => {
@@ -58,7 +45,6 @@ export const useRecipeStore = defineStore('recipeStore', () => {
     return {
         recipes,
         fetchAllRecipes,
-        fetchRecipe,
         // totalRecipes,
         handleAddedRecipe,
         handleUpdatedRecipe,

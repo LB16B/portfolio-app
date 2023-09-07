@@ -8,12 +8,12 @@
 <script setup>
 import { onMounted, ref, computed } from "vue";
 import { storeToRefs } from "pinia"
-import { useRecipeStore } from "../stores/recipe";
+import { useRecipeStore } from "../../stores/recipe";
 import { useRoute, useRouter } from 'vue-router';
-import { useAuthStore } from '../stores/auth';
-import Recipes from '../components/recipes/Recipes.vue';
-import NewRecipe from "../components/recipes/NewRecipe.vue";
-import api from "../http/api";
+import { useAuthStore } from '../../stores/auth';
+import Recipes from '../../components/recipes/Recipes.vue';
+import NewRecipe from "../../components/recipes/NewRecipe.vue";
+import api from "../../http/api";
 
 const store = useRecipeStore()
 const auth_store = useAuthStore()

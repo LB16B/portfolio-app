@@ -1,7 +1,7 @@
 <template>
     <main>
+        <h1>レシピ詳細</h1>
         <!-- <ShowRecipes :recipes="filteredRecipeId" /> -->
-        <ShowRecipe :recipes="filteredRecipeId" />
     </main>
 </template>
 
@@ -11,7 +11,7 @@ import { storeToRefs } from "pinia"
 import { useRecipeStore } from "../../stores/recipe"
 import { useRoute, useRouter } from 'vue-router';;
 import Recipes from '../../components/recipes/Recipes.vue';
-import ShowRecipe from '../../components/recipes/ShowRecipe.vue';
+// import ShowRecipes from '../../components/recipes/ShowRecipes.vue';
 import api from "../../http/api";
 
 

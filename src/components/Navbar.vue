@@ -23,7 +23,7 @@
               @click.prevent="$event => $router.push('/show_recipe')" 
               class="mr-5 hover:text-gray-900"
             >
-              ShowRecipes
+              ShowRecipe
             </a>
             <router-link 
               :to="{ name: 'new_recipe' }"

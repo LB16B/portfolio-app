@@ -22,10 +22,10 @@ export const useAuthStore = defineStore("authStore", () => {
     await csrfCookie();
     try {
       const authToken = await login(credentials);
-      console.log(authToken)
+      // console.log(authToken)
       
       // 認証トークンをクッキーに設定
-      cookies.set('auth_token', authToken);
+      // cookies.set('auth_token', authToken);
 
 
       

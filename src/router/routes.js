@@ -2,6 +2,7 @@ import RecipesPage from '../pages/recipes/RecipesPage.vue';
 import NewRecipePage from '../pages/recipes/NewRecipePage.vue';
 import MyRecipesPage from '../pages/recipes/MyRecipesPage.vue';
 import ShowRecipePage from '../pages/recipes/ShowRecipePage.vue';
+import EditRecipePage from '../pages/recipes/EditRecipePage.vue';
 import LoginPage from '../pages/LoginPage.vue';
 import RegisterPage from '../pages/RegisterPage.vue';
 import SummaryPage from '../pages/SummaryPage.vue';
@@ -27,6 +28,14 @@ const routes = [
         path: "/show_recipe/:recipeId",
         component: ShowRecipePage,
         name: 'show_recipe',
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/edit_recipe/:recipeId",
+        component: EditRecipePage,
+        name: 'edit_recipe',
         meta: {
             auth: true
         }

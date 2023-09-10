@@ -1,8 +1,9 @@
 <template>
+    3333
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4">
-                <ShowRecipe v-for="recipe in recipes" 
+                <EditRecipe v-for="recipe in recipes" 
                     :recipe="recipe" 
                     :key="recipe.id" 
                     @updated="handleUpdatedRecipe" 
@@ -15,7 +16,7 @@
 
 <script setup>
 import { useRecipeStore } from "../../stores/recipe";
-import ShowRecipe from "./ShowRecipe.vue";
+import EditRecipe from "./EditRecipe.vue";
 
 
 const store = useRecipeStore()

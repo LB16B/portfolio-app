@@ -65,7 +65,6 @@ const store = useRecipeStore()
 const storeUpload = useUploadStore()
 const { handleAddedRecipe } = store
 const { uploadRecipeImage } = storeUpload
-
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
 const inputtingPrice = ref('')
@@ -112,12 +111,6 @@ if (file) {
 const addNewRecipe = async(event) => {
 
 if (selectedFile.value) {
-  // const formData = new FormData();
-  // formData.append('file', selectedFile.value);
-  // formData.append('x', trimmingInfo.value.x);
-  // formData.append('y', trimmingInfo.value.y);
-  // formData.append('height', trimmingInfo.value.height);
-  // formData.append('width', trimmingInfo.value.width);
 
   const currentDate = new Date();
   const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };

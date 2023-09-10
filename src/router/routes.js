@@ -5,7 +5,6 @@ import ShowRecipePage from '../pages/recipes/ShowRecipePage.vue';
 import EditRecipePage from '../pages/recipes/EditRecipePage.vue';
 import LoginPage from '../pages/LoginPage.vue';
 import RegisterPage from '../pages/RegisterPage.vue';
-import SummaryPage from '../pages/SummaryPage.vue';
 import NotFoundErrorPage from '../pages/errors/NotFoundErrorPage.vue';
 import HomePage from '../pages/HomePage.vue'
 
@@ -52,14 +51,6 @@ const routes = [
         path: "/new_recipe",
         component: NewRecipePage,
         name: 'new_recipe',
-        meta: {
-            auth: true
-        }
-    },
-    {
-        path: "/summary",
-        component: SummaryPage,
-        name: 'summary',
         meta: {
             auth: true
         }

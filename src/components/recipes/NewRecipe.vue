@@ -112,6 +112,7 @@ const addNewRecipe = async(event) => {
 
 if (selectedFile.value) {
 
+  
   const currentDate = new Date();
   const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
   const formatter = new Intl.DateTimeFormat('ja-JP', options);

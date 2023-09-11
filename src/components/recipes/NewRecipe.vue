@@ -104,7 +104,6 @@ const handleFileSelected = (fileName) => {
 const file = event.target.files[0];
 if (file) {
   selectedFile.value = file;
-
   }
 };
 

@@ -6,7 +6,9 @@
                 title=""
                 @dblclick="$event => isEdit = true"
             >
-                <div class="relative lg:w-4/5 mx-auto flex flex-wrap" v-if="isEdit">
+                <div class="relative lg:w-4/5 mx-auto flex flex-wrap">
+                <!-- <div class="relative lg:w-4/5 mx-auto flex flex-wrap" v-if="isEdit"> -->
+                    <RecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
                     <img alt="recipe image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="getImagePath(recipe.filename)">
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <input class="editable-task text-sm title-font text-gray-500 tracking-widest w-full border-4 mb-4" 
@@ -30,19 +32,12 @@
                             v-model="editingRecipePrice"
                         />
                     </div>
-                    <!-- <input type="file" @change="handleFileChange"> -->
-                    <!-- <a
-                        href="#"
-                        role="button"
-                        @click.prevent="handleFileChange"
-                    >
-                        画像選択
-                    </a> -->
                     <button @click="UpdateRecipe">update</button>
                 </div>
 
 
-                <div class="lg:w-4/5 mx-auto flex flex-wrap" v-else >
+                <div class="lg:w-4/5 mx-auto flex flex-wrap">
+                <!-- <div class="lg:w-4/5 mx-auto flex flex-wrap" v-else > -->
                     <img alt="recipe image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="getImagePath(recipe.filename)">
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
@@ -69,6 +64,14 @@
 <script setup>
 import { ref, computed } from "vue";
 import RecipeActions from './RecipeActions.vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import RecipeCropper from "./RecipeCropper.vue";
+import { useUploadStore } from "../../stores/upload";
+
+const storeUpload = useUploadStore()
+const { uploadRecipeImage } = storeUpload
+const selectedFile = ref(null);
 
 const path = "http://localhost:8000/recipe_images/";
 
@@ -81,26 +84,79 @@ const props = defineProps({
     selectedFile: Object 
 })
 
-const emit = defineEmits(['updated', 'removed'])
+const emit = defineEmits(['updated', 'removed'], ['file-selected', added]);
+
+const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 });
+
 
 const isEdit = ref(false)
 const editingRecipeTitle = ref(props.recipe.title)
 const editingRecipeTime = ref(props.recipe.time)
 const editingRecipePrice = ref(props.recipe.price)
+const editingFilename = ref(props.recipe.filename)
+
+const handleTrimmingData = (data) => {
+    trimmingInfo.value = {
+        x: data.x,
+        y: data.y,
+        height: data.height,
+        width: data.width
+    };
+
+    const formData = new FormData();
+    formData.append('x', trimmingInfo.value.x);
+    formData.append('y', trimmingInfo.value.y);
+    formData.append('height', trimmingInfo.value.height);
+    formData.append('width', trimmingInfo.value.width);
+};
+
 
 const vFocus = {
     mounted: (el) => el.focus()
 }
 
-const UpdateRecipe = async () => {
+const handleFileSelected = (filename) => {
+    const file = event.target.files[0];
+    if (file) {
+        selectedFile.value = file;
+    }
+};
+
+const UpdateRecipe = async (event) => {
+    
+  
+        const currentDate = new Date();
+        const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+        const formatter = new Intl.DateTimeFormat('ja-JP', options);
+        const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
+        const newFileName = `${formattedDateTime}_${selectedFile.value.name}`;
+
+        
         const updatedRecipe = {
             ...props.recipe,
             title: editingRecipeTitle.value,
             time: editingRecipeTime.value,
             price: editingRecipePrice.value,
+            filename: newFileName,
         };
+        
+
         isEdit.value = false;
         emit('updated', updatedRecipe);
+        await uploadRecipeImage(selectedFile.value);
+
+  
+
+        // const updatedRecipe = {
+        //     ...props.recipe,
+        //     title: editingRecipeTitle.value,
+        //     time: editingRecipeTime.value,
+        //     price: editingRecipePrice.value,
+        // };
+
+        // isEdit.value = false;
+        // emit(['updated', updatedRecipe]);
+
 };
 
 const undo = () => {
@@ -109,10 +165,13 @@ const undo = () => {
     editingRecipeTime.value = props.recipe.time
     editingRecipePrice.value = props.recipe.price
 }
+const router = useRouter(); // ルーターインスタンスを取得
 
 const removeRecipe = () => {
     if (confirm("Are you sure?")) {
         emit('removed', props.recipe)
     }
+
+    router.push('/my_recipes')
 }
 </script>

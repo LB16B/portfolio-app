@@ -8,7 +8,7 @@
             >
                 <div class="relative lg:w-4/5 mx-auto flex flex-wrap">
                 <!-- <div class="relative lg:w-4/5 mx-auto flex flex-wrap" v-if="isEdit"> -->
-                    <RecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
+                    <EditRecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
                     <img alt="recipe image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="getImagePath(recipe.filename)">
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <input class="editable-task text-sm title-font text-gray-500 tracking-widest w-full border-4 mb-4" 
@@ -66,7 +66,7 @@ import { ref, computed } from "vue";
 import RecipeActions from './RecipeActions.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import { useRoute, useRouter } from 'vue-router';
-import RecipeCropper from "./RecipeCropper.vue";
+import EditRecipeCropper  from './EditRecipeCropper.vue'
 import { useUploadStore } from "../../stores/upload";
 
 const storeUpload = useUploadStore()

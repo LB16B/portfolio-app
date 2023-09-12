@@ -1,6 +1,7 @@
 <template>
   <RecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
 
+
   <section class="text-gray-600 body-font relative">
     <div class="container px-5 py-24 mx-auto">
     
@@ -55,7 +56,7 @@
 
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRecipeStore } from '../../stores/recipe';
 import RecipeCropper from './RecipeCropper.vue';
 import { useUploadStore } from '../../stores/upload';
@@ -65,13 +66,15 @@ const store = useRecipeStore()
 const storeUpload = useUploadStore()
 const { handleAddedRecipe } = store
 const { uploadRecipeImage } = storeUpload
+
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
 const inputtingPrice = ref('')
 const inputtingFilename = ref('')
 
 const selectedFile = ref(null);
-const emit = defineEmits(['file-selected', 'added']);
+const emit  = defineEmits(['file-selected', 'added']);
+// const emit  = defineEmits('file-selected');
 
 const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 }); // リアクティブなデータとして定義
 
@@ -96,45 +99,45 @@ const newRecipe = reactive({
   title: '',
   time: '',
   price: '',
-  filename: '',
-  user_id: ''
+  filename: ''
 })
 
 const handleFileSelected = (fileName) => {
 const file = event.target.files[0];
 if (file) {
   selectedFile.value = file;
+
   }
 };
+
 
 const addNewRecipe = async(event) => {
 
 if (selectedFile.value) {
-
+      const currentDate = new Date();
+      const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+      const formatter = new Intl.DateTimeFormat('ja-JP', options);
+      const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
   
-  const currentDate = new Date();
-  const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-  const formatter = new Intl.DateTimeFormat('ja-JP', options);
-  const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
+      newRecipe.title = inputtingTitle.value
+      newRecipe.time = inputtingTime.value
+      newRecipe.price = inputtingPrice.value
+      newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
 
-  newRecipe.title = inputtingTitle.value
-  newRecipe.time = inputtingTime.value
-  newRecipe.price = inputtingPrice.value
-  newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
-
-  try {
+      try {
       await uploadRecipeImage(selectedFile.value);
+      console.log('アップロード成功');
     } catch (error) {
-      // console.error('アップロードエラー:', error);
+      console.error('アップロードエラー:', error);
     }
+      
+      inputtingTitle.value = '';
+      inputtingTime.value = '';
+      inputtingPrice.value = '';
 
-  
-  inputtingTitle.value = '';
-  inputtingTime.value = '';
-  inputtingPrice.value = '';
+      handleAddedRecipe(newRecipe)
 
-  handleAddedRecipe(newRecipe)
-}
+  }
 }
 
 

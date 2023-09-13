@@ -76,7 +76,8 @@ const selectedFile = ref(null);
 const emit  = defineEmits(['file-selected', 'added']);
 // const emit  = defineEmits('file-selected');
 
-const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 }); // リアクティブなデータとして定義
+const trimmingInfo = ref({x: 0, y: 0, height: 0, width: 0}); // リアクティブなデータとして定義
+const formData = new FormData();
 
 const handleTrimmingData = (data) => {
   trimmingInfo.value = {
@@ -87,7 +88,6 @@ const handleTrimmingData = (data) => {
 };
 
 
-const formData = new FormData();
   formData.append('x', trimmingInfo.value.x);
   formData.append('y', trimmingInfo.value.y);
   formData.append('height', trimmingInfo.value.height);
@@ -114,6 +114,7 @@ if (file) {
 const addNewRecipe = async(event) => {
 
 if (selectedFile.value) {
+      formData.append('file', selectedFile.value);
       const currentDate = new Date();
       const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
       const formatter = new Intl.DateTimeFormat('ja-JP', options);
@@ -125,7 +126,7 @@ if (selectedFile.value) {
       newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
 
       try {
-      await uploadRecipeImage(selectedFile.value);
+      await uploadRecipeImage(formData);
       console.log('アップロード成功');
     } catch (error) {
       console.error('アップロードエラー:', error);

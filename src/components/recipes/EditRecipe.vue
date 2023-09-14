@@ -61,6 +61,7 @@
     </li>
 </template>
 
+
 <script setup>
 import { ref, computed } from "vue";
 import RecipeActions from './RecipeActions.vue';
@@ -95,6 +96,8 @@ const editingRecipeTime = ref(props.recipe.time)
 const editingRecipePrice = ref(props.recipe.price)
 const editingFilename = ref(props.recipe.filename)
 
+const formData = new FormData();
+
 const handleTrimmingData = (data) => {
     trimmingInfo.value = {
         x: data.x,
@@ -103,7 +106,6 @@ const handleTrimmingData = (data) => {
         width: data.width
     };
 
-    const formData = new FormData();
     formData.append('x', trimmingInfo.value.x);
     formData.append('y', trimmingInfo.value.y);
     formData.append('height', trimmingInfo.value.height);
@@ -123,7 +125,7 @@ const handleFileSelected = (filename) => {
 };
 
 const UpdateRecipe = async (event) => {
-    
+    formData.append('file', selectedFile.value);
   
         const currentDate = new Date();
         const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
@@ -143,7 +145,7 @@ const UpdateRecipe = async (event) => {
 
         isEdit.value = false;
         emit('updated', updatedRecipe);
-        await uploadRecipeImage(selectedFile.value);
+        await uploadRecipeImage(formData);
 
   
 

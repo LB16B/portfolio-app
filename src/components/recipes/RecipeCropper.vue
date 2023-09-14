@@ -1,93 +1,79 @@
 <template>
-<div class="recipe-cropper">
-
-    <input
-    ref="input"
-    type="file"
-    name="image"
-    accept="image/*"
-    @change="setImage"
-    />
-
-    <div class="content">
-    <section class="cropper-area">
-        <div class="img-cropper">
-        <vue-cropper
-            ref="cropper"
-            :aspect-ratio="16 / 9"
-            :src="imgSrc"
-            preview=".preview"
-            class="cropper-area-img"
-        />
+    <section class="text-gray-600 body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="lg:w-4/5 mx-auto flex flex-wrap">
+            <input
+            ref="input"
+            type="file"
+            name="image"
+            accept="image/*"
+            @change="setImage"
+            />
+            <div class="lg:w-1/2 w-full lg:h-auto h-64">
+                <section class="cropper-area">
+                    <div class="img-cropper">
+                        <vue-cropper
+                            ref="cropper"
+                            :aspect-ratio="16 / 9"
+                            :src="imgSrc"
+                            preview=".preview"
+                            class="cropper-area-img"
+                        />
+                    </div>
+                </section>
+            </div>
+            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6  lg:mt-0">
+                <div class="content">
+                    <section class="preview-area">
+                        <p>Preview</p>
+                        <div class="preview" />
+                    </section>
+                </div>
+              <div class="flex ml-8">
+                <div class="actions">
+                    <a
+                        href="#"
+                        role="button"
+                        @click.prevent="rotate(90)"
+                    >
+                        右回転
+                    </a>
+                    <a
+                        href="#"
+                        role="button"
+                        @click.prevent="rotate(-90)"
+                    >
+                        左回転
+                    </a>
+                    <a
+                        href="#"
+                        role="button"
+                        @click.prevent="reset"
+                    >
+                        リセット
+                    </a>
+                    <a
+                        href="#"
+                        role="button"
+                        @click.prevent="getData"
+                        >
+                        適用する
+                    </a>
+                    <a
+                        href="#"
+                        role="button"
+                        @click.prevent="showFileChooser"
+                    >
+                        画像選択
+                    </a>
+                    </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="actions">
-        <a
-            href="#"
-            role="button"
-            @click.prevent="rotate(90)"
-        >
-            右回転
-        </a>
-        <a
-            href="#"
-            role="button"
-            @click.prevent="rotate(-90)"
-        >
-            左回転
-        </a>
-        <a
-            ref="flipX"
-            href="#"
-            role="button"
-            @click.prevent="flipX"
-        >
-            反転水平
-        </a>
-        <a
-            ref="flipY"
-            href="#"
-            role="button"
-            @click.prevent="flipY"
-        >
-            反転垂直
-        </a>
-        <a
-            href="#"
-            role="button"
-            @click.prevent="cropImage"
-        >
-            トリミング
-        </a>
-        <a
-            href="#"
-            role="button"
-            @click.prevent="reset"
-        >
-            リセット
-        </a>
-        <a
-            href="#"
-            role="button"
-            @click.prevent="getData"
-            >
-            適用する
-        </a>
-        <a
-            href="#"
-            role="button"
-            @click.prevent="showFileChooser"
-        >
-            画像選択
-        </a>
-        </div>
+      </section>
 
-    </section>
-    <section class="preview-area">
-        <p>Preview</p>
-        <div class="preview" />
-    </section>
-    </div>
-</div>
+
 </template>
 
 <script>
@@ -169,31 +155,8 @@ methods: {
 
 <style>
 
-.recipe-cropper {
-    font-family: Arial, Helvetica, sans-serif;
-    width: 1400px;
-    margin: 0 auto;
-}
-
-input[type="file"] {
-display: none;
-}
 
 
-.content {
-display: flex;
-justify-content: space-between;
-padding: 30px;
-}
-
-.cropper-area {
-width: 900px;
-
-}
-
-.cropper-area-img {
-    width: 600px;
-}
 
 .actions {
 margin-top: 1rem;
@@ -215,16 +178,9 @@ width: 100%;
 height: 100px;
 }
 
-.preview-area {
-    width: 700px;
-}
 
-.preview {
-width: 500px;
-height: 500px;
-overflow: hidden;
-border: 1px solid blue;
-}
+
+
 
 .crop-placeholder {
 width: 100%;

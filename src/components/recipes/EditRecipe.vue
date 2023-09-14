@@ -1,13 +1,12 @@
 <template>
 
-    <li class="">
+    <section class="">
         <div class="text-gray-600 body-font overflow-hidden w-full">
             <div class="" 
                 title=""
                 @dblclick="$event => isEdit = true"
             >
                 <div class="relative lg:w-4/5 mx-auto flex flex-wrap">
-                <!-- <div class="relative lg:w-4/5 mx-auto flex flex-wrap" v-if="isEdit"> -->
                     <EditRecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
                     <img alt="recipe image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="getImagePath(recipe.filename)">
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -58,7 +57,7 @@
             @edit="isEdit = true" v-show="!isEdit"
             @remove="removeRecipe"
         />
-    </li>
+    </section>
 </template>
 
 

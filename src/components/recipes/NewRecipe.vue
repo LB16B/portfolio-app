@@ -1,18 +1,24 @@
 <template>
+<div class="text-gray-600 body-font mt-24 relative">
+  <div class="container px-5 pt-11 mx-auto">
+      <div class="flex flex-col text-center w-full">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">レシピを書く</h1>
+        <div class="lg:w-1/3 mx-auto leading-relaxed text-base border-2"></div>
+      </div>
+  </div>
+</div>
   <RecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
-
 
   <section class="text-gray-600 body-font relative">
     <div class="container px-5 py-24 mx-auto">
-    
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
         <div class="flex flex-wrap -m-2">
           <div class="p-2 w-full">
             <div class="relative">
-              <label for="name" class="leading-7 text-sm text-gray-600">Title</label>
+              <label for="name" class="leading-7 text-sm text-gray-600">タイトル</label>
               <input 
                 type="text" 
-                placeholder="+ Add new recipe. Press enter to save."
+                placeholder="鮭とブロッコリーのおかゆ"
                 v-model="inputtingTitle"
                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               >
@@ -20,20 +26,20 @@
           </div>
           <div class="p-2 w-full">
             <div class="relative">
-              <label for="email" class="leading-7 text-sm text-gray-600">Time</label>
+              <label for="email" class="leading-7 text-sm text-gray-600">所要時間(分)</label>
               <input 
                 type="number"
-                placeholder="+ Add new recipe. Press enter to save."
+                placeholder="30"
                 v-model="inputtingTime"
                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
           </div>
           <div class="p-2 w-full">
             <div class="relative">
-              <label for="email" class="leading-7 text-sm text-gray-600">Price</label>
+              <label for="email" class="leading-7 text-sm text-gray-600">費用目安(円)</label>
               <input 
                 type="number"
-                placeholder="+ Add new recipe. Press enter to save."
+                placeholder="1200"
                 v-model="inputtingPrice"
                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
@@ -41,8 +47,9 @@
           <div class="p-2 w-full">
             <button 
               @click="addNewRecipe"
-              class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
-              Button
+              class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg"
+            >
+              投稿する
             </button>
             <meta name="csrf-token" content="{{ csrf_token() }}">
 

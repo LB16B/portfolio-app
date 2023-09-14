@@ -1,63 +1,77 @@
 <template>
+<div class="text-gray-600 body-font mt-24 relative">
+    <div class="container px-5 pt-11 mx-auto">
+        <div class="flex flex-col text-center w-full">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">レシピを編集</h1>
+            <div class="lg:w-1/3 mx-auto leading-relaxed text-base border-2"></div>
+        </div>
+    </div>
+</div>
 
-    <section class="">
-        <div class="text-gray-600 body-font overflow-hidden w-full">
-            <div class="" 
-                title=""
-                @dblclick="$event => isEdit = true"
-            >
-                <div class="relative lg:w-4/5 mx-auto flex flex-wrap">
-                    <EditRecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
-                    <img alt="recipe image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="getImagePath(recipe.filename)">
-                    <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                        <input class="editable-task text-sm title-font text-gray-500 tracking-widest w-full border-4 mb-4" 
-                            type="text"
-                            v-focus
-                            @keyup.esc="undo"
-                            v-model="editingRecipeTitle"
-                            
-                        />
-                        
-                        <input class="editable-task text-sm title-font text-gray-500 tracking-widest w-full border-4 mb-4" 
-                            type="number"
-                            v-focus
-                            @keyup.esc="undo"
-                            v-model="editingRecipeTime"
-                        />
-                        <input class="editable-task text-sm title-font text-gray-500 tracking-widest w-full border-4 mb-4" 
-                            type="number"
-                            v-focus
-                            @keyup.esc="undo"
-                            v-model="editingRecipePrice"
-                        />
-                    </div>
-                    <button @click="UpdateRecipe">update</button>
-                </div>
+    <EditRecipeCropper v-if="recipe"
+        :recipe="recipe"
+        :key="recipe.id" 
+        @file-selected="handleFileSelected" 
+        @trimming-data="handleTrimmingData"
+    />
 
-
-                <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                <!-- <div class="lg:w-4/5 mx-auto flex flex-wrap" v-else > -->
-                    <img alt="recipe image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="getImagePath(recipe.filename)">
-                    <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                        <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-                        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ recipe.title }}</h1>
-                        <p class="leading-relaxed">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
-                        <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-                            <div class="flex flex-col w-full">
-                                    <p class="mr-3 mb-4">所要時間：{{ recipe.time }}分</p>
-                                    <p>費用目安：{{ recipe.price }}円</p>
-                                    <p>filename : {{ recipe.filename }}</p>
-                            </diV>
-                        </div>
-                    </div>
-                </div>
+<section 
+@dblclick="$event => isEdit = true" class="text-gray-600 body-font relative">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="lg:w-1/2 md:w-2/3 mx-auto">
+            <div class="flex flex-wrap -m-2">
+                <img 
+                alt="recipe image" 
+                :src="getImagePath(recipe.filename)"
+                class="w-full lg:h-auto h-64 object-cover object-center rounded"
+                >
+        <div class="p-2 w-full">
+            <div class="relative">
+                <label for="name" class="leading-7 text-sm text-gray-600">タイトル</label>
+                    <input 
+                        type="text" 
+                        v-focus
+                        @keyup.esc="undo"
+                        v-model="editingRecipeTitle"
+                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
             </div>
         </div>
-        <RecipeActions
-            @edit="isEdit = true" v-show="!isEdit"
-            @remove="removeRecipe"
-        />
-    </section>
+        <div class="p-2 w-full">
+            <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-600">所要時間(分)</label>
+            <input 
+                type="number"
+                v-focus
+                @keyup.esc="undo"
+                v-model="editingRecipeTime"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+        </div>
+        <div class="p-2 w-full">
+            <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-600">費用目安(円)</label>
+            <input 
+                type="number"
+                v-focus
+                @keyup.esc="undo"
+                v-model="editingRecipePrice"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+        </div>
+        <div class="p-2 w-full">
+            <button 
+            @click="UpdateRecipe"
+            class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg"
+            >
+                編集を完了する
+            </button>
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
 </template>
 
 
@@ -68,7 +82,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useRoute, useRouter } from 'vue-router';
 import EditRecipeCropper  from './EditRecipeCropper.vue'
 import { useUploadStore } from "../../stores/upload";
+import { useRecipeStore } from "../../stores/recipe";
 
+const store = useRecipeStore()
 const storeUpload = useUploadStore()
 const { uploadRecipeImage } = storeUpload
 const selectedFile = ref(null);
@@ -148,15 +164,6 @@ const UpdateRecipe = async (event) => {
 
   
 
-        // const updatedRecipe = {
-        //     ...props.recipe,
-        //     title: editingRecipeTitle.value,
-        //     time: editingRecipeTime.value,
-        //     price: editingRecipePrice.value,
-        // };
-
-        // isEdit.value = false;
-        // emit(['updated', updatedRecipe]);
 
 };
 

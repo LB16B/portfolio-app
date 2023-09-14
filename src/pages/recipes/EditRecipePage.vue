@@ -1,6 +1,5 @@
 <template>
     <main>
-        <h1>レシピ編集</h1>
         <EditRecipes :recipes="filteredRecipeId" />
     </main>
 </template>

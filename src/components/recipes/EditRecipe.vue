@@ -8,9 +8,8 @@
     </div>
 </div>
 
-    <EditRecipeCropper v-if="recipe"
-        :recipe="recipe"
-        :key="recipe.id" 
+    <EditRecipeCropper 
+        :recipeFilename="props.recipe.filename"
         @file-selected="handleFileSelected" 
         @trimming-data="handleTrimmingData"
     />

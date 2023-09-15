@@ -77,23 +77,12 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
-//   props: {
-//     recipeTitle: String, // タイトルを受け取るプロップを定義します
-//   },
-const props = defineProps({
-    recipeFilename: String,
-})
-const emit = defineEmits(['file-selected', 'trimming-data']);
+// import { defineEmits } from 'vue';
 
-const path = "http://localhost:8000/recipe_images/";
-
-// function getImagePath(recipeFilename) {
-//   return path +  recipeFilename;
-// }
-
-
-// console.log(props.recipeFilename)
+// const props = defineProps({
+//     recipeFilename: String,
+// })
+// const emit = defineEmits(['file-selected', 'trimming-data']);
 
 </script>
 
@@ -110,12 +99,16 @@ components: {
 },
 data() {
     return {
-    imgSrc: "http://localhost:8000/recipe_images/" + this.recipeFilename,
     cropImg: '',
     data: null,
     };
 },
-props: ['fileName', 'recipeFilename'], // 親コンポーネントから受け取るプロパティを定義
+props: ['fileName', 'recipeFilename'], 
+computed: {
+  imgSrc() {
+    return 'http://localhost:8000/recipe_images/' + this.recipeFilename;
+  }
+},
 methods: {
     cropImage() {
     this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();

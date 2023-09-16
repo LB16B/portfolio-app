@@ -65,6 +65,10 @@
             >
                 編集を完了する
             </button>
+            <RecipeActions
+                @edit="isEdit = true" v-show="!isEdit"
+                @remove="removeRecipe"
+            />
             <meta name="csrf-token" content="{{ csrf_token() }}">
         </div>
         </div>

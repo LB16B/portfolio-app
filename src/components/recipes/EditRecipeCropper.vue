@@ -15,10 +15,17 @@
                         <vue-cropper
                             ref="cropper"
                             :aspect-ratio="16 / 9"
-                            :src="imgSrc"
+                            :src="currentImage"
                             preview=".preview"
                             class="cropper-area-img"
                         />
+                        <!-- <vue-cropper
+                            ref="cropper"
+                            :aspect-ratio="16 / 9"
+                            :src="imgSrc"
+                            preview=".preview"
+                            class="cropper-area-img"
+                        /> -->
                     </div>
                 </section>
             </div>
@@ -77,12 +84,7 @@
 </template>
 
 <script setup>
-// import { defineEmits } from 'vue';
-
-// const props = defineProps({
-//     recipeFilename: String,
-// })
-// const emit = defineEmits(['file-selected', 'trimming-data']);
+import axios from 'axios';
 
 </script>
 
@@ -99,71 +101,93 @@ components: {
 },
 data() {
     return {
-    cropImg: '',
-    data: null,
+        imageData: '', //画像データを格納するデータプロパティ
+        cropImg: '',
+        data: null,
     };
 },
 props: ['fileName', 'recipeFilename'], 
-computed: {
-  imgSrc() {
-    return 'http://localhost:8000/recipe_images/' + this.recipeFilename;
+    // computed: {
+    // imgSrc() {
+    //     return 'http://localhost:8000/recipe_images/' + this.recipeFilename;
+    // }
+    // },
+    methods: {
+        loadImage() {
+      // 画像データを取得
+      axios.get('/api/test/{filename}')
+        .then(response => {
+          this.imageData = response.data.data; // Base64エンコードされたデータURLを取得
+        })
+        .catch(error => {
+          // エラーハンドリング
+        });
+    },
+        cropImage() {
+        this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
+        },
+        flipX() {
+            const dom = this.$refs.flipX;
+            let scale = dom.getAttribute('data-scale');
+            scale = scale ? -scale : -1;
+            this.$refs.cropper.scaleX(scale);    
+            dom.setAttribute('data-scale', scale);
+        },
+        flipY() {
+            const dom = this.$refs.flipY;
+            let scale = dom.getAttribute('data-scale');
+            scale = scale ? -scale : -1;
+            this.$refs.cropper.scaleY(scale);
+            dom.setAttribute('data-scale', scale);
+        },
+        getData() {
+            const trimmingData = this.$refs.cropper.getData();
+            this.data = JSON.stringify(this.$refs.cropper.getData(), null, 4);
+            console.log('Trimming Data:', trimmingData); 
+            this.$emit('trimming-data', trimmingData);
+        },
+        reset() {
+            this.$refs.cropper.reset();
+        },
+        rotate(deg) {
+            this.$refs.cropper.rotate(deg);
+        },
+        setImage(e) { 
+            const file = e.target.files[0];
+        if (file.type.indexOf('image/') === -1) {
+            alert('Please select an image file');
+            return;
+        }
+        this.$emit('file-selected', file.name);
+        if (typeof FileReader === 'function') {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+            this.imgSrc = event.target.result;
+            this.$refs.cropper.replace(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Sorry, FileReader API not supported');
+        }
+        },
+        showFileChooser() {
+        this.$refs.input.click();
+        },
+        zoom(percent) {
+        this.$refs.cropper.relativeZoom(percent);
+        },
+    },
+    computed: {
+    currentImage() {
+      // 画像データが変更されるたびに、このcomputedプロパティが再計算される
+      // ここで初期表示の画像データと更新後の画像データを切り替える
+      return this.imageData;
+    }
+  },
+  created() {
+    // コンポーネントが作成された際に初期画像をロード
+    this.loadImage();
   }
-},
-methods: {
-    cropImage() {
-    this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
-    },
-    flipX() {
-        const dom = this.$refs.flipX;
-        let scale = dom.getAttribute('data-scale');
-        scale = scale ? -scale : -1;
-        this.$refs.cropper.scaleX(scale);    
-        dom.setAttribute('data-scale', scale);
-    },
-    flipY() {
-        const dom = this.$refs.flipY;
-        let scale = dom.getAttribute('data-scale');
-        scale = scale ? -scale : -1;
-        this.$refs.cropper.scaleY(scale);
-        dom.setAttribute('data-scale', scale);
-    },
-    getData() {
-        const trimmingData = this.$refs.cropper.getData();
-        this.data = JSON.stringify(this.$refs.cropper.getData(), null, 4);
-        console.log('Trimming Data:', trimmingData); 
-        this.$emit('trimming-data', trimmingData);
-    },
-    reset() {
-        this.$refs.cropper.reset();
-    },
-    rotate(deg) {
-        this.$refs.cropper.rotate(deg);
-    },
-    setImage(e) { 
-        const file = e.target.files[0];
-    if (file.type.indexOf('image/') === -1) {
-        alert('Please select an image file');
-        return;
-    }
-    this.$emit('file-selected', file.name);
-    if (typeof FileReader === 'function') {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-        this.imgSrc = event.target.result;
-        this.$refs.cropper.replace(event.target.result);
-        };
-        reader.readAsDataURL(file);
-    } else {
-        alert('Sorry, FileReader API not supported');
-    }
-    },
-    showFileChooser() {
-    this.$refs.input.click();
-    },
-    zoom(percent) {
-    this.$refs.cropper.relativeZoom(percent);
-    },
-},
 };
 </script>
 

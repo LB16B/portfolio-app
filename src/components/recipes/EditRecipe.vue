@@ -22,6 +22,7 @@
                 <img 
                 alt="recipe image" 
                 :src="getImagePath(recipe.filename)"
+                @click="highlightImage"
                 class="w-full lg:h-auto h-64 object-cover object-center rounded"
                 >
         <div class="p-2 w-full">

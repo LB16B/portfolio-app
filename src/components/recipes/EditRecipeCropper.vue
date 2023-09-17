@@ -15,7 +15,7 @@
                         <vue-cropper
                             ref="cropper"
                             :aspect-ratio="16 / 9"
-                            :src="currentImage"
+                            :src="imageData"
                             preview=".preview"
                             class="cropper-area-img"
                         />
@@ -83,16 +83,12 @@
 
 </template>
 
-<script setup>
-import axios from 'axios';
-
-</script>
-
-
 <script>
+import axios from 'axios';
 import { ref } from 'vue';
 import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
+
 
 export default {
 
@@ -101,21 +97,17 @@ components: {
 },
 data() {
     return {
-        imageData: '', //画像データを格納するデータプロパティ
+        imageData: '',
         cropImg: '',
         data: null,
+        // currentImage: 'http://localhost:8000/recipe_images/' + this.recipeFilename,
     };
 },
 props: ['fileName', 'recipeFilename'], 
-    // computed: {
-    // imgSrc() {
-    //     return 'http://localhost:8000/recipe_images/' + this.recipeFilename;
-    // }
-    // },
     methods: {
         loadImage() {
       // 画像データを取得
-      axios.get('/api/test/{filename}')
+        axios.get('/api/test/{filename}')
         .then(response => {
           this.imageData = response.data.data; // Base64エンコードされたデータURLを取得
         })
@@ -162,7 +154,7 @@ props: ['fileName', 'recipeFilename'],
         if (typeof FileReader === 'function') {
             const reader = new FileReader();
             reader.onload = (event) => {
-            this.imgSrc = event.target.result;
+            this.imageData = event.target.result;
             this.$refs.cropper.replace(event.target.result);
             };
             reader.readAsDataURL(file);
@@ -177,13 +169,19 @@ props: ['fileName', 'recipeFilename'],
         this.$refs.cropper.relativeZoom(percent);
         },
     },
-    computed: {
-    currentImage() {
-      // 画像データが変更されるたびに、このcomputedプロパティが再計算される
-      // ここで初期表示の画像データと更新後の画像データを切り替える
-      return this.imageData;
-    }
-  },
+    // computed: {
+    // currentImage() {
+    //   // 画像データが変更されるたびに、このcomputedプロパティが再計算される
+    //   // ここで初期表示の画像データと更新後の画像データを切り替える
+    // //   this.imageData = 'http://localhost:8000/recipe_images/' + this.recipeFilename;
+    //   return this.imageData;
+    // },
+    mounted() {
+        // コンポーネントがマウントされた後にcurrentImageを計算し、設定
+        this.imageData = 'http://localhost:8000/recipe_images/' + this.recipeFilename;
+        this.loadImage();
+    },
+//   },
   created() {
     // コンポーネントが作成された際に初期画像をロード
     this.loadImage();
@@ -191,7 +189,7 @@ props: ['fileName', 'recipeFilename'],
 };
 </script>
 
-
+'http://localhost:8000/recipe_images/' + this.recipeFilename,
 <style>
 
 .recipe-cropper {

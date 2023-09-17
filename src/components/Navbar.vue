@@ -37,7 +37,7 @@
               >
               MyRecipes
             </router-link>
-            <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+
           </nav>
           <template v-if="!store.isLoggedIn">
             <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">

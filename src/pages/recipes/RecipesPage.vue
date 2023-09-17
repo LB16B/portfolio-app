@@ -13,10 +13,10 @@ import api from "../../http/api";
 
 
 
-const store = useRecipeStore()
-const { recipes } = storeToRefs(store)
+const recipeStore = useRecipeStore()
+const { recipes } = storeToRefs(recipeStore)
 // const { totalRecipes } = storeToRefs(store)
-const { fetchAllRecipes } = store
+const { fetchAllRecipes } = recipeStore
 
 const upload = ref([])
 

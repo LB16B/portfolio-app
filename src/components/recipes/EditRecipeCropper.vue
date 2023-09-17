@@ -107,13 +107,13 @@ props: ['fileName', 'recipeFilename'],
     methods: {
         loadImage() {
       // 画像データを取得
-        axios.get('/api/test/{filename}')
-        .then(response => {
-          this.imageData = response.data.data; // Base64エンコードされたデータURLを取得
-        })
-        .catch(error => {
-          // エラーハンドリング
-        });
+        // axios.get('/api/test/{filename}')
+        // .then(response => {
+        //   this.imageData = response.data.data; // Base64エンコードされたデータURLを取得
+        // })
+        // .catch(error => {
+        //   // エラーハンドリング
+        // });
     },
         cropImage() {
         this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();

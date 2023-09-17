@@ -9,6 +9,7 @@ import NotFoundErrorPage from '../pages/errors/NotFoundErrorPage.vue';
 import HomePage from '../pages/HomePage.vue'
 
 
+
 const routes = [
     {
         path: "/",
@@ -55,6 +56,7 @@ const routes = [
             auth: true
         }
     },
+
     {
         path: "/login",
         component: LoginPage,

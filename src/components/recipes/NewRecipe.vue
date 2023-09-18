@@ -68,6 +68,8 @@ import { useRecipeStore } from '../../stores/recipe';
 import RecipeCropper from './RecipeCropper.vue';
 import { useUploadStore } from '../../stores/upload';
 import { imageUpload } from '../../http/upload-api';
+import { useFoodStore } from '../../stores/food';
+
 
 const newRecipe = reactive({
   title: '',
@@ -76,17 +78,31 @@ const newRecipe = reactive({
   filename: ''
 })
 
+const newFood = reactive({
+    ingredient: '',
+    amount: '',
+    recipe_id: '',
+})
+
 
 const store = useRecipeStore()
 const storeUpload = useUploadStore()
 const { handleAddedRecipe } = store
 const { uploadRecipeImage } = storeUpload
 
+const foodStore = useFoodStore()
+const { handleAddedFood } = foodStore
+
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
 const inputtingPrice = ref('')
 const inputtingFilename = ref('')
 const selectedFile = ref(null);
+
+const inputtingIngredient = ref('')
+const inputtingAmount = ref('')
+const inputtingRecipeId = ref('')
+
 
 const emit  = defineEmits(['file-selected', 'added']);
 
@@ -147,5 +163,21 @@ if (selectedFile.value) {
   }
 }
 
+
+const addNewFood = async(event) => {
+    newFood.ingredient = inputtingIngredient.value
+    newFood.amount = inputtingAmount.value
+
+    // await handleAddedFood(newFood)
+    // try {
+    // } catch(error) {
+    //     console.log('エラー', error)
+    // }
+    
+    inputtingIngredient.value = '';
+    inputtingAmount.value = '';
+    
+    handleAddedFood(newFood)
+}
 
 </script>

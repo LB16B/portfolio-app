@@ -95,7 +95,6 @@ const inputtingIngredient = ref('')
 const inputtingAmount = ref('')
 const inputtingRecipeId = ref('')
 
-const formData = new FormData();
 
 const addNewFood = async(event) => {
     newFood.ingredient = inputtingIngredient.value

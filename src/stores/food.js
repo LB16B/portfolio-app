@@ -1,6 +1,6 @@
+import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
-import { allFoods } from "../http/food-api";
-import { ref } from "vue";
+import { allFoods, createFood } from "../http/food-api";
 
 export const useFoodStore = defineStore('foodStore', () => {
     const foods = ref([]);
@@ -10,8 +10,18 @@ export const useFoodStore = defineStore('foodStore', () => {
         foods.value = data.data;
     }
 
+    const handleAddedFood = async (newFood) => {
+        try {
+            const { data: createdFood } = await createFood(newFood);
+            foods.value.unshift(createdFood.data);
+        } catch (error) {
+            console.error("API リクエストエラー:", error);
+        }
+    };
+
     return {
         foods,
-        fetchAllFoods
+        fetchAllFoods,
+        handleAddedFood,
     };
 });

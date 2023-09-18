@@ -4,3 +4,5 @@ const apiPath = import.meta.env.VITE_API_PATH
 const resource = apiPath + "/foods";
 
 export const allFoods = () => api.get(resource);
+
+export const createFood = (food) => api.post(resource, food);

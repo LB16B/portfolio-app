@@ -1,7 +1,7 @@
 <template>
     <main>
         <ShowRecipe :recipes="filteredRecipeId" />
-        <Food :foods="filterFoodId" />
+        <Food :foods="selectedFood" />
     </main>
 </template>
 
@@ -40,8 +40,15 @@ onMounted(() => {
 const filteredRecipeId = computed(() => {
     return recipes.value.filter(recipe => recipe.id === Number(urlParameterRecipeId));
 });
-const filterFoodId = computed(() => {
-    return foods.value.filter(food => food.id === Number(urlParameterRecipeId));
+
+// const selectedFood = computed(() => {
+//     return foods.value.filter(food => food.recipe_id === Number(urlParameterRecipeId));
+// });
+
+const selectedFood = computed(() => {
+    const selected = foods.value.filter(food => food.recipe_id === Number(urlParameterRecipeId));
+    console.log(selected); // selected の内容をコンソールに表示
+    return selected;
 });
 
 

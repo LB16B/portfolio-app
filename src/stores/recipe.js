@@ -1,9 +1,11 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
 import { allRecipes, createRecipe, updateRecipe, removeRecipe } from "../http/recipe-api";
+import { useRouter } from 'vue-router';
 
 export const useRecipeStore = defineStore('recipeStore', () => {
     const recipes = ref([]);
+    const router = useRouter();
 
     const fetchAllRecipes = async () => {
         const { data } = await allRecipes();
@@ -14,7 +16,11 @@ export const useRecipeStore = defineStore('recipeStore', () => {
 
     const handleAddedRecipe = async (newRecipe) => {
         const { data: createdRecipe } = await createRecipe(newRecipe);
+        
         recipes.value.unshift(createdRecipe.data);
+
+        console.log('新しいレシピの ID:', createdRecipe.recipe_id);
+        router.push({ name: 'new_food', params: { recipe_id: createdRecipe.recipe_id } });
     };
 
     const handleUpdatedRecipe = async (recipe) => {
@@ -37,15 +43,9 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         recipes.value.splice(index, 1)
     }
 
-
-    // const totalRecipes = computed(() => 
-    // state.recipes.length
-    // );
-
     return {
         recipes,
         fetchAllRecipes,
-        // totalRecipes,
         handleAddedRecipe,
         handleUpdatedRecipe,
         handleRemovedRecipe

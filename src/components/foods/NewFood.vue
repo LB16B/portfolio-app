@@ -98,12 +98,14 @@
     
     const addNewFood = async () => {
   try {
-    const newFood = {
+    // 新しい食材データのフォーマットを準備
+    const newFoodData = {
       ingredient: inputtingIngredient.value,
       amount: inputtingAmount.value,
     };
 
-    await handleAddedFood(newFood);
+    // データベースにデータを送信
+    await handleAddedFood(newFoodData);
 
     // データベースへの保存が成功したら入力フィールドをクリア
     inputtingIngredient.value = '';

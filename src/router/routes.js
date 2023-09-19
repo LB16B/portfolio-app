@@ -58,9 +58,10 @@ const routes = [
         }
     },
     {
-        path: "/new_food",
+        path: "/new_food/:recipe_id",
         component: NewFoodPage,
         name: 'new_food',
+        props: true,
         meta: {
             auth: true
         }

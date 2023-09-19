@@ -52,13 +52,13 @@
               投稿する
             </button>
             <meta name="csrf-token" content="{{ csrf_token() }}">
-
             
           </div>
         </div>
       </div>
     </div>
   </section>
+  
 </template>
 
 
@@ -68,7 +68,8 @@ import { useRecipeStore } from '../../stores/recipe';
 import RecipeCropper from './RecipeCropper.vue';
 import { useUploadStore } from '../../stores/upload';
 import { imageUpload } from '../../http/upload-api';
-import { useFoodStore } from '../../stores/food';
+import { useRouter } from 'vue-router';
+
 
 
 const newRecipe = reactive({
@@ -78,11 +79,7 @@ const newRecipe = reactive({
   filename: ''
 })
 
-const newFood = reactive({
-    ingredient: '',
-    amount: '',
-    recipe_id: '',
-})
+const router = useRouter();
 
 
 const store = useRecipeStore()
@@ -90,8 +87,6 @@ const storeUpload = useUploadStore()
 const { handleAddedRecipe } = store
 const { uploadRecipeImage } = storeUpload
 
-const foodStore = useFoodStore()
-const { handleAddedFood } = foodStore
 
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
@@ -150,6 +145,20 @@ if (selectedFile.value) {
       try {
             await uploadRecipeImage(formData);
             console.log('アップロード成功');
+
+            const addedRecipe = await handleAddedRecipe(newRecipe);
+
+            // console.log('addNewRecipe.id', addedRecipe.id)
+
+            // if (addedRecipe.id) {
+
+            //   console.log('addNewRecipe.id', addedRecipe.id)
+            //   router.push({ name: 'new_food', params: { recipe_id: addedRecipe.id } });
+            // } else {
+            //   console.error('addedRecipe 内でレシピIDが取得出来ません')
+            // }
+
+            // router.push('/new_food');
         } catch (error) {
             console.error('アップロードエラー:', error);
       }
@@ -158,26 +167,10 @@ if (selectedFile.value) {
       inputtingTime.value = '';
       inputtingPrice.value = '';
 
-      handleAddedRecipe(newRecipe)
 
   }
 }
 
 
-const addNewFood = async(event) => {
-    newFood.ingredient = inputtingIngredient.value
-    newFood.amount = inputtingAmount.value
-
-    // await handleAddedFood(newFood)
-    // try {
-    // } catch(error) {
-    //     console.log('エラー', error)
-    // }
-    
-    inputtingIngredient.value = '';
-    inputtingAmount.value = '';
-    
-    handleAddedFood(newFood)
-}
 
 </script>

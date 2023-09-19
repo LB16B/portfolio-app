@@ -1,7 +1,7 @@
 <template>
     <main>
         <NewRecipe />
-        <NewFood />
+        <!-- <NewFood /> -->
     </main>
 </template>
 

@@ -77,41 +77,58 @@
         </div>
         </section>
     </template>
-    
-    <script setup>
-    import { ref, reactive } from 'vue';
-    import { useFoodStore } from '../../stores/food';
-    
-    const newFood = reactive({
-        ingredient: '',
-        amount: '',
-        recipe_id: '',
-    })
-    
-    const foodStore = useFoodStore()
-    const { handleAddedFood } = foodStore
-    
-    const inputtingIngredient = ref('')
-    const inputtingAmount = ref('')
-    const inputtingRecipeId = ref('')
-    
-    
-    const addNewFood = async () => {
-  try {
+
+<script setup>
+import { ref, reactive, onMounted } from 'vue';
+import { useFoodStore } from '../../stores/food';
+import { useRouter } from 'vue-router'; // Vue RouterからuseRouterをインポート
+
+const newFood = reactive({
+    ingredient: '',
+    amount: '',
+    recipe_id: '', 
+})
+
+const router = useRouter(); // useRouterを使用してVue Routerを初期化
+
+// ページがマウントされたときに実行されるコード
+onMounted(() => {
+    // URLからrecipe_idパラメーターの値を取得
+    const route = router.currentRoute.value;
+    const recipeId = route.params.recipe_id;
+
+    // 取得したrecipe_idをnewFoodに設定
+    newFood.recipe_id = recipeId;
+
+    console.log(newFood.recipe_id)
+});
+
+
+const foodStore = useFoodStore()
+const { handleAddedFood } = foodStore
+
+const inputtingIngredient = ref('')
+const inputtingAmount = ref('')
+const inputtingRecipeId = ref('')
+
+
+
+const addNewFood = async () => {
+    try {
     // 新しい食材データのフォーマットを準備
-    const newFoodData = {
-      ingredient: inputtingIngredient.value,
-      amount: inputtingAmount.value,
-    };
+        const newFoodData = {
+            ingredient: inputtingIngredient.value,
+            amount: inputtingAmount.value,
+        };
 
-    // データベースにデータを送信
-    await handleAddedFood(newFoodData);
+        // データベースにデータを送信
+        await handleAddedFood(newFoodData);
 
-    // データベースへの保存が成功したら入力フィールドをクリア
-    inputtingIngredient.value = '';
-    inputtingAmount.value = '';
-  } catch (error) {
-    console.error('エラー', error);
-  }
+        // データベースへの保存が成功したら入力フィールドをクリア
+        inputtingIngredient.value = '';
+        inputtingAmount.value = '';
+    } catch (error) {
+        console.error('エラー', error);
+    }
 };
-    </script>
+</script>

@@ -144,14 +144,16 @@ const handleFileSelected = (filename) => {
 };
 
 const UpdateRecipe = async (event) => {
-    formData.append('file', selectedFile.value);
-  
+        formData.append('file', selectedFile.value);
+
+    if (selectedFile.value) {
+
         const currentDate = new Date();
         const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
         const formatter = new Intl.DateTimeFormat('ja-JP', options);
         const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
         const newFileName = `${formattedDateTime}_${selectedFile.value.name}`;
-
+    
         
         const updatedRecipe = {
             ...props.recipe,
@@ -161,12 +163,26 @@ const UpdateRecipe = async (event) => {
             filename: newFileName,
         };
         
-
+    
         isEdit.value = false;
         emit('updated', updatedRecipe);
         await uploadRecipeImage(formData);
+    } else {
 
-  
+        const updatedRecipe = {
+            ...props.recipe,
+            title: editingRecipeTitle.value,
+            time: editingRecipeTime.value,
+            price: editingRecipePrice.value,
+            filename: editingFilename.value
+
+        }
+        isEdit.value = false;
+        emit('updated', updatedRecipe);
+        // console.log(editingFilename.value)
+        console.log('画像なし成功')
+    }
+
 
 
 };

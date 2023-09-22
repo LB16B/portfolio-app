@@ -1,6 +1,6 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
-import { allFoods, createFood } from "../http/food-api";
+import { allFoods, createFood, updateFood } from "../http/food-api";
 
 export const useFoodStore = defineStore('foodStore', () => {
     const foods = ref([]);
@@ -21,9 +21,22 @@ export const useFoodStore = defineStore('foodStore', () => {
         }
     };
 
+    const handleUpdateFood = async (food) => {
+        const { data: updatedFood } = await updateFood(food.id, {
+            ingredient: food.ingredient,
+            amount: food.amount,
+            recipe_id: food.recipe_id
+        })
+        const currentFood = foods.value.find(item => item.id === food.recipe_id)
+        currentFood.ingredient = updatedFood.data.ingredient
+        currentFood.amount = updatedFood.data.amount
+        currentFood.recipe_id = updatedFood.data.recipe_id
+    }
+
     return {
         foods,
         fetchAllFoods,
         handleAddedFood,
+        handleUpdateFood
     };
 });

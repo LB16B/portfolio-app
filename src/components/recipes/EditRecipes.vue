@@ -23,9 +23,9 @@ const { handleUpdatedRecipe, handleRemovedRecipe } = store
 
 defineProps({
     recipes: Array,
-    show: {
-        type: Boolean,
-        default: true
-    }
+    // show: {
+    //     type: Boolean,
+    //     default: true
+    // }
 })
 </script>

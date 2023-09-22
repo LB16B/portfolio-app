@@ -7,13 +7,14 @@ export const useRecipeStore = defineStore('recipeStore', () => {
     const recipes = ref([]);
     const router = useRouter();
 
+    // データ全件取得
     const fetchAllRecipes = async () => {
         const { data } = await allRecipes();
         recipes.value = data.data;
     };
 
 
-
+    // 新しいデータ作成
     const handleAddedRecipe = async (newRecipe) => {
         const { data: createdRecipe } = await createRecipe(newRecipe);
         
@@ -22,6 +23,7 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         router.push({ name: 'new_food', params: { recipe_id: createdRecipe.recipe_id } });
     };
 
+    // データ編集
     const handleUpdatedRecipe = async (recipe) => {
         const { data: updatedRecipe } = await updateRecipe(recipe.id, {
             title: recipe.title,
@@ -34,8 +36,11 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         currentRecipe.time = updatedRecipe.data.time
         currentRecipe.price = updatedRecipe.data.price
         currentRecipe.filename = updatedRecipe.data.filename
+
+        // router.push({ name: '' })
     }
     
+    // データ削除
     const handleRemovedRecipe = async (recipe) => {
         await removeRecipe(recipe.id)
         const index = recipes.value.findIndex(item => item.id === recipe.id )

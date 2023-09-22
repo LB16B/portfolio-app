@@ -8,6 +8,7 @@ import RegisterPage from '../pages/RegisterPage.vue';
 import NotFoundErrorPage from '../pages/errors/NotFoundErrorPage.vue';
 import HomePage from '../pages/HomePage.vue'
 import NewFoodPage from '../pages/Foods/NewFoodPage.vue'
+import EditFoodPage from '../pages/Foods/EditFoodPage.vue';
 
 
 
@@ -61,6 +62,15 @@ const routes = [
         path: "/new_food/:recipe_id",
         component: NewFoodPage,
         name: 'new_food',
+        props: true,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/edit_food/:recipe_id",
+        component: EditFoodPage,
+        name: 'edit_food',
         props: true,
         meta: {
             auth: true

@@ -1,7 +1,7 @@
 <template>
     <main>
         <EditRecipes :recipes="filteredRecipeId" />
-        <!-- <EditFoods :foods="filteredFoodRecipeId" /> -->
+        <EditFoods :foods="filteredFoodRecipeId" />
     </main>
 </template>
 

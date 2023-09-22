@@ -1,7 +1,7 @@
 <template>
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="container px-5 py-24 mx-auto">
-          <div class="lg:w-4/5 mx-auto flex flex-wrap">
+          <div class="lg:w-4/5 mx-auto flex flex-wrap border-2">
             <input
             ref="input"
             type="file"
@@ -9,7 +9,7 @@
             accept="image/*"
             @change="setImage"
             />
-            <div class="lg:w-1/2 w-full lg:h-auto h-64">
+            <div class="lg:w-1/2 w-full lg:h-auto border-2">
                 <section class="cropper-area">
                     <div class="img-cropper">
                         <vue-cropper
@@ -19,19 +19,12 @@
                             preview=".preview"
                             class="cropper-area-img"
                         />
-                        <!-- <vue-cropper
-                            ref="cropper"
-                            :aspect-ratio="16 / 9"
-                            :src="imgSrc"
-                            preview=".preview"
-                            class="cropper-area-img"
-                        /> -->
                     </div>
                 </section>
             </div>
-            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6  lg:mt-0">
+            <div class="lg:w-1/2 w-full ">
                 <div class="content">
-                    <section class="preview-area">
+                    <section class="preview-area border-2">
                         <p>Preview</p>
                         <div class="preview" />
                     </section>

@@ -143,22 +143,10 @@ if (selectedFile.value) {
       newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
 
       try {
-            await uploadRecipeImage(formData);
+        await uploadRecipeImage(formData);
             console.log('アップロード成功');
 
             const addedRecipe = await handleAddedRecipe(newRecipe);
-
-            // console.log('addNewRecipe.id', addedRecipe.id)
-
-            // if (addedRecipe.id) {
-
-            //   console.log('addNewRecipe.id', addedRecipe.id)
-            //   router.push({ name: 'new_food', params: { recipe_id: addedRecipe.id } });
-            // } else {
-            //   console.error('addedRecipe 内でレシピIDが取得出来ません')
-            // }
-
-            // router.push('/new_food');
         } catch (error) {
             console.error('アップロードエラー:', error);
       }

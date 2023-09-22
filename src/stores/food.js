@@ -14,6 +14,7 @@ export const useFoodStore = defineStore('foodStore', () => {
         try {
             const { data: createdFood } = await createFood(newFood);
             foods.value.unshift(createdFood.data);
+
             console.log('成功')
         } catch (error) {
             console.error("API リクエストエラー:", error);

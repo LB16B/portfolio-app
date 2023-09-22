@@ -18,8 +18,7 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         const { data: createdRecipe } = await createRecipe(newRecipe);
         
         recipes.value.unshift(createdRecipe.data);
-
-        console.log('新しいレシピの ID:', createdRecipe.recipe_id);
+        
         router.push({ name: 'new_food', params: { recipe_id: createdRecipe.recipe_id } });
     };
 

@@ -18,6 +18,14 @@
         <div class="container px-5 py-24 mx-auto">
             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                 <div class="flex flex-wrap -m-2">
+
+                    <div class="content" @click="openModal">
+                        <section class="preview-area border-2">
+                            <p>Preview</p>
+                            <div class="preview" />
+                        </section>
+                    </div>
+
                     <img 
                         alt="recipe image" 
                         :src="getImagePath(recipe.filename)"
@@ -125,14 +133,15 @@ const selectedFile = ref(null);
 
 const path = "http://localhost:8000/recipe_images/";
 
-function getImagePath(filename) {
-  return path + filename;
-}
 
 const props = defineProps({
     recipe: Object,
     selectedFile: Object 
 })
+
+function getImagePath(filename) {
+  return path + filename;
+}
 
 const emit = defineEmits(['updated', 'removed'], ['file-selected', added]);
 

@@ -68,7 +68,7 @@ const routes = [
         }
     },
     {
-        path: "/edit_food/:recipe_id",
+        path: "/edit_food/:recipeId",
         component: EditFoodPage,
         name: 'edit_food',
         props: true,

@@ -1,16 +1,10 @@
 <template>
-    <!-- <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-wrap -m-4"> -->
-                <EditRecipe v-for="recipe in recipes" 
-                    :recipe="recipe" 
-                    :key="recipe.id" 
-                    @updated="handleUpdatedRecipe" 
-                    @removed="handleRemovedRecipe"
-                />
-            <!-- </div>
-        </div>
-    </section> -->
+<EditRecipe v-for="recipe in recipes" 
+    :recipe="recipe" 
+    :key="recipe.id" 
+    @updated="handleUpdatedRecipe" 
+    @removed="handleRemovedRecipe"
+/>
 </template>
 
 <script setup>
@@ -23,9 +17,9 @@ const { handleUpdatedRecipe, handleRemovedRecipe } = store
 
 defineProps({
     recipes: Array,
-    // show: {
-    //     type: Boolean,
-    //     default: true
-    // }
+    show: {
+        type: Boolean,
+        default: true
+    }
 })
 </script>

@@ -1,26 +1,22 @@
 <template>
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="container px-5 py-24 mx-auto">
-          <div class="lg:w-4/5 mx-auto flex flex-wrap border-2">
+          <div class="mx-auto flex flex-wrap border-2">
             <input
-            ref="input"
-            type="file"
-            name="image"
-            accept="image/*"
-            @change="setImage"
+                ref="input"
+                type="file"
+                name="image"
+                accept="image/*"
+                @change="setImage"
             />
             <div class="lg:w-1/2 w-full lg:h-auto border-2">
-                <section class="cropper-area">
-                    <div class="img-cropper">
-                        <vue-cropper
-                            ref="cropper"
-                            :aspect-ratio="16 / 9"
-                            :src="imageData"
-                            preview=".preview"
-                            class="cropper-area-img"
-                        />
-                    </div>
-                </section>
+                <vue-cropper
+                    ref="cropper"
+                    :aspect-ratio="16 / 9"
+                    :src="imageData"
+                    preview=".preview"
+                    class="cropper-area-img"
+                />
             </div>
             <div class="lg:w-1/2 w-full ">
                 <div class="content">
@@ -202,14 +198,8 @@ justify-content: space-between;
 padding: 30px;
 }
 
-.cropper-area {
-width: 900px;
 
-}
 
-.cropper-area-img {
-    width: 600px;
-}
 
 .actions {
 margin-top: 1rem;

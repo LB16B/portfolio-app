@@ -21,22 +21,22 @@ export const useFoodStore = defineStore('foodStore', () => {
         }
     };
 
-    const handleUpdateFood = async (food) => {
+    const handleUpdatedFood = async (food) => {
+        console.log("変更しました");
         const { data: updatedFood } = await updateFood(food.id, {
             ingredient: food.ingredient,
             amount: food.amount,
-            recipe_id: food.recipe_id
         })
         const currentFood = foods.value.find(item => item.id === food.recipe_id)
         currentFood.ingredient = updatedFood.data.ingredient
         currentFood.amount = updatedFood.data.amount
-        currentFood.recipe_id = updatedFood.data.recipe_id
+
     }
 
     return {
         foods,
         fetchAllFoods,
         handleAddedFood,
-        handleUpdateFood
+        handleUpdatedFood
     };
 });

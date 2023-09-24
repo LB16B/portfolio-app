@@ -63,7 +63,15 @@ const vFocus = {
     mounted: (el) => el.focus(),
 };
 
+// const updateFood = async () => {
+//   const updatedFoods = props.foods.map((food) => ({
+//     ...food,
+//     ingredient: food.ingredient,
+//     amount: food.amount,
+//   }));
 
+//   emit("updated", updatedFoods);
+// };
 
 const updateFood = async (food) => {
 
@@ -73,9 +81,8 @@ const updateFood = async (food) => {
     amount: food.amount,
   }
 
-  // emit 関数を使用して "updated" イベントを発行
   emit('updated', food);
 };
 
 
-</script>
+</script> 

@@ -35,12 +35,12 @@
                     </div>
                 </div>
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                <button 
-                    @click="updateFood(food)"
-                    class="flex mx-auto mt-16 text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">
-                    変更を確定する
-                </button>
             </div>
+            <button 
+            @click="updateFoods(food)"
+                class="flex mx-auto mt-16 text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">
+                変更を確定する
+            </button>
             
         </div>
     </section>
@@ -63,26 +63,44 @@ const vFocus = {
     mounted: (el) => el.focus(),
 };
 
-// const updateFood = async () => {
-//   const updatedFoods = props.foods.map((food) => ({
-//     ...food,
-//     ingredient: food.ingredient,
-//     amount: food.amount,
-//   }));
+const updatedFoods = ref([]);
 
-//   emit("updated", updatedFoods);
-// };
+const updateFoods = async (food) => {
 
-const updateFood = async (food) => {
+    if (!food) {
+    console.error('food', food);
+    return;
+    }
 
-  const updatedFood = {
-    ...food,
-    ingredient: food.ingredient,
-    amount: food.amount,
-  }
 
-  emit('updated', food);
+    const updatedFood = {
+        ...props,
+        id: food.id,
+        ingredient: food.ingredient,
+        amount: food.amount,
+    };
+
+    const index = updatedFoods.value.findIndex(item => item.id === updatedFood.id);
+    if (index !== -1) {
+        updatedFoods.value[index] = updatedFood;
+    } else {
+        updatedFoods.value.push(updatedFood);
+    }
+
+
+    emit('updated', updatedFood);
 };
+
+// const updateFoods = async (food) => {
+
+// const updatedFood = {
+// ...food,
+// ingredient: food.ingredient,
+// amount: food.amount,
+// }
+
+// emit('updated', updatedFood);
+// };
 
 
 </script> 

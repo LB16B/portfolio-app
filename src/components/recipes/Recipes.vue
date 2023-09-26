@@ -25,12 +25,9 @@
 
 <script setup>
 import { useRecipeStore } from "../../stores/recipe";
-// import { useFoodStore } from '../../stores/food';
 import Recipe from "./Recipe.vue";
-// import Food from '../foods/Food.vue';
 
 const recipeStore = useRecipeStore()
-// const foodStore = useFoodStore()
 const { handleUpdatedRecipe, handleRemovedRecipe } = recipeStore
 
 defineProps({

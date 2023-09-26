@@ -1,26 +1,21 @@
 <template>
     <main>
-        <EditFoods
-            :foods="filteredRecipeId"
-            @updated="handleUpdatedFood"
-        />
+        <EditFoods :foods="filteredRecipeId" />
     </main>
 </template>
 
 <script setup>
 import { onMounted, ref, computed } from "vue";
 import { storeToRefs } from "pinia"
-import { useRecipeStore } from "../../stores/recipe"
+import { useFoodStore } from "../../stores/food"
 import { useRoute, useRouter } from 'vue-router';
-import Foods from '../../components/foods/Foods.vue'
-import { useFoodStore } from '../../stores/food'
+import Foods from '../../components/foods/Foods.vue';
 import EditFoods from '../../components/foods/EditFoods.vue'
 import api from "../../http/api";
 
-const foodStore = useFoodStore()
-const { foods } = storeToRefs(foodStore)
-const { fetchAllFoods, handleUpdatedFood } = foodStore
-
+const store = useFoodStore()
+const { foods } = storeToRefs(store)
+const { fetchAllFoods } = store
 
 onMounted(async () => {
     await fetchAllFoods()
@@ -33,8 +28,11 @@ onMounted(() => {
     urlParameterRecipeId = route.params.recipeId;
 });
 
-
 const filteredRecipeId = computed(() => {
     return foods.value.filter(food => food.recipe_id === Number(urlParameterRecipeId));
 });
+
+
+
+
 </script>

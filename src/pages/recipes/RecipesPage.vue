@@ -11,11 +11,8 @@ import { useRecipeStore } from "../../stores/recipe";
 import Recipes from '../../components/recipes/Recipes.vue';
 import api from "../../http/api";
 
-
-
 const recipeStore = useRecipeStore()
 const { recipes } = storeToRefs(recipeStore)
-// const { totalRecipes } = storeToRefs(store)
 const { fetchAllRecipes } = recipeStore
 
 const upload = ref([])

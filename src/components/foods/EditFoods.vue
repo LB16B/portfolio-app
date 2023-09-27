@@ -1,6 +1,4 @@
 <template>
-
-
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
         <div class="text-center mb-20">
@@ -97,8 +95,9 @@ const secondFoodId = ref('');
 const secondFoodIngredient = ref('');
 const secondFoodAmount = ref('');
 
-watch(() => props.foods, (newFoods) => {
-    const [food1 = {}, food2 = {}] = newFoods;
+watch(props, (newProps) => {
+    const { foods } = newProps;
+    const [food1 = {}, food2 = {}] = foods;
 
     firstFoodId.value = food1.id || '';
     firstFoodIngredient.value = food1.ingredient || '';
@@ -107,7 +106,7 @@ watch(() => props.foods, (newFoods) => {
     secondFoodId.value = food2.id || '';
     secondFoodIngredient.value = food2.ingredient || '';
     secondFoodAmount.value = food2.amount || '';
-});
+}, { deep: true });
 
 const updateFoods = async (event) => {
     const foods = [

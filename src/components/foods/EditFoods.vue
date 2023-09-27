@@ -98,48 +98,35 @@ const secondFoodIngredient = ref('');
 const secondFoodAmount = ref('');
 
 watch(() => props.foods, (newFoods) => {
-  if (newFoods.length > 0) {
-    firstFoodId.value = newFoods[0].id;
-    firstFoodIngredient.value = newFoods[0].ingredient;
-    firstFoodAmount.value = newFoods[0].amount;
-  } else {
-    firstFoodIngredient.value = '';
-    firstFoodAmount.value = '';
-  }
+    const [food1 = {}, food2 = {}] = newFoods;
 
-  if (newFoods.length > 1) {
-    secondFoodId.value = newFoods[1].id;
-    secondFoodIngredient.value = newFoods[1].ingredient;
-    secondFoodAmount.value = newFoods[1].amount;
-  } else {
-    secondFoodIngredient.value = '';
-    secondFoodAmount.value = '';
-  }
+    firstFoodId.value = food1.id || '';
+    firstFoodIngredient.value = food1.ingredient || '';
+    firstFoodAmount.value = food1.amount || '';
+
+    secondFoodId.value = food2.id || '';
+    secondFoodIngredient.value = food2.ingredient || '';
+    secondFoodAmount.value = food2.amount || '';
 });
 
 
-
 const updateFoods = async (event) => {
-  const firstFood = {
+    const firstFood = {
     id: firstFoodId.value,
     ingredient: firstFoodIngredient.value,
     amount: firstFoodAmount.value,
-  };
+    };
 
-  const secondFood = {
+    const secondFood = {
     id: secondFoodId.value,
     ingredient: secondFoodIngredient.value,
     amount: secondFoodAmount.value,
-  };
+    };
 
-  console.log("一つ目の食品:", firstFood);
-  console.log("ふたつ目の食品:", secondFood);
+    handleUpdatedFood(firstFood);
+    handleUpdatedFood(secondFood);
 
-  // ここで一つ目とふたつ目の食品を更新する
-  handleUpdatedFood(firstFood);
-  handleUpdatedFood(secondFood);
 
-  // 更新を通知
-  emit("updated", [firstFood, secondFood]);
+    emit("updated", [firstFood, secondFood]);
 };
 </script>

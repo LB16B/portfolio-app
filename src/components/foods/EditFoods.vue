@@ -109,24 +109,24 @@ watch(() => props.foods, (newFoods) => {
     secondFoodAmount.value = food2.amount || '';
 });
 
-
 const updateFoods = async (event) => {
-    const firstFood = {
-    id: firstFoodId.value,
-    ingredient: firstFoodIngredient.value,
-    amount: firstFoodAmount.value,
-    };
+    const foods = [
+        {
+            id: firstFoodId.value,
+            ingredient: firstFoodIngredient.value,
+            amount: firstFoodAmount.value,
+        },
+        {
+            id: secondFoodId.value,
+            ingredient: secondFoodIngredient.value,
+            amount: secondFoodAmount.value,
+        },
+    ];
 
-    const secondFood = {
-    id: secondFoodId.value,
-    ingredient: secondFoodIngredient.value,
-    amount: secondFoodAmount.value,
-    };
+    for (const food of foods) {
+        handleUpdatedFood(food);
+    }
 
-    handleUpdatedFood(firstFood);
-    handleUpdatedFood(secondFood);
-
-
-    emit("updated", [firstFood, secondFood]);
+    emit("updated", foods);
 };
 </script>

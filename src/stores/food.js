@@ -21,17 +21,37 @@ export const useFoodStore = defineStore('foodStore', () => {
         }
     };
 
-    const handleUpdatedFood = async (food) => {
-        console.log("変更しました");
-        const { data: updatedFood } = await updateFood(food.id, {
-            ingredient: food.ingredient,
-            amount: food.amount,
-        })
-        const currentFood = foods.value.find(item => item.id === food.recipe_id)
-        currentFood.ingredient = updatedFood.data.ingredient
-        currentFood.amount = updatedFood.data.amount
+        // 食品を更新するアクション
+        const handleUpdatedFood = async (food) => {
+            console.log("変更しました");
+            try {
+                const { data: updatedFood } = await updateFood(food.id, {
+                    ingredient: food.ingredient,
+                    amount: food.amount,
+                });
+    
+                // 更新後のデータを反映
+                const index = foods.value.findIndex(item => item.id === food.id);
+                if (index !== -1) {
+                    foods.value[index].ingredient = updatedFood.data.ingredient;
+                    foods.value[index].amount = updatedFood.data.amount;
+                }
+            } catch (error) {
+                console.error("API リクエストエラー:", error);
+            }
+        }
 
-    }
+    // const handleUpdatedFood = async (food) => {
+    //     console.log("変更しました");
+    //     const { data: updatedFood } = await updateFood(food.id, {
+    //         ingredient: food.ingredient,
+    //         amount: food.amount,
+    //     })
+    //     const currentFood = foods.value.find(item => item.id === food.recipe_id)
+    //     currentFood.ingredient = updatedFood.data.ingredient
+    //     currentFood.amount = updatedFood.data.amount
+
+    // }
 
     return {
         foods,

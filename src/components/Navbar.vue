@@ -37,12 +37,12 @@
               >
               MyRecipes
             </router-link>
-            <!-- <router-link 
-              :to="{ name: 'new_food' }"
-              class="mr-5 hover:text-gray-900"
-              >
-              NewFood
-            </router-link> -->
+            <router-link 
+            :to="{ name: 'category_ages' }"
+            class="mr-5 hover:text-gray-900"
+            >
+            CategoryAges
+            </router-link>
 
           </nav>
           <template v-if="!store.isLoggedIn">

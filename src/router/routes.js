@@ -9,6 +9,7 @@ import NotFoundErrorPage from '../pages/errors/NotFoundErrorPage.vue';
 import HomePage from '../pages/HomePage.vue'
 import NewFoodPage from '../pages/Foods/NewFoodPage.vue'
 import EditFoodPage from '../pages/Foods/EditFoodPage.vue';
+import CategoryAgesPage from '../pages/Categories/CategoryAgesPage.vue'
 
 
 
@@ -17,6 +18,14 @@ const routes = [
         path: "/",
         component: HomePage,
         name: 'home',
+    },
+    {
+        path: "/category_ages",
+        component: CategoryAgesPage,
+        name: 'category_ages',
+        meta: {
+            auth: true
+        }
     },
     {
         path: "/recipes",

@@ -37,7 +37,7 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         currentRecipe.price = updatedRecipe.data.price
         currentRecipe.filename = updatedRecipe.data.filename
 
-        // router.push({ name: '' })
+        // router.push({ name: 'edit_food', params: { recipeId: recipe.id } });
     }
     
     // データ削除

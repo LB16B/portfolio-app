@@ -34,8 +34,8 @@
                 </div>
             </div>
         </div>
+        
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-
             <div class="p-2 sm:w-1/2 w-full">
                 <div class="bg-gray-100 rounded flex p-4 h-full items-center">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
@@ -59,6 +59,93 @@
                     type="text" 
                     placeholder="大さじ1"
                     v-model="secondFoodAmount"
+                    class="title-font font-medium bg-gray-100">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+            <div class="p-2 sm:w-1/2 w-full">
+                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <path d="M22 4L12 14.01l-3-3"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        placeholder="にんじん"
+                        v-model="thirdFoodIngredient"
+                        class="title-font font-medium bg-gray-100">
+                </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                    <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    placeholder="大さじ1"
+                    v-model="thirdFoodAmount"
+                    class="title-font font-medium bg-gray-100">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+            <div class="p-2 sm:w-1/2 w-full">
+                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <path d="M22 4L12 14.01l-3-3"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        placeholder="にんじん"
+                        v-model="fourthFoodIngredient"
+                        class="title-font font-medium bg-gray-100">
+                </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                    <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    placeholder="大さじ1"
+                    v-model="fourthFoodAmount"
+                    class="title-font font-medium bg-gray-100">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+            <div class="p-2 sm:w-1/2 w-full">
+                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <path d="M22 4L12 14.01l-3-3"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        placeholder="にんじん"
+                        v-model="fifthFoodIngredient"
+                        class="title-font font-medium bg-gray-100">
+                </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                    <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    placeholder="大さじ1"
+                    v-model="fifthFoodAmount"
                     class="title-font font-medium bg-gray-100">
                 </div>
             </div>
@@ -95,9 +182,21 @@ const secondFoodId = ref('');
 const secondFoodIngredient = ref('');
 const secondFoodAmount = ref('');
 
+const thirdFoodId = ref(''); 
+const thirdFoodIngredient = ref('');
+const thirdFoodAmount = ref('');
+
+const fourthFoodId = ref(''); 
+const fourthFoodIngredient = ref('');
+const fourthFoodAmount = ref('');
+
+const fifthFoodId = ref(''); 
+const fifthFoodIngredient = ref('');
+const fifthFoodAmount = ref('');
+
 watch(props, (newProps) => {
     const { foods } = newProps;
-    const [food1 = {}, food2 = {}] = foods;
+    const [food1 = {}, food2 = {}, food3 = {}, food4 = {}, food5 = {}] = foods;
 
     firstFoodId.value = food1.id || '';
     firstFoodIngredient.value = food1.ingredient || '';
@@ -106,6 +205,18 @@ watch(props, (newProps) => {
     secondFoodId.value = food2.id || '';
     secondFoodIngredient.value = food2.ingredient || '';
     secondFoodAmount.value = food2.amount || '';
+
+    thirdFoodId.value = food3.id || '';
+    thirdFoodIngredient.value = food3.ingredient || '';
+    thirdFoodAmount.value = food3.amount || '';
+
+    fourthFoodId.value = food4.id || '';
+    fourthFoodIngredient.value = food4.ingredient || '';
+    fourthFoodAmount.value = food4.amount || '';
+
+    fifthFoodId.value = food5.id || '';
+    fifthFoodIngredient.value = food5.ingredient || '';
+    fifthFoodAmount.value = food5.amount || '';
 }, { deep: true });
 
 const updateFoods = async (event) => {
@@ -119,6 +230,21 @@ const updateFoods = async (event) => {
             id: secondFoodId.value,
             ingredient: secondFoodIngredient.value,
             amount: secondFoodAmount.value,
+        },
+        {
+            id: thirdFoodId.value,
+            ingredient: thirdFoodIngredient.value,
+            amount: thirdFoodAmount.value,
+        },
+        {
+            id: fourthFoodId.value,
+            ingredient: fourthFoodIngredient.value,
+            amount: fourthFoodAmount.value,
+        },
+        {
+            id: fifthFoodId.value,
+            ingredient: fifthFoodIngredient.value,
+            amount: fifthFoodAmount.value,
         },
     ];
 

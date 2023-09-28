@@ -1,6 +1,6 @@
 <template>
     <section class="text-gray-600 body-font overflow-hidden">
-        <div class="container px-5 py-24 mx-auto">
+        <div class=" mx-auto">
           <div class="mx-auto flex flex-wrap border-2">
             <input
                 ref="input"
@@ -9,18 +9,18 @@
                 accept="image/*"
                 @change="setImage"
             />
-            <div class="lg:w-1/2 w-full lg:h-auto border-2">
+            <div class="lg:w-1/2 w-full lg:h-auto">
                 <vue-cropper
                     ref="cropper"
                     :aspect-ratio="16 / 9"
                     :src="imageData"
                     preview=".preview"
-                    class="cropper-area-img"
+                    
                 />
             </div>
             <div class="lg:w-1/2 w-full ">
                 <div class="content">
-                    <section class="preview-area border-2">
+                    <section class="preview-area">
                         <p>Preview</p>
                         <div class="preview" />
                     </section>
@@ -89,20 +89,12 @@ data() {
         imageData: '',
         cropImg: '',
         data: null,
-        // currentImage: 'http://localhost:8000/recipe_images/' + this.recipeFilename,
     };
 },
 props: ['fileName', 'recipeFilename'], 
     methods: {
         loadImage() {
-      // 画像データを取得
-        // axios.get('/api/test/{filename}')
-        // .then(response => {
-        //   this.imageData = response.data.data; // Base64エンコードされたデータURLを取得
-        // })
-        // .catch(error => {
-        //   // エラーハンドリング
-        // });
+
     },
         cropImage() {
         this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
@@ -158,27 +150,17 @@ props: ['fileName', 'recipeFilename'],
         this.$refs.cropper.relativeZoom(percent);
         },
     },
-    // computed: {
-    // currentImage() {
-    //   // 画像データが変更されるたびに、このcomputedプロパティが再計算される
-    //   // ここで初期表示の画像データと更新後の画像データを切り替える
-    // //   this.imageData = 'http://localhost:8000/recipe_images/' + this.recipeFilename;
-    //   return this.imageData;
-    // },
     mounted() {
         // コンポーネントがマウントされた後にcurrentImageを計算し、設定
         this.imageData = 'http://localhost:8000/recipe_images/' + this.recipeFilename;
         this.loadImage();
     },
-//   },
   created() {
-    // コンポーネントが作成された際に初期画像をロード
     this.loadImage();
   }
 };
 </script>
 
-'http://localhost:8000/recipe_images/' + this.recipeFilename,
 <style>
 
 .recipe-cropper {

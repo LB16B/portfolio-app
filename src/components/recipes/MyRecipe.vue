@@ -1,6 +1,6 @@
 <template>
     <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <router-link :to="{ name: 'edit_food', params: { recipeId: recipe.id } }">
+        <router-link :to="{ name: 'edit_recipe', params: { recipeId: recipe.id } }">
             <a class="block relative h-48 rounded overflow-hidden">
                 <img 
                     alt="recipe image" 

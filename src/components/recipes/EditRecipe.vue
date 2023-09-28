@@ -8,45 +8,17 @@
     </div>
 
 
-    <!-- <EditRecipeCropper 
-        :recipeFilename="props.recipe.filename"
-        @file-selected="handleFileSelected" 
-        @trimming-data="handleTrimmingData"
-    /> -->
-
     <section @dblclick="$event => isEdit = true" class="text-gray-600 body-font relative">
+
         <div class="container px-5 py-24 mx-auto">
+            <EditRecipeCropper 
+            :recipeFilename="props.recipe.filename"
+            @file-selected="handleFileSelected" 
+            @trimming-data="handleTrimmingData"
+        />
             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                 <div class="flex flex-wrap -m-2">
 
-                    <div class="content" @click="openModal">
-                        <section class="preview-area border-2">
-                            <p>Preview</p>
-                            <div class="preview" />
-                        </section>
-                    </div>
-
-                    <img 
-                        alt="recipe image" 
-                        :src="getImagePath(recipe.filename)"
-                        @click="openModal"
-                        class="w-full lg:h-auto h-64 object-cover object-center rounded"
-                    >
-
-                    <div class="">
-                        <div v-if="isModalOpen" class="modal">
-                          <div class="modal-content">
-                            <span class="close-button">&times;</span>
-                            <!-- <p>This is a simple modal window.</p> -->
-                            <EditRecipeCropper 
-                                :recipeFilename="props.recipe.filename"
-                                @file-selected="handleFileSelected" 
-                                @trimming-data="handleTrimmingData"
-                            />
-                            <button  @click="closeModal" class="border-4">Close Modal</button>
-                          </div>
-                        </div>
-                      </div>
 
                     <div class="p-2 w-full">
                         <div class="relative">

@@ -1,9 +1,11 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
 import { allFoods, createFood, updateFood } from "../http/food-api";
+import { useRouter } from 'vue-router';
 
 export const useFoodStore = defineStore('foodStore', () => {
     const foods = ref([]);
+    const router = useRouter();
 
     const fetchAllFoods = async () => {
         const { data } = await allFoods();
@@ -21,9 +23,8 @@ export const useFoodStore = defineStore('foodStore', () => {
         }
     };
 
-        // 食品を更新するアクション
+        // データ更新
     const handleUpdatedFood = async (food) => {
-        console.log("変更しました");
         try {
             const { data: updatedFood } = await updateFood(food.id, {
                 ingredient: food.ingredient,
@@ -36,9 +37,12 @@ export const useFoodStore = defineStore('foodStore', () => {
                 foods.value[index].ingredient = updatedFood.data.ingredient;
                 foods.value[index].amount = updatedFood.data.amount;
             }
+
+            console.log("変更しました");
         } catch (error) {
             console.error("API リクエストエラー:", error);
         }
+        router.push({ name: 'my_recipes' });
     }
 
 

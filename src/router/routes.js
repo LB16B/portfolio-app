@@ -28,7 +28,7 @@ const routes = [
         }
     },
     {
-        path: "/recipes",
+        path: "/recipes/:categoryAgeId",
         component: RecipesPage,
         name: 'recipes',
         meta: {

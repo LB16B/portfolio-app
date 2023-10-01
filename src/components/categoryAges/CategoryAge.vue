@@ -1,6 +1,6 @@
 <template>
     <div class="xl:w-1/3 md:w-1/2 p-4">
-        <router-link >
+        <router-link :to="{ name: 'recipes', params: { categoryAgeId: category.id } }">
             <div class="border border-gray-200 p-6 rounded-lg">
             <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4"
             >

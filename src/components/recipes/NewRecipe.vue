@@ -13,6 +13,52 @@
     <div class="container px-5 py-24 mx-auto">
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
         <div class="flex flex-wrap -m-2">
+          {{ inputtingCategoryAgeId }}
+          <div class="p-2 w-full">
+            <div class="relative">
+              <label for="name" class="leading-7 text-sm text-gray-600">カテゴリー</label>
+              <div class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                <div class="flex ">
+                  <div class="w-1/3">
+                    <input
+                      type="radio"
+                      id="1"
+                      value="1"
+                      v-model="inputtingCategoryAgeId"
+                      class="mr-4"
+                    />
+                    <label>5、6ヶ月(初期)</label>
+                  </div>
+                  <div class="w-1/3">
+                    <input
+                    type="radio"
+                    id="2"
+                    value="2"
+                    v-model="inputtingCategoryAgeId"
+                    class="mr-4"
+                    />
+                    <label>7、8ヶ月(中期)</label>
+                  </div>
+                  <div class="w-1/3">
+                    <input
+                    type="radio"
+                    id="3"
+                    value="3"
+                    v-model="inputtingCategoryAgeId"
+                    class="mr-4"
+                    />
+                    <label>9~11ヶ月(後期)</label>
+                  </div>
+
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+
           <div class="p-2 w-full">
             <div class="relative">
               <label for="name" class="leading-7 text-sm text-gray-600">タイトル</label>
@@ -70,17 +116,15 @@ import { useUploadStore } from '../../stores/upload';
 import { imageUpload } from '../../http/upload-api';
 import { useRouter } from 'vue-router';
 
-
-
 const newRecipe = reactive({
   title: '',
   time: '',
   price: '',
-  filename: ''
+  filename: '',
+  category_age_id: ''
 })
 
 const router = useRouter();
-
 
 const store = useRecipeStore()
 const storeUpload = useUploadStore()
@@ -91,6 +135,7 @@ const { uploadRecipeImage } = storeUpload
 const inputtingTitle = ref('')
 const inputtingTime = ref('')
 const inputtingPrice = ref('')
+const inputtingCategoryAgeId = ref('')
 const inputtingFilename = ref('')
 const selectedFile = ref(null);
 
@@ -140,12 +185,13 @@ if (selectedFile.value) {
       newRecipe.title = inputtingTitle.value
       newRecipe.time = inputtingTime.value
       newRecipe.price = inputtingPrice.value
+      newRecipe.category_age_id = inputtingCategoryAgeId.value
       newRecipe.filename =  `${formattedDateTime}_${selectedFile.value.name}`;
 
       try {
         await uploadRecipeImage(formData);
             console.log('アップロード成功');
-
+            console.log('カテゴリー', newRecipe.category_age_id)
             const addedRecipe = await handleAddedRecipe(newRecipe);
         } catch (error) {
             console.error('アップロードエラー:', error);

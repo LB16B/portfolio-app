@@ -3,7 +3,7 @@
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4">
 
-                <div class="flex flex-col text-center w-full mb-20">
+                <div class="flex flex-col text-center w-full">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">レビュー</h1>
                     <p class="lg:w-2/3 mx-auto leading-relaxed text-base"> 20件の評価/平均3</p>
                 </div>
@@ -11,32 +11,30 @@
                 <div class="text-gray-600 body-font">
                     <div class="container px-5 py-24 mx-auto">
                         <div class="flex flex-wrap -m-2">
-                            <!-- <Review v-for="review in reviews" 
+                            <Review 
+                                v-for="review in paginatedReviews" 
                                 :review="review" 
                                 :key="review.id" 
-                            /> -->
-                            <Review v-for="review in paginatedReviews" :review="review" :key="review.id" />
+                            />
                         </div>
                     </div>
                 </div>
-
-                
-                <!-- ページネーションコンポーネントを表示 -->
-                <nav class="pagination">
-                    <ul>
-                        <li v-if="currentPage > 1">
-                            <a @click="paginate(currentPage - 1)">前へ</a>
-                        </li>
-                        <li v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
-                            <a @click="paginate(page)">{{ page }}</a>
-                        </li>
-                        <li v-if="currentPage < totalPages">
-                            <a @click="paginate(currentPage + 1)">次へ</a>
-                        </li>
-                    </ul>
-                </nav>
-
             </div>
+
+            <nav class="pagination flex justify-center">
+                <ul>
+                    <li v-if="currentPage > 1">
+                        <a @click="paginate(currentPage - 1)">前へ</a>
+                    </li>
+                    <li v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
+                        <a @click="paginate(page)">{{ page }}</a>
+                    </li>
+                    <li v-if="currentPage < totalPages">
+                        <a @click="paginate(currentPage + 1)">次へ</a>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
     </section>
 </template>

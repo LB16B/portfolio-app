@@ -19,6 +19,46 @@
             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                 <div class="flex flex-wrap -m-2">
 
+                <div class="p-2 w-full">
+                    <div class="relative">
+                        <label for="name" class="leading-7 text-sm text-gray-600">カテゴリー</label>
+                        <div class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <div class="flex ">
+                            <div class="w-1/3">
+                            <input
+                                type="radio"
+                                id="1"
+                                value="1"
+                                v-model="editingRecipeCategoryAgeId"
+                                class="mr-4"
+                            />
+                            <label>5、6ヶ月(初期)</label>
+                            </div>
+                            <div class="w-1/3">
+                            <input
+                            type="radio"
+                            id="2"
+                            value="2"
+                            v-model="editingRecipeCategoryAgeId"
+                            class="mr-4"
+                            />
+                            <label>7、8ヶ月(中期)</label>
+                            </div>
+                            <div class="w-1/3">
+                            <input
+                            type="radio"
+                            id="3"
+                            value="3"
+                            v-model="editingRecipeCategoryAgeId"
+                            class="mr-4"
+                            />
+                            <label>9~11ヶ月(後期)</label>
+                            </div>
+        
+                        </div>
+                        </div>
+                    </div>
+                    </div>
 
                     <div class="p-2 w-full">
                         <div class="relative">
@@ -127,6 +167,7 @@ const isEdit = ref(false)
 const editingRecipeTitle = ref(props.recipe.title)
 const editingRecipeTime = ref(props.recipe.time)
 const editingRecipePrice = ref(props.recipe.price)
+const editingRecipeCategoryAgeId = ref(props.recipe.category_age_id)
 const editingFilename = ref(props.recipe.filename)
 
 const formData = new FormData();
@@ -174,10 +215,12 @@ const UpdateRecipe = async (event) => {
             title: editingRecipeTitle.value,
             time: editingRecipeTime.value,
             price: editingRecipePrice.value,
+            category_age_id: editingRecipeCategoryAgeId.value,
             filename: newFileName,
         };
         
-    
+        
+
         isEdit.value = false;
         emit('updated', updatedRecipe);
         await uploadRecipeImage(formData);
@@ -188,6 +231,7 @@ const UpdateRecipe = async (event) => {
             title: editingRecipeTitle.value,
             time: editingRecipeTime.value,
             price: editingRecipePrice.value,
+            category_age_id: editingRecipeCategoryAgeId.value,
             filename: editingFilename.value
 
         }

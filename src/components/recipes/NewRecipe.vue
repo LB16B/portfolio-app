@@ -13,7 +13,7 @@
     <div class="container px-5 py-24 mx-auto">
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
         <div class="flex flex-wrap -m-2">
-          {{ inputtingCategoryAgeId }}
+
           <div class="p-2 w-full">
             <div class="relative">
               <label for="name" class="leading-7 text-sm text-gray-600">カテゴリー</label>
@@ -52,8 +52,6 @@
 
                 </div>
               </div>
-
-
             </div>
           </div>
 

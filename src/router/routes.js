@@ -11,9 +11,10 @@ import NewFoodPage from '../pages/Foods/NewFoodPage.vue'
 import EditFoodPage from '../pages/Foods/EditFoodPage.vue';
 import CategoryAgesPage from '../pages/Categories/CategoryAgesPage.vue'
 
-
+import reviewRoutes from './reviewRouter.js';
 
 const routes = [
+    ...reviewRoutes,
     {
         path: "/",
         component: HomePage,

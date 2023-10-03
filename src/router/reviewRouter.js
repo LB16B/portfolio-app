@@ -11,7 +11,7 @@ const reviewRoutes = [
         }
     },
     {
-        path: "/new_review",
+        path: "/new_review/:recipeId",
         component: NewReviewPage,
         name: 'new_review',
         meta: {

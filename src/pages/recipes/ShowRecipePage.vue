@@ -2,6 +2,12 @@
     <main>
         <ShowRecipe :recipes="filteredRecipeId" />
         <Food :foods="selectedFood" />
+            <router-link 
+                :to="{ name: 'new_review', params: { recipeId: urlParameterRecipeId } }"
+                class="mb-12 flex justify-center w-30 py-2"
+                >
+                レビューを投稿する
+            </router-link>
         <Reviews :reviews="filterReview" />
     </main>
 </template>
@@ -21,6 +27,8 @@ import ReviewPage from "../../pages/Reviews/ReviewsPage.vue";
 import Reviews from "../../components/reviews/Reviews.vue";
 
 
+
+const router = useRouter
 const recipeStore = useRecipeStore()
 const foodStore = useFoodStore()
 const reviewStore = useReviewStore()

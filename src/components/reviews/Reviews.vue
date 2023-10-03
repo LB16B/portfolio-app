@@ -1,8 +1,16 @@
 <template>
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
+            
+            <!-- <router-link 
+                :to="{ name: 'new_review', params: { recipeId: reviews.recipe_id } }"
+                class="mb-12 flex justify-center w-30 py-2"
+                >
+                レビューを投稿する
+            </router-link> -->
             <div class="flex flex-wrap -m-4">
 
+                
                 <div class="flex flex-col text-center w-full">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">レビュー</h1>
                     <p class="lg:w-2/3 mx-auto leading-relaxed text-base"> 20件の評価/平均3</p>
@@ -43,7 +51,9 @@
 import { ref, computed, onMounted } from "vue";
 import { useReviewStore } from '../../stores/review';
 import Review from './Review.vue';
+import { useRoute, useRouter } from 'vue-router';
 
+const router = useRouter
 const store = useReviewStore();
 
 const props = defineProps({

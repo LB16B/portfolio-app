@@ -2,6 +2,7 @@ import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
 import { allRecipes, createRecipe, updateRecipe, removeRecipe } from "../http/recipe-api";
 import { useRouter } from 'vue-router';
+import { data } from "autoprefixer";
 
 export const useRecipeStore = defineStore('recipeStore', () => {
     const recipes = ref([]);
@@ -17,7 +18,6 @@ export const useRecipeStore = defineStore('recipeStore', () => {
     // 新しいデータ作成
     const handleAddedRecipe = async (newRecipe) => {
         const { data: createdRecipe } = await createRecipe(newRecipe);
-        
         recipes.value.unshift(createdRecipe.data);
         
         router.push({ name: 'new_food', params: { recipe_id: createdRecipe.recipe_id } });
@@ -49,11 +49,21 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         recipes.value.splice(index, 1)
     }
 
+    // 検索
+    const searchQuery = ref('')
+    const searchRecipes = async () => {
+        const { sata } = await allRecipes({ query: searchQuery.value });
+        recipes.value = data.data;
+
+    }
+
     return {
         recipes,
+        searchQuery,
         fetchAllRecipes,
         handleAddedRecipe,
         handleUpdatedRecipe,
-        handleRemovedRecipe
+        handleRemovedRecipe,
+        searchRecipes
     };
 });

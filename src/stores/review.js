@@ -16,8 +16,10 @@ export const useReviewStore = defineStore('reviewStore', () => {
     // 新しいデータ作成
     const handleAddedReview = async (newReview) => {
         const { data: createdReview } = await createReview(newReview);
-
         reviews.value.unshift(createdReview.data);
+
+        // レビューが追加された後、一つ前のページに戻る
+        router.back();
     }
 
     return {

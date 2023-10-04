@@ -1,6 +1,6 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
-import { allReviews } from "../http/review-api";
+import { allReviews, createReview } from "../http/review-api";
 import { useRouter } from 'vue-router';
 
 export const useReviewStore = defineStore('reviewStore', () => {
@@ -13,8 +13,16 @@ export const useReviewStore = defineStore('reviewStore', () => {
         reviews.value = data.data;
     };
 
+    // 新しいデータ作成
+    const handleAddedReview = async (newReview) => {
+        const { data: createdReview } = await createReview(newReview);
+
+        reviews.value.unshift(createdReview.data);
+    }
+
     return {
         reviews,
-        fetchAllReviews
+        fetchAllReviews,
+        handleAddedReview
     }
 });

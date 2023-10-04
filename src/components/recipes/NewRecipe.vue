@@ -102,7 +102,6 @@
       </div>
     </div>
   </section>
-  
 </template>
 
 
@@ -128,7 +127,6 @@ const store = useRecipeStore()
 const storeUpload = useUploadStore()
 const { handleAddedRecipe } = store
 const { uploadRecipeImage } = storeUpload
-
 
 const inputtingTitle = ref('')
 const inputtingTime = ref('')

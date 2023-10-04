@@ -1,7 +1,6 @@
 <template>
     <main>
         <NewRecipe />
-        <!-- <NewFood /> -->
     </main>
 </template>
 
@@ -14,8 +13,6 @@ import Recipes from '../../components/recipes/Recipes.vue';
 import NewRecipe from "../../components/recipes/NewRecipe.vue";
 import NewFood from '../../components/foods/NewFood.vue'
 import api from "../../http/api";
-
-
 
 const recipeStore = useRecipeStore()
 const foodStore = useFoodStore()

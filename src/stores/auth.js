@@ -22,16 +22,7 @@ export const useAuthStore = defineStore("authStore", () => {
     await csrfCookie();
     try {
       const authToken = await login(credentials);
-      // console.log(authToken)
-      
-      // 認証トークンをクッキーに設定
-      // cookies.set('auth_token', authToken);
 
-
-      
-      // console.log(authToken)
-      
-      // ユーザー情報を取得
       await fetchUser();
 
       errors.value = {};
@@ -55,6 +46,7 @@ export const useAuthStore = defineStore("authStore", () => {
       }
     }
   };
+
 
   const handleLogout = async () => {
     await logout();

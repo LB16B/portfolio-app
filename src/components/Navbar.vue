@@ -10,13 +10,6 @@
           <nav 
             v-if="store.isLoggedIn"
             class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center justify-center text-xl">
-            <a 
-              href="#"
-              @click.prevent="$event => $router.push('/show_recipe')" 
-              class="mr-5 hover:text-gray-900"
-            >
-              ShowRecipe
-            </a>
             <router-link 
               :to="{ name: 'new_recipe' }"
               class="mr-5 hover:text-gray-900"
@@ -34,12 +27,6 @@
             class="mr-5 hover:text-gray-900"
             >
             CategoryAges
-            </router-link>
-            <router-link 
-            :to="{ name: 'reviews' }"
-            class="mr-5 hover:text-gray-900"
-            >
-            Reviews
             </router-link>
 
           </nav>

@@ -9,7 +9,6 @@ import { onMounted, ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useFoodStore } from '../../stores/food';
 import api from "../../http/api";
-// import foods from '../../components/foods/Foods.vue';
 import NewFood from '../../components/foods/NewFood.vue'
 
 const foodStore = useFoodStore()

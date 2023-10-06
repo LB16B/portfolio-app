@@ -15,7 +15,6 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useManualStore } from '../../stores/manual';
-import Manual from '../manuals/manual.vue';
 
 const store = useManualStore()
 

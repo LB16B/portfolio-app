@@ -116,7 +116,7 @@ const newFood = reactive({
     recipe_id: '', 
 })
 
-const router = useRouter(); // useRouterを使用してVue Routerを初期化
+const router = useRouter();
 
 onMounted(() => {
     const route = router.currentRoute;

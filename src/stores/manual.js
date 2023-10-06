@@ -17,7 +17,8 @@ export const useManualStore = defineStore('manualStore', () => {
     const handleAddedManual = async (newManual) => {
         try{
             const { data: createdManual } = await createManual(newManual);
-            useFoodStore.value.unshift(createdManual.data);
+            manuals.value.unshift(createdManual.data);
+            console.log('成功');
         } catch (error) {
             console.log("API リクエストエラー", error);
         }

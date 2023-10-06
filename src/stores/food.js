@@ -17,10 +17,12 @@ export const useFoodStore = defineStore('foodStore', () => {
             const { data: createdFood } = await createFood(newFood);
             foods.value.unshift(createdFood.data);
 
-            console.log('成功')
+            console.log('成功');
+            router.push({ name: 'new_manual', params: { recipeId: createdFood.data.recipe_id } });
         } catch (error) {
             console.error("API リクエストエラー:", error);
         }
+
     };
 
         // データ更新

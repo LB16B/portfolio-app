@@ -41,4 +41,11 @@ export const useManualStore = defineStore('manualStore', () => {
             console.log("API リクエストエラー", error);
         }
     }
+
+    return {
+        manuals,
+        fetchAllManuals,
+        handleAddedManual,
+        handleUpdatedManual
+    };
 });

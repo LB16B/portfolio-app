@@ -7,7 +7,7 @@
           </div>
       </div>
     </div>
-      <Ed :fileName="props.recipe.filename"  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
+      <EditRecipeCropper :fileName="props.recipe.filename"  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
       <!-- <EditRecipeCropper :fileName="props.recipe.filename"  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" /> -->
     
       <section class="text-gray-600 body-font relative">
@@ -115,7 +115,7 @@ import EditRecipeCropper  from './EditRecipeCropper.vue'
 import { useUploadStore } from "../../stores/upload";
 import { useRecipeStore } from "../../stores/recipe";
 import RecipeCropper from './RecipeCropper.vue';
-import Ed from './Ed.vue'
+
 
 // モーダルウィンドウ
 

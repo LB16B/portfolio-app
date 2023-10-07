@@ -41,10 +41,11 @@ export const useFoodStore = defineStore('foodStore', () => {
             }
 
             console.log("変更しました");
+            // console.log('aaa', food.recipe_id)
         } catch (error) {
             console.error("API リクエストエラー:", error);
         }
-        router.push({ name: 'my_recipes' });
+        // router.push({ name: 'new_manual', params: { recipeId: recipe.id } });
     }
 
 

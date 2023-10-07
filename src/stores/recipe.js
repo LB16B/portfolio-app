@@ -39,7 +39,7 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         currentRecipe.category_age_id = updatedRecipe.data.category_age_id
         currentRecipe.filename = updatedRecipe.data.filename
 
-        // router.push({ name: 'edit_food', params: { recipeId: recipe.id } });
+        router.push({ name: 'edit_food', params: { recipeId: recipe.id } });
     }
     
     // データ削除

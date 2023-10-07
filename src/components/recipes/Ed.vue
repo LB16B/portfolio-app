@@ -1,24 +1,36 @@
 <template>
-<section class="edit-cropper-body">
-  <div>
-    <input
-        ref="input"
-        type="file"
-        name="image"
-        accept="image/*"
-        @change="setImage"
-    />
-    <div class="content">
-      <section class="cropper-area">
-        <div class="img-cropper">
-          <vue-cropper
-              ref="cropper"
-              :aspect-ratio="6 / 6"
-              :src="imageData"
-              preview=".preview"
-              class="vue-cropper"
-          />
+  <section class="text-gray-600 body-font overflow-hidden">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <input
+            ref="input"
+            type="file"
+            name="image"
+            accept="image/*"
+            @change="setImage"
+        />
+
+        <div class="lg:w-1/2 w-full lg:h-auto h-64">
+          <section class="cropper-area">
+              <div class="img-cropper">
+                  <vue-cropper
+                      ref="cropper"
+                      :aspect-ratio="10 / 10"
+                      :src="imageData"
+                      preview=".preview"
+                      class="cropper-area-img"
+                  />
+              </div>
+          </section>
+      </div>
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6  lg:mt-0">
+        <div class="content">
+            <section class="preview-area">
+                <p>Preview</p>
+                <div class="preview" />
+            </section>
         </div>
+      <div class="flex ml-8">
         <div class="actions">
           <a
               href="#"
@@ -55,23 +67,10 @@
           >
               画像選択
           </a>
-        </div>
-      <textarea v-model="data" />
-    </section>
 
-    <section class="preview-area">
-        <p>Preview</p>
-        <div class="preview" />
-        <p>Cropped Image</p>
-        <!-- <div class="cropped-image">
-          <img
-            v-if="cropImg"
-            :src="cropImg"
-            alt="Cropped Image"
-          />
-          <div v-else class="crop-placeholder" />
-        </div> -->
-      </section>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -167,32 +166,7 @@ created() {
 }
 };
 </script>
-
 <style>
-
-.vue-cropper {
-  border: 5px solid blue;
-  width: 600px;
-  height: 400px;
-}
-
-.edit-cropper-body {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 1400px;
-  border: 1px solid red;
-  margin: 0 auto;
-}
-
-input[type="file"] {
-display: none;
-}
-
-
-.content {
-display: flex;
-justify-content: space-between;
-padding: 30px;
-}
 
 
 
@@ -217,16 +191,9 @@ width: 100%;
 height: 100px;
 }
 
-.preview-area {
-  width: 700px;
-}
 
-.preview {
-width: 500px;
-height: 500px;
-overflow: hidden;
-border: 1px solid blue;
-}
+
+
 
 .crop-placeholder {
 width: 100%;

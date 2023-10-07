@@ -19,6 +19,7 @@ export const useManualStore = defineStore('manualStore', () => {
             const { data: createdManual } = await createManual(newManual);
             manuals.value.unshift(createdManual.data);
             console.log('成功');
+            router.push({ name: 'category_ages' });
         } catch (error) {
             console.log("API リクエストエラー", error);
         }

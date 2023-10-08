@@ -66,7 +66,7 @@ const newReview = reactive({
     user_id: ''
 })
 
-const router = useRouter();
+const router = useRouter()
 const userStore = useAuthStore()
 const store = useReviewStore()
 const { handleAddedReview  } = store

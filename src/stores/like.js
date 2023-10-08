@@ -16,7 +16,7 @@ export const useLikeStore = defineStore('likeStore', () => {
     const handleAddedLike = async (newLike) => {
         try{
             const { data: createdLike } = await createLike(newLike);
-            useLikeStore.value.unshift(createdLike.data);
+            likes.value.unshift(createdLike.data);
 
             console.log('成功');
         } catch (error) {

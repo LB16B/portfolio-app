@@ -44,7 +44,6 @@ import { ref, computed, onMounted } from "vue";
 import { useRecipeStore } from "../../stores/recipe";
 import { storeToRefs } from "pinia";
 import api from "../../http/api";
-import TotalLike from "../likes/TotalLike.vue";
 import { useLikeStore } from "../../stores/like";
 import LikesPage from "../../pages/Likes/LikesPage.vue";
   

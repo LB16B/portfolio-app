@@ -10,18 +10,19 @@ import HomePage from '../pages/HomePage.vue'
 import NewFoodPage from '../pages/Foods/NewFoodPage.vue'
 import EditFoodPage from '../pages/Foods/EditFoodPage.vue';
 import CategoryAgesPage from '../pages/Categories/CategoryAgesPage.vue'
-
+import likeRoutes from './likeRouter.js';
 import reviewRoutes from './reviewRouter.js';
 import manualRoutes from './manualRouter.js';
 
 const routes = [
     ...reviewRoutes,
     ...manualRoutes,
-    {
-        path: "/",
-        component: HomePage,
-        name: 'home',
-    },
+    ...likeRoutes,
+    // {
+    //     path: "/",
+    //     component: HomePage,
+    //     name: 'home',
+    // },
     {
         path: "/category_ages",
         component: CategoryAgesPage,

@@ -87,6 +87,4 @@ const filterManual = computed(() => {
     return manuals.value.filter(manual => manual.recipe_id === Number(urlParameterRecipeId));
 });
 
-
-
 </script>

@@ -1,14 +1,15 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
-import { allLikes, createLike, updateLike } from "../http/like-api";
+import { allLikes, createLike, updateLike, removeLike,} from "../http/like-api";
 
 export const useLikeStore = defineStore('likeStore', () => {
     const likes = ref([]);
 
     // 全件取得
     const fetchAllLikes = async () => {
-        const { data } =await allLikes();
-        useLikeStore.value = data.data;
+        const { data } = await allLikes();
+        likes.value = data.data;
+
     }
 
     // データ追加
@@ -30,10 +31,13 @@ export const useLikeStore = defineStore('likeStore', () => {
         likes.value.splice(index, 1)
     }
 
+    const likesCount = computed(() => likes.value.length);
+
     return {
         likes,
         fetchAllLikes,
         handleAddedLike,
-        handleRemovedLike
+        handleRemovedLike,
+        likesCount,
     }
 });

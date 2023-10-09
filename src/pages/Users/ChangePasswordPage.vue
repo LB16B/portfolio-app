@@ -6,9 +6,7 @@
           <label for="currentPassword">現在のパスワード</label>
           <input
             type="password"
-            id="currentPassword"
             v-model="currentPassword"
-            name="current_password"
             required
             class="border-2"
           />
@@ -18,9 +16,7 @@
           <label for="newPassword">新しいパスワード</label>
           <input
             type="password"
-            id="newPassword"
             v-model="newPassword"
-            name="new_password"
             required
             class="border-2"
           />
@@ -30,10 +26,7 @@
           <label for="newConfirmPassword">新しいパスワード（確認）</label>
           <input
             type="password"
-            id="newConfirmPassword"
             v-model="newConfirmPassword"
-            name="new_password_confirmation"
-            required
             class="border-2"
           />
         </div>
@@ -59,7 +52,7 @@
       new_password: newPassword.value,
       new_password_confirmation: newConfirmPassword.value,
     };
-  
+
     performChangePassword(requestData);
   };
   </script>

@@ -12,12 +12,13 @@ export const useChangePasswordStore = defineStore('changePassword', () => {
 
     const performChangePassword = async () => {
     try {
-            if ( new_password !== new_confirm_password) {
+            if ( new_password === new_confirm_password) {
+                const response = await changePassword(new_password, new_confirm_password);
+                console.log('成功')
+            } else {
                 console.error('新しいパスワードと確認用パスワードが一致しません。');
-                return;
             }
 
-            const response = await changePassword(new_password, new_confirm_password);
         } catch (error) {
             console.error('API リクエストエラー ', error);
         }

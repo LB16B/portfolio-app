@@ -26,13 +26,6 @@ export const useLikeStore = defineStore('likeStore', () => {
         }
     }
 
-    // データ削除
-    // const handleRemovedLike = async (like) => {
-    //     await removeLike(like.id)
-    //     const index = likes.value.findIndex(item => item.id === like.id)
-    //     likes.value.splice(index, 1)
-    //     console.log('削除成功')
-    // }
     const handleRemovedLike = async (like) => {
         try {
             await removeLike(like.id);
@@ -49,7 +42,6 @@ export const useLikeStore = defineStore('likeStore', () => {
     };
     
     let urlParameterRecipeId = route.params.recipeId;
-    console.log(urlParameterRecipeId)
 
     const likesCount = computed(() => {
         return likes.value.filter(like => like.recipe_id === Number(urlParameterRecipeId)).length;

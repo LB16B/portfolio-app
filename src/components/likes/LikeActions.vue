@@ -62,16 +62,25 @@ const addNewLike = async(event) => {
     }
 }
 
-// パラ―メータ取得
 let urlParameterRecipeId = route.params.recipeId;
+const filteredLike = computed(() => {
+    return props.likes.filter(
+        like => like.recipe_id === Number(urlParameterRecipeId)
+        && like.user_id === 1
+        )
+})
 
-const likesFilter = props.likes.filter(
-    like => like.recipe_id === Number(urlParameterRecipeId)
-    &&
-    like.user_id === Number(inputtingRecipeId.value)
-);
-// console.log(likesFilter.length)
 
+const filteredLikeIds = filteredLike.value.map(like => like.id);
 
+const removeLike = async() => {
+    const likeIdToRemove = filteredLikeIds[0];
+
+    try {
+        await handleRemovedLike({ id: likeIdToRemove });
+    } catch (error) {
+        console.log('削除失敗', error);
+    }
+}
 
 </script>

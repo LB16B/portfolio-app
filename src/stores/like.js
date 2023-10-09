@@ -25,11 +25,27 @@ export const useLikeStore = defineStore('likeStore', () => {
     }
 
     // データ削除
+    // const handleRemovedLike = async (like) => {
+    //     await removeLike(like.id)
+    //     const index = likes.value.findIndex(item => item.id === like.id)
+    //     likes.value.splice(index, 1)
+    //     console.log('削除成功')
+    // }
     const handleRemovedLike = async (like) => {
-        await removeLike(like.id)
-        const index = likes.value.findIndex(item => item.id === like.id)
-        likes.value.splice(index, 1)
-    }
+        try {
+            await removeLike(like.id);
+            const index = likes.value.findIndex(item => item.id === like.id);
+            if (index !== -1) {
+                likes.value.splice(index, 1);
+                console.log('削除成功');
+            } else {
+                console.warn('削除対象が見つかりませんでした');
+            }
+        } catch (error) {
+            console.error('API リクエストエラー', error);
+        }
+    };
+    
 
     const likesCount = computed(() => likes.value.length);
 

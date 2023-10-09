@@ -28,12 +28,12 @@
             >
             CategoryAges
             </router-link>
-            <router-link 
+            <!-- <router-link 
             :to="{ name: 'likes' }"
             class="mr-5 hover:text-gray-900"
             >
             Likes
-            </router-link>
+            </router-link> -->
 
           </nav>
           <template v-if="!store.isLoggedIn">

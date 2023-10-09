@@ -29,7 +29,7 @@ import { useRecipeStore } from "../../stores/recipe"
 import { useReviewStore } from "../../stores/review";
 import { useFoodStore } from "../../stores/food";
 import { useManualStore } from "../../stores/manual";
-import { useRoute, useRouter } from 'vue-router';;
+import { useRoute, useRouter } from 'vue-router';
 import Recipes from '../../components/recipes/Recipes.vue';
 import ShowRecipe from '../../components/recipes/ShowRecipe.vue';
 import Foods from '../../components/foods/Foods.vue';
@@ -75,7 +75,9 @@ const filteredRecipeId = computed(() => {
 
 
 const selectedFood = computed(() => {
-    const selected = foods.value.filter(food => food.recipe_id === Number(urlParameterRecipeId));
+    const selected = foods.value.filter(
+        food => food.recipe_id === Number(urlParameterRecipeId)
+    );
     return selected;
 });
 

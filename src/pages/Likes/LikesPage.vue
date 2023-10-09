@@ -2,25 +2,33 @@
     <main>
 <div class="flex">
     <span class="title-font font-medium  text-gray-900">ブックマーク数：<TotalLike />件</span>
-    <LikeActions />
+    <LikeActions :likes="likes" />
 </div>
 
 
-    </main>
+</main>
 </template>
 <script setup>
 import { onMounted, ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useLikeStore } from "../../stores/like";
+import { useRoute, useRouter } from 'vue-router';
 import TotalLike from '../../components/likes/TotalLike.vue'
 import LikeActions from '../../components/likes/LikeActions.vue'
 import api from "../../http/api";
 
+const route = useRoute()
 const store = useLikeStore()
 const { likes } = storeToRefs(store)
 const { fetchAllLikes } = store
 
+// パラ―メータ取得
+let urlParameterRecipeId = route.params.recipeId;
+console.log(urlParameterRecipeId)
+
+
 onMounted(async () => {
     await fetchAllLikes()
 });
+
 </script>

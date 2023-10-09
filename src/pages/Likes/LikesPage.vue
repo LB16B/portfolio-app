@@ -1,7 +1,7 @@
 <template>
     <main>
 <div class="flex">
-    <span class="title-font font-medium  text-gray-900">ブックマーク数：<TotalLike />件</span>
+    <TotalLike />
     <LikeActions :likes="likes" />
 </div>
 

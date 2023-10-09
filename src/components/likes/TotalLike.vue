@@ -1,5 +1,5 @@
 <template>
-    {{ likesCount }}
+  <span class="title-font font-medium  text-gray-900">ブックマーク数：{{ likesCount }}件</span>
   </template>
   
   <script setup>

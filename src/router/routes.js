@@ -13,11 +13,13 @@ import CategoryAgesPage from '../pages/Categories/CategoryAgesPage.vue'
 import likeRoutes from './likeRouter.js';
 import reviewRoutes from './reviewRouter.js';
 import manualRoutes from './manualRouter.js';
+import userRoutes from './userRouter.js';
 
 const routes = [
     ...reviewRoutes,
     ...manualRoutes,
     ...likeRoutes,
+    ...userRoutes,
     // {
     //     path: "/",
     //     component: HomePage,

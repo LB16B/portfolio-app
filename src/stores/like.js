@@ -1,9 +1,11 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
+import { useRoute, useRouter } from 'vue-router';
 import { allLikes, createLike, updateLike, removeLike,} from "../http/like-api";
 
 export const useLikeStore = defineStore('likeStore', () => {
     const likes = ref([]);
+    const route = useRoute()
 
     // 全件取得
     const fetchAllLikes = async () => {
@@ -46,8 +48,12 @@ export const useLikeStore = defineStore('likeStore', () => {
         }
     };
     
+    let urlParameterRecipeId = route.params.recipeId;
+    console.log(urlParameterRecipeId)
 
-    const likesCount = computed(() => likes.value.length);
+    const likesCount = computed(() => {
+        return likes.value.filter(like => like.recipe_id === Number(urlParameterRecipeId)).length;
+    });
 
     return {
         likes,

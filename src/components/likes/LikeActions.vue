@@ -2,22 +2,23 @@
     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
 </svg> -->
 <template>
-    <div>
+    {{ filteredLikeIds[0] }}
+    <div v-if="filteredLikeIds[0] === 0">
         <button 
             class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
             @click="addNewLike"
         >
-            赤
+            追加
             <meta name="csrf-token" content="{{ csrf_token() }}">
         </button>
     </div>
 
-    <div>
+    <div v-else>
         <button 
             class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
             @click="removeLike"
         >
-            青
+            消す
             <meta name="csrf-token" content="{{ csrf_token() }}">
         </button>
     </div>
@@ -63,15 +64,19 @@ const addNewLike = async(event) => {
 }
 
 let urlParameterRecipeId = route.params.recipeId;
+const userId = userStore.user.id
 const filteredLike = computed(() => {
     return props.likes.filter(
         like => like.recipe_id === Number(urlParameterRecipeId)
-        && like.user_id === 1
+        && like.user_id === Number(userId)
         )
 })
 
 
 const filteredLikeIds = filteredLike.value.map(like => like.id);
+
+console.log('likeのID',filteredLikeIds[0])
+// console.log(filteredLikeIds[0])
 
 const removeLike = async() => {
     const likeIdToRemove = filteredLikeIds[0];

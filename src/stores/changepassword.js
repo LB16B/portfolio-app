@@ -1,23 +1,24 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
+import cookies from "js-cookie";
 import { changePassword } from '../http/changepassword-api';
-import { useRouter } from 'vue-router';
+import { csrfCookie } from "../http/auth-api";;
 
 export const useChangePasswordStore = defineStore('changePassword', () => {
-    const router = useRouter();
 
     const current_password = ref('');
     const new_password = ref('');
-    const new_confirm_password = ref('');
+    const new_password_confirmation = ref('');
 
-    const performChangePassword = async () => {
+    const performChangePassword = async (user) => {
+        await csrfCookie();
     try {
-            // if ( new_password === new_confirm_password) {
-                const response = await changePassword(current_password.value, new_password.value, new_confirm_password.value);
-                console.log(current_password)
-            // } else {
-            //     console.error('新しいパスワードと確認用パスワードが一致しません。');
-            // }
+        await changePassword({
+            current_password: user.current_password,
+            new_password: user.new_password,
+            new_password_confirmation: user.new_password_confirmation
+        });
+        console.log('成功')
 
         } catch (error) {
             console.error('API リクエストエラー ', error);
@@ -27,7 +28,7 @@ export const useChangePasswordStore = defineStore('changePassword', () => {
     return {
         current_password,
         new_password,
-        new_confirm_password,
+        new_password_confirmation,
         performChangePassword,
     };
 });

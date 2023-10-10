@@ -30,7 +30,7 @@
             class="border-2"
           />
         </div>
-  
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <button type="submit" class="border-2 bg-gray-400">変更</button>
       </form>
     </div>

@@ -16,7 +16,7 @@
         </div>
     </section>
 
-        <Recipes :recipes="filteredRecipes" />
+        <Recipes :recipes="filteredCategoryAgeId" />
     </main>
 </template>
 
@@ -37,7 +37,6 @@ const upload = ref([])
 
 onMounted(async () => {
     await fetchAllRecipes()
-    // ページが最初に開かれたときもすべてのレシピを表示
     filteredRecipes.value = recipes.value;
 });
 

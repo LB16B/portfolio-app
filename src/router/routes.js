@@ -9,11 +9,12 @@ import NotFoundErrorPage from '../pages/errors/NotFoundErrorPage.vue';
 import HomePage from '../pages/HomePage.vue'
 import NewFoodPage from '../pages/Foods/NewFoodPage.vue'
 import EditFoodPage from '../pages/Foods/EditFoodPage.vue';
-import CategoryAgesPage from '../pages/Categories/CategoryAgesPage.vue'
+import CategoriesPage from '../pages/Categories/CategoriesPage.vue'
 import likeRoutes from './likeRouter.js';
 import reviewRoutes from './reviewRouter.js';
 import manualRoutes from './manualRouter.js';
 import userRoutes from './userRouter.js';
+import CategoryFoodRecipesPage from '../pages/recipes/CategoryFoodRecipesPage.vue'
 
 const routes = [
     ...reviewRoutes,
@@ -26,9 +27,9 @@ const routes = [
     //     name: 'home',
     // },
     {
-        path: "/category_ages",
-        component: CategoryAgesPage,
-        name: 'category_ages',
+        path: "/categories",
+        component: CategoriesPage,
+        name: 'categories',
         meta: {
             auth: true
         }
@@ -37,6 +38,14 @@ const routes = [
         path: "/recipes/:categoryAgeId",
         component: RecipesPage,
         name: 'recipes',
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/recipes/:categoryFoodId",
+        component: CategoryFoodRecipesPage,
+        name: 'category_food_recipes',
         meta: {
             auth: true
         }

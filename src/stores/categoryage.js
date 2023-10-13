@@ -1,6 +1,6 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
-import { allCategoryAges } from "../http/category-api";
+import { allCategoryAges } from "../http/categoryage-api";
 
 export const useCategoryAgeStore = defineStore('categoryStore', () => {
     const categoryAges = ref([]);

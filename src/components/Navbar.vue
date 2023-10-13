@@ -23,7 +23,7 @@
               MyRecipes
             </router-link>
             <router-link 
-            :to="{ name: 'category_ages' }"
+            :to="{ name: 'categories' }"
             class="mr-5 hover:text-gray-900"
             >
             CategoryAges

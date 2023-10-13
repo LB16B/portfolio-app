@@ -9,7 +9,8 @@
                 >
             </a>
             <div class="mt-4">
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.category_age_id }}</h3>
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">食材{{ recipe.category_food_id }}</h3>
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">月齢{{ recipe.category_age_id }}</h3>
                 <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.title }}</h3>
                 <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
                 <span class="mt-1 mr-3">{{ recipe.time }}分</span><span class="mt-1">{{ recipe.price }}円</span>

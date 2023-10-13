@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { useCategoryAgeStore} from '../../stores/category';
+import { useCategoryAgeStore} from '../../stores/categoryage';
 import CategoryAge from '../categoryAges/CategoryAge.vue';
 
 const categoryStore = useCategoryAgeStore()

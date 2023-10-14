@@ -21,10 +21,12 @@ onMounted(async () => {
 });
 
 const route = useRoute()
-let urlParameterSearchWord = null;
+
+let urlParameterSearchWord = route.params.searchWord;
 
 const filterRecipe = computed(() => {
-    return recipes.value.filter(recipe => recipe.title === route.params.searchWord);
+    // return recipes.value.filter(recipe => recipe.title === route.params.searchWord);
+    return recipes.value.filter(recipe => recipe.title.includes(route.params.searchWord));
 })
 
 

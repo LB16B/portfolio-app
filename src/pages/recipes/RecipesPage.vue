@@ -1,7 +1,7 @@
 <template>
     <main>
 
-    <section class="text-gray-600 body-font">
+    <!-- <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
                 <div class="relative flex-grow w-full">
@@ -14,7 +14,7 @@
                 </button>
             </div>
         </div>
-    </section>
+    </section> -->
 
         <Recipes :recipes="filteredCategoryAgeId" />
     </main>
@@ -46,13 +46,16 @@ const filteredRecipes = ref([]); // フィルタリングされたレシピを�
 const searchRecipes = () => {
     // 検索クエリに基づいてレシピをフィルタリング
     const query = searchQuery.value.trim().toLowerCase();
-    if (!query) {
+    if (query === "") {
         filteredRecipes.value = recipes.value; // クエリが空の場合、すべてのレシピを表示
     } else {
         filteredRecipes.value = recipes.value.filter((recipe) =>
             recipe.title.toLowerCase().includes(query)
         );
     }
+    filteredRecipes.value = recipes.value.filter((recipe) =>
+        recipe.title.toLowerCase().includes(query)
+    );
 }
 
 

@@ -13,6 +13,7 @@ import CategoriesPage from '../pages/Categories/CategoriesPage.vue'
 import likeRoutes from './likeRouter.js';
 import reviewRoutes from './reviewRouter.js';
 import manualRoutes from './manualRouter.js';
+import recipeRoutes from './recipeRouter.js';
 import userRoutes from './userRouter.js';
 import CategoryFoodRecipesPage from '../pages/recipes/CategoryFoodRecipesPage.vue'
 
@@ -21,11 +22,12 @@ const routes = [
     ...manualRoutes,
     ...likeRoutes,
     ...userRoutes,
-    // {
-    //     path: "/",
-    //     component: HomePage,
-    //     name: 'home',
-    // },
+    ...recipeRoutes,
+    {
+        path: "/",
+        component: HomePage,
+        name: 'home',
+    },
     {
         path: "/categories",
         component: CategoriesPage,

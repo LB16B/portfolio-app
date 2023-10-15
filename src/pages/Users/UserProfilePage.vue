@@ -18,17 +18,23 @@
 
 <script setup>
 import { useUserProfileStore } from '../../stores/userprofile';
+import { useRoute, useRouter } from 'vue-router';
+import { useAuthStore } from '../../stores/auth';
 import { ref } from 'vue';
 
+const router = useRouter
+const store = useAuthStore()
 const { updateProfile } = useUserProfileStore();
 
 const name = ref('');
 const email = ref('');
+console.log(store.user.email)
+
 
 const handleSubmit = () => {
     const requestData = {
-        name: name.value,
-        email: email.value
+        name: name.value || store.user.name,
+        email: email.value || store.user.email
     };
 
     updateProfile(requestData)

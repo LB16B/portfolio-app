@@ -1,19 +1,9 @@
 <template>
-    <div class="xl:w-1/3 md:w-1/2 p-4">
-        <router-link :to="{ name: 'recipes', params: { categoryAgeId: category.id } }">
-            <div class="border border-gray-200 p-6 rounded-lg">
-            <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4"
-            >
-                <img 
-                    :src="getImagePath(category.filename)"
-                    alt="年齢別カテゴリーのアイコン"
-                    class="rounded-full"
-                >
-            </div>
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{ category.stage }}</h2>
-            </div>
-        </router-link>
-    </div>
+    <p
+        @click="selectMenuItem(category.stage)"
+        class="text-lg text-gray-900 font-medium title-font mb-2">{{ category.stage }}
+    </p>
+
 </template>
 
 <script setup>
@@ -31,4 +21,10 @@ const props = defineProps({
     category: Object,
 })
 
+const emits = defineEmits(["categorySelected"]);
+
+const selectMenuItem = (selectedCategory) => {
+  // カスタムイベントを発生させて選択されたカテゴリを親コンポーネントに送信
+    emits("categorySelected", selectedCategory);
+};
 </script>

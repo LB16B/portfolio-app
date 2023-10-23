@@ -8,7 +8,7 @@
       </div>
     </div>
       <EditRecipeCropper :fileName="props.recipe.filename"  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
-      <!-- <EditRecipeCropper :fileName="props.recipe.filename"  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" /> -->
+      
     
       <section class="text-gray-600 body-font relative">
         <div class="container px-5 py-24 mx-auto">
@@ -151,7 +151,6 @@ function getImagePath(filename) {
 
 const emit = defineEmits(['updated', 'removed'], ['file-selected', added]);
 
-const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 });
 
 
 const isEdit = ref(false)
@@ -161,6 +160,7 @@ const editingRecipePrice = ref(props.recipe.price)
 const editingRecipeCategoryAgeId = ref(props.recipe.category_age_id)
 const editingFilename = ref(props.recipe.filename)
 
+const trimmingInfo = ref({ x: 0, y: 0, height: 0, width: 0 });
 const formData = new FormData();
 
 const handleTrimmingData = (data) => {

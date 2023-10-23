@@ -9,7 +9,6 @@ import NotFoundErrorPage from '../pages/errors/NotFoundErrorPage.vue';
 import HomePage from '../pages/HomePage.vue'
 import NewFoodPage from '../pages/Foods/NewFoodPage.vue'
 import EditFoodPage from '../pages/Foods/EditFoodPage.vue';
-import CategoriesPage from '../pages/Categories/CategoriesPage.vue'
 import likeRoutes from './likeRouter.js';
 import reviewRoutes from './reviewRouter.js';
 import manualRoutes from './manualRouter.js';
@@ -27,14 +26,6 @@ const routes = [
         path: "/",
         component: HomePage,
         name: 'home',
-    },
-    {
-        path: "/categories",
-        component: CategoriesPage,
-        name: 'categories',
-        meta: {
-            auth: true
-        }
     },
     {
         path: "/recipes/:categoryAgeId",

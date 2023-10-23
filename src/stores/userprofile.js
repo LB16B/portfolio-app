@@ -13,7 +13,8 @@ export const useUserProfileStore = defineStore('userProfile', () => {
         try {
             await userProfile({
                 name: user.name,
-                email: user.email
+                email: user.email,
+                filename: user.filename
             });
             console.log('成功');
         } catch (error) {

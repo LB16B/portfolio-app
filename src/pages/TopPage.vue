@@ -1,10 +1,12 @@
 
 <template>
     <main>
-        <section class="text-gray-600 body-font">
-            <div class="container px-5 pt-24 mx-auto">
-                <CategoryAges :categoryAges="categoryAges" />
-                <CategoryFoods :categoryFoods="categoryFoods" />
+        <section class="text-gray-600 body-font  border-2 mx-auto w-2/3">
+            <div class="container px-5  pt-24 mx-auto items-center justify-center flex">
+                <div>
+                    <CategoryAges :categoryAges="categoryAges" />
+                    <CategoryFoods :categoryFoods="categoryFoods" />
+                </div>
             </div>
         </section>
     </main>

@@ -1,8 +1,22 @@
 <template>
 
 
-    <div class="relative border-2 w-80">
-      <button @click="toggleMenu" class="bg-blue-500 text-white p-2 rounded-lg">ボトムダウンをトグル</button>
+    <div class="relative w-80">
+      <div class="mb-8">
+        <button 
+          v-if="selectedMenuItem === null"
+          @click="toggleMenu" 
+          class="bg-blue-500 text-white p-2 rounded-lg w-60">
+          食材を選ぶ
+        </button>
+        <button
+          v-else
+          @click="toggleMenu" class="bg-blue-500 text-white p-2 rounded-lg w-60">
+          {{ selectedMenuItem }}
+        </button>
+      </div>
+
+
       <div 
         v-if="isMenuOpen" 
         class="absolute right-0 bottom-0 bg-white p-4 w-48 rounded-lg shadow-md"
@@ -17,7 +31,6 @@
       />
     </div>
   </div>
-  <p>選択されたカテゴリ: {{ selectedMenuItem }}</p>
 
 
 </template>
@@ -46,6 +59,7 @@ const selectMenuItem = (item) => {
 
 const handleCategorySelected = (selectedCategory) => {
   selectedMenuItem.value = selectedCategory;
+  isMenuOpen.value = false
   console.log('カテゴリー食べ物', selectedMenuItem.value)
 }
 

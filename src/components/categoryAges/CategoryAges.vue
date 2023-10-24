@@ -14,7 +14,7 @@
         v-for="category in categoryAges"
         :category="category"
         :key="category.id"
-        @categorySelected="handleCategorySelected"
+        @categoryAgeSelected="handleCategorySelected"
       />
     </div>
   </div>
@@ -50,7 +50,7 @@ const selectMenuItem = (item) => {
 
 const handleCategorySelected = (selectedCategory) => {
   selectedMenuItem.value = selectedCategory;
-  console.log(selectedMenuItem.value)
+  console.log('カテゴリー月齢', selectedMenuItem.value)
 }
 
 const changeCursor = (cursorStyle) => {

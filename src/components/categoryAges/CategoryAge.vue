@@ -1,6 +1,6 @@
 <template>
     <p
-        @click="selectMenuItem(category.stage)"
+        @click="selectMenuItem(category.id)"
         class="text-lg text-gray-900 font-medium title-font mb-2">{{ category.stage }}
     </p>
 
@@ -21,10 +21,10 @@ const props = defineProps({
     category: Object,
 })
 
-const emits = defineEmits(["categorySelected"]);
+const emits = defineEmits(["categoryAgeSelected"]);
 
 const selectMenuItem = (selectedCategory) => {
   // カスタムイベントを発生させて選択されたカテゴリを親コンポーネントに送信
-    emits("categorySelected", selectedCategory);
+    emits("categoryAgeSelected", selectedCategory);
 };
 </script>

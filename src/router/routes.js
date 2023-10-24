@@ -14,6 +14,7 @@ import reviewRoutes from './reviewRouter.js';
 import manualRoutes from './manualRouter.js';
 import recipeRoutes from './recipeRouter.js';
 import userRoutes from './userRouter.js';
+import TopPage from '../pages/TopPage.vue'
 import CategoryFoodRecipesPage from '../pages/recipes/CategoryFoodRecipesPage.vue'
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
         path: "/",
         component: HomePage,
         name: 'home',
+    },
+    {
+        path: "/top",
+        component: TopPage,
+        name: 'top',
     },
     {
         path: "/recipes/:categoryAgeId",

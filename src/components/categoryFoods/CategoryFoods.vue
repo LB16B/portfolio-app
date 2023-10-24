@@ -1,6 +1,5 @@
 <template>
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
+
 
     <div class="relative border-2 w-80">
       <button @click="toggleMenu" class="bg-blue-500 text-white p-2 rounded-lg">ボトムダウンをトグル</button>
@@ -20,9 +19,7 @@
   </div>
   <p>選択されたカテゴリ: {{ selectedMenuItem }}</p>
 
-</div>
 
-</section>
 </template>
 
 <script setup>

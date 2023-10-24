@@ -2,7 +2,7 @@
 
 
     <div class="relative w-80">
-      <div class="mb-8">
+      <div class="">
         <button
           v-if="selectedMenuItem === null"
           @click="toggleMenu" class="bg-blue-500 text-white p-2 rounded-lg  w-60">
@@ -15,19 +15,21 @@
         </button>
       </div>
 
-      <div 
-        v-if="isMenuOpen" 
-        class="absolute right-0 bottom-0 bg-white p-4 w-48 rounded-lg shadow-md"
-        @mouseenter="changeCursor('pointer')"
-        @mouseleave="changeCursor('auto')"
-        >
-        <CategoryAge
-        v-for="category in categoryAges"
-        :category="category"
-        :key="category.id"
-        @categoryAgeSelected="handleCategorySelected"
-      />
-    </div>
+
+        <div 
+          v-if="isMenuOpen" 
+          class=" bg-white border-2 mr-10 p-4 text-center  rounded-lg shadow-md w-60"
+          @mouseenter="changeCursor('pointer')"
+          @mouseleave="changeCursor('auto')"
+          style="z-index: 999;"
+          >
+          <CategoryAge
+          v-for="category in categoryAges"
+          :category="category"
+          :key="category.id"
+          @categoryAgeSelected="handleCategorySelected"
+        />
+      </div>
   </div>
 
 

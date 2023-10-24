@@ -1,13 +1,14 @@
 
 <template>
     <main>
-        <section class="text-gray-600 body-font  border-2 mx-auto w-2/3">
-            <div class="container px-5  pt-24 mx-auto items-center justify-center flex">
-                <div>
+        <section class="text-gray-600 body-font mx-auto w-2/3 relative border-2 h-72 mt-32">
+            <div class="absolute container px-5 pt-24 mx-auto items-center justify-center flex" style="z-index: 3;">
+                <div class="flex " >
                     <CategoryAges :categoryAges="categoryAges" />
                     <CategoryFoods :categoryFoods="categoryFoods" />
                 </div>
             </div>
+            <div class="absolute bottom-0 mx-auto left-20" >dd</div>
         </section>
     </main>
 </template>

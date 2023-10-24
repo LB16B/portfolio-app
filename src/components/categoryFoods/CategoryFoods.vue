@@ -2,7 +2,7 @@
 
 
     <div class="relative w-80">
-      <div class="mb-8">
+      <div class="">
         <button 
           v-if="selectedMenuItem === null"
           @click="toggleMenu" 
@@ -19,7 +19,7 @@
 
       <div 
         v-if="isMenuOpen" 
-        class="absolute right-0 bottom-0 bg-white p-4 w-48 rounded-lg shadow-md"
+        class=" bg-white p-4 text-center  rounded-lg shadow-md border-2 w-60"
         @mouseenter="changeCursor('pointer')"
         @mouseleave="changeCursor('auto')"
         >

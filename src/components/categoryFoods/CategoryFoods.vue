@@ -12,7 +12,7 @@
         <button
           v-else
           @click="toggleMenu" class="bg-blue-500 text-white p-2 rounded-lg w-60">
-          {{ selectedMenuItem }}
+          {{ selectedMenuItem.name }}
         </button>
       </div>
 
@@ -60,7 +60,7 @@ const selectMenuItem = (item) => {
 const handleCategorySelected = (selectedCategory) => {
   selectedMenuItem.value = selectedCategory;
   isMenuOpen.value = false
-  console.log('カテゴリー食べ物', selectedMenuItem.value)
+  console.log('カテゴリー食べ物', selectedMenuItem.value.id)
 }
 
 const changeCursor = (cursorStyle) => {

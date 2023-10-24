@@ -59,7 +59,7 @@ const selectMenuItem = (item) => {
 const handleCategorySelected = (selectedCategory) => {
   selectedMenuItem.value = selectedCategory;
   isMenuOpen.value = false
-  console.log('カテゴリー月齢', selectedMenuItem)
+  console.log('カテゴリー月齢', selectedMenuItem.value.id)
 }
 
 console.log(selectedMenuItem)

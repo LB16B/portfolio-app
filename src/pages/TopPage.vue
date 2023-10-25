@@ -10,7 +10,11 @@
                     <CategoryFoods :categoryFoods="categoryFoods" @categoryFoodSelected="handleCategoryFoodSelected" />
                 </div>
             </div>
-
+            <button 
+                @click="searchCategoryRecipes"
+                class="absolute bottom-0 text-white bg-pink-500 border-0 py-2 w-24 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                検索する
+            </button>
         </section>
     </main>
 </template>
@@ -22,17 +26,21 @@ import { useCategoryAgeStore } from "../stores/categoryage";
 import { useCategoryFoodStore } from "../stores/category-food";
 import CategoryAges from "../components/categoryAges/CategoryAges.vue";
 import CategoryFoods from "../components/categoryFoods/CategoryFoods.vue";
+import { useRouter } from 'vue-router';
 import api from "../http/api";
 
-const handleCategoryAgeSelected = (selectedItem) => {
-  // 子コンポーネントから受け取ったデータを処理する
-  console.log("Selected Category Age:", selectedItem);
-  // ここで適切な処理を行います
+const { emits } = defineEmits();
+const selectedItemAge = ref(null);
+const selectedItemFood = ref(null);
+
+const handleCategoryAgeSelected = (selectedAge) => { 
+  selectedItemAge.value = selectedAge; 
+
 };
-const handleCategoryFoodSelected = (selectedItem) => {
-  // 子コンポーネントから受け取ったデータを処理する
-  console.log("Selected Category Food:", selectedItem);
-  // ここで適切な処理を行います
+
+
+const handleCategoryFoodSelected = (selectedFood) => {
+    selectedItemFood.value = selectedFood; 
 };
 
 const categoryAgeStore = useCategoryAgeStore()
@@ -43,12 +51,23 @@ const categoryFoodStore = useCategoryFoodStore()
 const { categoryFoods } = storeToRefs(categoryFoodStore)
 const { fetchAllCategoryFoods } = categoryFoodStore
 
-
-
 onMounted(async () => {
     await fetchAllCategoryAges()
     await fetchAllCategoryFoods()
 });
 
+// router.push({ name: 'new_manual', params: { recipeId: recipe.id } });
+const router = useRouter();
+const searchCategoryRecipes = () => {
+    console.log("月齢:", selectedItemAge.value.id);
+    console.log("食材:", selectedItemFood.value.id);
 
+    router.push({
+        name: 'search_category_recipe',
+        params: {
+            ageId: selectedItemAge.value.id,
+            foodId: selectedItemFood.value.id
+        }
+    });
+};
 </script>

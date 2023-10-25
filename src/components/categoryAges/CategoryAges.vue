@@ -5,12 +5,12 @@
       <div class="">
         <button
           v-if="selectedMenuItem === null"
-          @click="toggleMenu" class="bg-blue-500 text-white p-2 rounded-lg  w-60">
+          @click="toggleMenu" class="bg-pink-100  p-2 rounded-lg  w-60">
           月齢を選ぶ
         </button>
         <button
           v-else
-          @click="toggleMenu" class="bg-blue-500 text-white p-2 rounded-lg w-60">
+          @click="toggleMenu" class="bg-pink-100  p-2 rounded-lg w-60">
           {{ selectedMenuItem.stage }}
         </button>
       </div>
@@ -23,12 +23,16 @@
           @mouseleave="changeCursor('auto')"
           style="z-index: 999;"
           >
-          <CategoryAge
+          <div
           v-for="category in categoryAges"
           :category="category"
-          :key="category.id"
-          @categoryAgeSelected="handleCategorySelected"
-        />
+          :key="category.id"  
+        >
+        <p
+          @click="selectMenuItem(category)"
+          class="text-lg text-gray-900 font-medium title-font mb-2">{{ category.stage }}
+        </p>
+      </div>
       </div>
   </div>
 
@@ -39,8 +43,10 @@
 <script setup>
 import { useCategoryAgeStore} from '../../stores/categoryage';
 import CategoryAge from '../categoryAges/CategoryAge.vue';
-import { ref, computed } from "vue";
+import { ref, computed, defineProps, defineEmits } from "vue";
 
+
+const emits = defineEmits(["categoryAgeSelected"]);
 const categoryStore = useCategoryAgeStore()
 
 defineProps({
@@ -52,19 +58,16 @@ const selectedMenuItem = ref(null);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+  
 }
 
-const selectMenuItem = (item) => {
-  selectedMenuItem.value = item;
-}
-
-const handleCategorySelected = (selectedCategory) => {
-  selectedMenuItem.value = selectedCategory;
+const selectMenuItem = (category) => {
+  selectedMenuItem.value = category;
   isMenuOpen.value = false
-  console.log('カテゴリー月齢', selectedMenuItem.value.id)
-}
+  emits("categoryAgeSelected", selectedMenuItem.value);
+};
 
-console.log(selectedMenuItem)
+
 
 const changeCursor = (cursorStyle) => {
   document.body.style.cursor = cursorStyle;

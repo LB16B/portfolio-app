@@ -6,7 +6,7 @@
     </div>
     <button 
         @click="searchRecipes"
-        class="text-white bg-indigo-500 border-0 py-2 w-24 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+        class="text-white bg-pink-500 border-0 py-2 w-24 focus:outline-none hover:bg-indigo-600 rounded text-lg">
         検索する
     </button>
 </div>

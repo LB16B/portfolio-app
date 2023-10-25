@@ -7,7 +7,7 @@
                 
                 <div class="flex" >
                     <CategoryAges :categoryAges="categoryAges"   @categoryAgeSelected="handleCategoryAgeSelected"  />
-                    <CategoryFoods :categoryFoods="categoryFoods" />
+                    <CategoryFoods :categoryFoods="categoryFoods" @categoryFoodSelected="handleCategoryFoodSelected" />
                 </div>
             </div>
 
@@ -27,6 +27,11 @@ import api from "../http/api";
 const handleCategoryAgeSelected = (selectedItem) => {
   // 子コンポーネントから受け取ったデータを処理する
   console.log("Selected Category Age:", selectedItem);
+  // ここで適切な処理を行います
+};
+const handleCategoryFoodSelected = (selectedItem) => {
+  // 子コンポーネントから受け取ったデータを処理する
+  console.log("Selected Category Food:", selectedItem);
   // ここで適切な処理を行います
 };
 

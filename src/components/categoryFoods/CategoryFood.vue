@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, defineEmits } from "vue";
+import { ref, computed } from "vue";
 import { useCategoryFoodStore } from "../../stores/category-food";
 
 const { categoryFood } = defineProps(["categoryFood"]);

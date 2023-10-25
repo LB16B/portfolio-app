@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed, watch, defineEmits  } from "vue";
+import { onMounted, ref, computed, watch  } from "vue";
 import { storeToRefs } from "pinia"
 import { useCategoryAgeStore } from "../stores/categoryage";
 import { useCategoryFoodStore } from "../stores/category-food";

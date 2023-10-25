@@ -43,7 +43,7 @@
 <script setup>
 import { useCategoryAgeStore} from '../../stores/categoryage';
 import CategoryAge from '../categoryAges/CategoryAge.vue';
-import { ref, computed, defineProps, defineEmits } from "vue";
+import { ref, computed} from "vue";
 
 
 const emits = defineEmits(["categoryAgeSelected"]);

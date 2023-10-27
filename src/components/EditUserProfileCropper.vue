@@ -23,19 +23,14 @@
               </div>
           </section>
       </div>
-      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6  lg:mt-0">
-        <div class="content">
-            <section class="preview-area">
-                <p>Preview</p>
-                <div class="preview" />
-            </section>
-        </div>
-      <div class="flex ml-8">
-        <div class="actions">
+      <div class="">
+      <div class="flex ml-8 mt-24">
+        <div class="">
           <a
               href="#"
               role="button"
               @click.prevent="rotate(90)"
+              class="bg-pink-500 p-2 font-bold m-2"
           >
               右回転
           </a>
@@ -43,6 +38,7 @@
               href="#"
               role="button"
               @click.prevent="rotate(-90)"
+              class="bg-pink-500 p-2 font-bold m-2"
           >
               左回転
           </a>
@@ -50,6 +46,7 @@
               href="#"
               role="button"
               @click.prevent="reset"
+              class="bg-pink-500 p-2 font-bold m-2"
           >
               リセット
           </a>
@@ -57,6 +54,7 @@
               href="#"
               role="button"
               @click.prevent="getData"
+              class="bg-pink-500 p-2 font-bold m-2"
               >
               適用する
           </a>
@@ -64,6 +62,7 @@
               href="#"
               role="button"
               @click.prevent="showFileChooser"
+              class="bg-pink-500 p-2 font-bold m-2"
           >
               画像選択
           </a>
@@ -82,7 +81,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import VueCropper from 'vue-cropperjs';
-import 'cropperjs/dist/cropper.css';
+// import 'cropperjs/dist/cropper.css';
 
 
 export default {
@@ -166,7 +165,7 @@ created() {
 }
 };
 </script>
-<style>
+<!-- <style>
 
 
 
@@ -204,4 +203,4 @@ background: #ccc;
 .cropped-image img {
 max-width: 100%;
 }
-</style>
+</style> -->

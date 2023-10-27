@@ -11,10 +11,10 @@
     :fileName="authStore.user.filename"
     @file-selected="handleFileSelected" 
     @trimming-data="handleTrimmingData"
-    class="bg-pink-200 bg-opacity-20 w-1/2 mx-auto my-20"
+    class="bg-red-200 bg-opacity-20 w-1/2 mx-auto my-20"
 />
 
-<div class="bg-pink-200 bg-opacity-20 w-1/2 mx-auto p-14">
+<div class="bg-red-200 bg-opacity-20 w-1/2 mx-auto p-14">
     <form @submit.prevent="handleSubmit">
     <div class="mb-8 flex flex-col">
         <label 

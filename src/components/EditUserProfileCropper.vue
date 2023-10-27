@@ -1,24 +1,17 @@
 <template>
   <section class="text-gray-600 body-font overflow-hidden">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="lg:w-4/5 mx-auto flex flex-wrap">
-        <input
-            ref="input"
-            type="file"
-            name="image"
-            accept="image/*"
-            @change="setImage"
-        />
+    <div class="px-5 py-24 mx-auto">
+      <div class=" mx-auto flex flex-wrap border-2">
 
-        <div class="lg:w-1/2 w-full lg:h-auto h-64">
-          <section class="cropper-area">
-              <div class="img-cropper">
+        <div class="w-2/3 h-96">
+          <section class="">
+              <div class="">
                   <vue-cropper
                       ref="cropper"
                       :aspect-ratio="10 / 10"
                       :src="imageData"
                       preview=".preview"
-                      class="cropper-area-img"
+                      class="w-2/3 h-96 border-4 object-cover"
                   />
               </div>
           </section>
@@ -30,7 +23,7 @@
               href="#"
               role="button"
               @click.prevent="rotate(90)"
-              class="bg-pink-500 p-2 font-bold m-2"
+              class="bg-pink-500 p-2 font-bold m-2 text-white rounded-md"
           >
               右回転
           </a>
@@ -38,7 +31,7 @@
               href="#"
               role="button"
               @click.prevent="rotate(-90)"
-              class="bg-pink-500 p-2 font-bold m-2"
+              class="bg-pink-500 p-2 font-bold m-2 text-white rounded-md"
           >
               左回転
           </a>
@@ -46,7 +39,7 @@
               href="#"
               role="button"
               @click.prevent="reset"
-              class="bg-pink-500 p-2 font-bold m-2"
+              class="bg-pink-500 p-2 font-bold m-2 text-white rounded-md"
           >
               リセット
           </a>
@@ -54,18 +47,26 @@
               href="#"
               role="button"
               @click.prevent="getData"
-              class="bg-pink-500 p-2 font-bold m-2"
+              class="bg-pink-500 p-2 font-bold m-2 text-white rounded-md"
               >
               適用する
           </a>
-          <a
+          <input
+          ref="input"
+          type="file"
+          name="image"
+          accept="image/*"
+          @change="setImage"
+      />
+
+          <!-- <a
               href="#"
               role="button"
               @click.prevent="showFileChooser"
-              class="bg-pink-500 p-2 font-bold m-2"
+              class="bg-pink-500 p-2 font-bold m-2 text-white rounded-md"
           >
               画像選択
-          </a>
+          </a> -->
 
         </div>
       </div>
@@ -165,42 +166,6 @@ created() {
 }
 };
 </script>
-<!-- <style>
+<style>
 
-
-
-
-.actions {
-margin-top: 1rem;
-}
-
-.actions a {
-display: inline-block;
-padding: 5px 15px;
-background: #0062CC;
-color: white;
-text-decoration: none;
-border-radius: 3px;
-margin-right: 1rem;
-margin-bottom: 1rem;
-}
-
-textarea {
-width: 100%;
-height: 100px;
-}
-
-
-
-
-
-.crop-placeholder {
-width: 100%;
-height: 200px;
-background: #ccc;
-}
-
-.cropped-image img {
-max-width: 100%;
-}
-</style> -->
+</style>

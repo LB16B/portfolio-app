@@ -44,7 +44,10 @@
 
           </nav>
           <!-- <img :src="'http://localhost:8000/profile_images/' + store.user.filename" /> -->
-          <img v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename" />
+          <img 
+            class="rounded-full h-16 w-16"
+            v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
+          />
 
           <template v-if="!store.isLoggedIn">
             <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
@@ -54,12 +57,12 @@
               Register
             </router-link>
           </template>
-          <template v-else>
+          <!-- <template v-else>
             <a href="#" @click.prevent="logout"
               class=" inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
               Logout
             </a>
-          </template>
+          </template> -->
         </div>
       </div>
 

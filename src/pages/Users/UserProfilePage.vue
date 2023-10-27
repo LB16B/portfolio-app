@@ -58,8 +58,8 @@ const { uploadUserProfileImage } = storeUpload
 const { updateProfile } = useUserProfileStore();
 const selectedFile = ref(null);
 
-const name = ref('');
-const email = ref('');
+const name = ref(authStore.user.name);
+const email = ref(authStore.user.email);
 const filename = ref('')
 
 const emit = defineEmits('file-selected');
@@ -91,26 +91,32 @@ const handleFileSelected = (filename) => {
 
 
 const handleSubmit = () => {
-    formData.append('file', selectedFile.value);
-
-        const currentDate = new Date();
-        const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-        const formatter = new Intl.DateTimeFormat('ja-JP', options);
-        const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
-        const newFileName = `${formattedDateTime}_${selectedFile.value.name}`;
-
+    if (selectedFile.value !== null) {
+        formData.append('file', selectedFile.value);
+    
+            const currentDate = new Date();
+            const options = { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+            const formatter = new Intl.DateTimeFormat('ja-JP', options);
+            const formattedDateTime = formatter.format(currentDate).replace(/[/, :]/g, '');
+            const newFileName = `${formattedDateTime}_${selectedFile.value.name}`;
+    
+            const requestData = {
+                name: name.value || authStore.user.name,
+                email: email.value || authStore.user.email,
+                filename: newFileName
+            };
+    
+            updateProfile(requestData)
+            uploadUserProfileImage(formData)
+    } else {
         const requestData = {
-            name: name.value || authStore.user.name,
-            email: email.value || authStore.user.email,
-            filename: newFileName
-            // filename: newFileName || authStore.user.filename
-        };
-
-        updateProfile(requestData)
-        uploadUserProfileImage(formData)
-
-
-
+                name: name.value || authStore.user.name,
+                email: email.value || authStore.user.email,
+                filename: authStore.user.filename
+            };
+    
+            updateProfile(requestData)
+    }
 
 };
 </script>

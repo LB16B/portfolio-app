@@ -63,6 +63,7 @@
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
 import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import RecipeSearch from './RecipeSearch.vue';

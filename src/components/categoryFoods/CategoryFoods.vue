@@ -6,12 +6,12 @@
         <button 
           v-if="selectedMenuItem === null"
           @click="toggleMenu" 
-          class="bg-pink-100  e p-2 rounded-lg w-60">
+          class="bg-pink-200 p-2 font-bold rounded-lg w-60">
           食材カテゴリを選ぶ
         </button>
         <button
           v-else
-          @click="toggleMenu" class="bg-pink-100 p-2 rounded-lg w-60">
+          @click="toggleMenu" class="bg-pink-200 font-bold p-2 rounded-lg w-60">
           {{ selectedMenuItem.name }}
         </button>
       </div>

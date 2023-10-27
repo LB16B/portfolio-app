@@ -5,12 +5,12 @@
       <div class="">
         <button
           v-if="selectedMenuItem === null"
-          @click="toggleMenu" class="bg-pink-100  p-2 rounded-lg  w-60">
+          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg  w-60">
           月齢を選ぶ
         </button>
         <button
           v-else
-          @click="toggleMenu" class="bg-pink-100  p-2 rounded-lg w-60">
+          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg w-60">
           {{ selectedMenuItem.stage }}
         </button>
       </div>

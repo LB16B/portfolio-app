@@ -13,18 +13,42 @@
     @trimming-data="handleTrimmingData"
 />
 
-<div>
-    <h1>Edit User Profile</h1>
+<div class="bg-pink-200 bg-opacity-20 w-1/2 mx-auto p-14">
     <form @submit.prevent="handleSubmit">
-    <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" v-model="name" />
+    <div class="mb-8 flex flex-col">
+        <label 
+            for="name" 
+            class="body-font text-2xl font-medium mr-4 mb-4 text-center"
+        >
+            名前
+        </label>
+        <input 
+            type="text"
+            id="name" 
+            v-model="name"
+            class="h-8 w-10/12 flex items-center mx-auto"
+        />
     </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" />
+    <div class="mb-8 flex flex-col">
+        <label 
+            for="email" 
+            class="body-font text-2xl font-medium mr-4 mb-4 text-center"
+        >
+            メールアドレス
+        </label>
+        <input 
+            type="email" 
+            id="email" 
+            v-model="email"
+            class="h-8 w-10/12 flex items-center mx-auto"
+        />
     </div>
-    <button type="submit">Update Profile</button>
+    <button 
+        type="submit"
+        class="flex mx-auto bg-pink-500 text-center  text-white border-0 px-8  py-2 focus:outline-none hover:bg-pink-600 rounded text-lg"
+    >
+        更新する
+    </button>
     </form>
 </div>
 </template>

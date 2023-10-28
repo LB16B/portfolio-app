@@ -43,11 +43,25 @@
             </router-link>
 
           </nav>
-          <!-- <img :src="'http://localhost:8000/profile_images/' + store.user.filename" /> -->
           <img 
+
             class="rounded-full h-16 w-16"
             v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
           />
+
+          <div class="container mx-auto flex flex-wrap p-2 mt-2 flex-col md:flex-row items-center">
+            <!-- プルダウンメニューボタン -->
+            <button @click="pullDown" class="text-xl inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0">
+              プルダウンメニュー
+            </button>
+            <!-- プルダウンメニューの内容 -->
+            <div v-if="isPullDownVisible" class="bg-white border rounded mt-2 p-2 absolute right-0">
+              <!-- メニューアイテムをここに追加 -->
+                <div>www</div>
+              <!-- 必要なメニューアイテムを追加... -->
+            </div>
+          </div>
+
 
           <template v-if="!store.isLoggedIn">
             <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
@@ -76,14 +90,14 @@ import RecipeSearch from './RecipeSearch.vue';
 
 const router = useRouter
 const store = useAuthStore()
+const isPullDownVisible = ref(false);
+
+const pullDown = () => {
+  isPullDownVisible.value = !isPullDownVisible.value;
+}
 
 const logout = async () => {
   await store.handleLogout()
   router.push({ name: 'login' })
 }
 </script>
-
-<style scoped>
-
-
-</style>

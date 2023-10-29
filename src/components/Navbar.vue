@@ -1,9 +1,9 @@
 <template>
 
-    <div class="text-gray-600 body-font bg-red-100 reactive h-36">
+    <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36">
 
       
-      <div class="flex justify-center py-4 mx-auto  w-2/3"  v-if="store.isLoggedIn">
+      <div class="flex justify-center py-4 mx-auto  w-2/3"  >
         <a href="http://localhost:5173/top" class="flex title-font font-medium items-center2 text-gray-900 mr-10 ">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
@@ -61,39 +61,35 @@
             </router-link>
 
           </nav>
-          <!-- <img 
-            @click="pullDown"
-            class="rounded-full h-16 w-16 absolute right-8 bottom-2"
-            v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
-          />
 
-          <div class="container mx-auto flex flex-wrap p-2 mt-2 flex-col md:flex-row items-center relative">
-            <div v-if="isPullDownVisible" class="bg-red-50 rounded mt-2 p-2 absolute top-4 right-0">
-              <a href="#" @click.prevent="logout"
-                class=" inline-flex items-center border-t-2 border-b-2 border-gray-500 py-1 px-3 focus:outline-none  hover:bg-gray-200  mt-4 md:mt-0 text-xl">
-                Logout
-              </a>
-            </div>
-          </div> -->
-
-
-          <template v-if="!store.isLoggedIn">
-            <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
-              Login
-            </router-link>
-            <router-link :to="{ name: 'register' }" class="inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
-              Register
-            </router-link>
-          </template>
-          <!-- <template v-else>
-            <a href="#" @click.prevent="logout"
-              class=" inline-flex items-center bg-pink-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0 text-xl">
-              Logout
-            </a>
-          </template> -->
         </div>
+        
       </div>
 
+      <div
+        v-if="!store.isLoggedIn"
+          class=" mx-auto relative bg-red-100 h-20"
+        >
+        <div class=" h-full w-3/5 flex mx-auto relative">
+          <div class="absolute left-0 bottom-6">
+            <a href="http://localhost:5173/top" class="flex title-font font-medium items-center2 text-gray-900 mr-10 ">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+              <span class="ml-3 text-xl">Tailblocks</span>
+            </a>
+          </div>
+          <nav class="absolute right-0 bottom-6">
+            <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-4 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0 text-xl">
+              Login
+            </router-link>
+            <router-link :to="{ name: 'register' }" class="inline-flex items-center bg-pink-500 border-0 py-2 px-3 focus:outline-none text-white hover:bg-pink-600 rounded md:mt-0 text-xl">
+              Register
+            </router-link>
+          </nav>
+        </div>
+      </div>
+        
 </template>
 
 <script setup>

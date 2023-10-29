@@ -32,6 +32,9 @@ const routes = [
         path: "/top",
         component: TopPage,
         name: 'top',
+        meta: {
+            auth: true
+        }
     },
     {
         path: "/recipes/:categoryAgeId",

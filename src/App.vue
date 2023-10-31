@@ -1,9 +1,14 @@
 <script setup>
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue'
+// import Cropper from "./components/Cropper";
 
 </script>
 
 <template>
-  <h1>レシピ登録画面</h1>
+  <Navbar />
+  <router-view />
+  <Footer />
 </template>
 
 <style scoped>

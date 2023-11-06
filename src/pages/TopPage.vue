@@ -22,6 +22,7 @@
                 検索する
             </button>
         </section>
+        <Recipes :recipes="recipes" />
     </main>
 </template>
 
@@ -33,6 +34,8 @@ import { useCategoryFoodStore } from "../stores/category-food";
 import CategoryAges from "../components/categoryAges/CategoryAges.vue";
 import CategoryFoods from "../components/categoryFoods/CategoryFoods.vue";
 import { useRouter } from 'vue-router';
+import { useRecipeStore } from "../stores/recipe";
+import Recipes from "../components/recipes/Recipes.vue";
 import api from "../http/api";
 
 const { emits } = defineEmits();
@@ -56,9 +59,14 @@ const categoryFoodStore = useCategoryFoodStore()
 const { categoryFoods } = storeToRefs(categoryFoodStore)
 const { fetchAllCategoryFoods } = categoryFoodStore
 
+const recipeStore = useRecipeStore()
+const { recipes } = storeToRefs(recipeStore)
+const { fetchAllRecipes } = recipeStore
+
 onMounted(async () => {
     await fetchAllCategoryAges()
     await fetchAllCategoryFoods()
+    await fetchAllRecipes()
 });
 
 const router = useRouter();
@@ -74,4 +82,6 @@ const searchCategoryRecipes = () => {
         }
     });
 };
+
+
 </script>

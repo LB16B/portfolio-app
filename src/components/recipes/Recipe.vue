@@ -1,5 +1,5 @@
 <template>
-    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+    <div class="lg:w-72 lg:m-3 md:m-1  sm:w-52 lg:p-4  bg-red-50 rounded-md ">
         <router-link :to="{ name: 'show_recipe', params: { recipeId: recipe.id } }">
             <a class="block relative h-48 rounded overflow-hidden">
                 <img 
@@ -9,20 +9,46 @@
                 >
             </a>
             <div class="mt-4">
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">食材{{ recipe.category_food_id }}</h3>
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">月齢{{ recipe.category_age_id }}</h3>
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.title }}</h3>
-                <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
-                <span class="mt-1 mr-3">{{ recipe.time }}分</span><span class="mt-1">{{ recipe.price }}円</span>
+                <span>{{ categoryFood }}</span>
+                <h2 class="text-gray-900 title-font text-xl font-medium">{{ recipe.title }}</h2>
+                <div class="flex  items-center">
+                    <div  class="flex w-1/2  items-center ">
+                        <img class="w-5 mr-2" src="../../../public/time.png">
+                        <span class="mt-1 mr-1 text-l">約{{ recipe.time }}分</span>
+                    </div>
+                    <div  class="flex w-1/2  items-center  text-base">
+                        <img class="w-5 mr-1" src="../../../public/money.png">
+                        <span class="mt-1 mr-3">約{{ recipe.price }}円</span>
+                    </div>
+                </div>
             </div>
         </router-link>
     </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { storeToRefs } from "pinia"
 import { useRecipeStore } from "../../stores/recipe";
 import RecipeActions from './RecipeActions.vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useCategoryFoodStore } from "../../stores/category-food";
+import CategoryFoods from "../../components/categoryFoods/CategoryFoods.vue";
+import api from "../../http/api";
+
+const route = useRoute();
+const categoryFoodStore = useCategoryFoodStore()
+const { categoryFoods } = storeToRefs(categoryFoodStore)
+const { fetchAllCategoryFoods } = categoryFoodStore
+const categoryFood = ref('')
+
+onMounted(async () => {
+    await fetchAllCategoryFoods()
+    categoryFood.value = categoryFoods.value[route.params.foodId -1].name
+});
+
+
+
 
 const path = "http://localhost:8000/recipe_images/";
 
@@ -34,6 +60,7 @@ const props = defineProps({
     recipe: Object,
     selectedFile: Object 
 })
+
 
 </script>
 

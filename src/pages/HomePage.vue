@@ -2,19 +2,21 @@
 
 <section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-col text-center w-full mb-20">
-            <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">会員登録済みの方</p>
+
+        <div class="flex flex-col text-center  mb-20 bg-red-50 w-1/3 mx-auto py-8 rounded-lg">
+            <h3 class="lg:w-2/3 mx-auto leading-relaxed  text-gray-500 font-bold text-2xl">会員登録済みの方</h3>
             <div class="flex mx-auto border-2 border-pink-500 rounded overflow-hidden mt-6">
                 <router-link :to="{ name: 'login' }"
                 class="py-1 px-4 bg-pink-500 text-white focus:outline-none"
                 >
                 ログインする
-            </router-link>
+                </router-link>
+            </div>
         </div>
-    </div>
-    <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing</h1>
-        <div class="flex flex-wrap -m-4">
-        <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+
+    <h1 class="sm:text-4xl text-3xl font-medium title-font  text-gray-900 text-center mb-14">コース案内</h1>
+        <div class="flex flex-wrap -m-4 justify-center">
+        <div class="p-4 xl:w-1/4  w-full">
             <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
             <h2 class="text-sm tracking-widest title-font mb-1 font-medium">START</h2>
             <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Free</h1>

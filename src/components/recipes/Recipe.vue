@@ -1,24 +1,24 @@
 <template>
-    <div class="lg:w-72 lg:m-3 md:m-1  sm:w-52 lg:p-4  bg-red-50 rounded-md ">
+    <div class="lg:w-72 lg:m-3 md:m-1  sm:w-52 lg:p-4 md:p-4  bg-red-50 rounded-md ">
         <router-link :to="{ name: 'show_recipe', params: { recipeId: recipe.id } }">
             <a class="block relative h-44 rounded overflow-hidden">
                 <img 
                     alt="recipe image" 
-                    class="object-cover object-center w-full h-full block" 
+                    class="lg:object-cover lg:object-center lg:w-full lg:h-full lg:block w-44 h-44 flex" 
                     :src="getImagePath(recipe.filename)"
                 >
             </a>
             <div class="mt-4">
                 <span>{{ categoryFood }}</span>
-                <h3 class="text-gray-900  text-xl ">{{ recipe.title }}</h3>
-                <div class="flex ">
-                    <div  class="flex  items-end text-black ">
-                        <img class="w-4 mr-2 mb-1" src="../../../public/time.png">
-                        <p class="mt-1 mr-3">&nbsp;約{{ recipe.time }}分</p>
+                <h3 class="text-gray-900  lg:text-xl ">{{ recipe.title }}</h3>
+                <div class="flex md:text-sm">
+                    <div  class="flex  items-end text-black md:mr-2">
+                        <img class="lg:w-4 lg:mr-2 lg:mb-1 md:w-4" src="../../../public/time.png">
+                        <p class="lg:mt-1 lg:mr-3 md:text-sm md:mt-2">&nbsp;約{{ recipe.time }}分</p>
                     </div>
                     <div  class="flex w-1/2  items-end text-black">
-                        <img class="w-4 mr-1 items-end mb-1" src="../../../public/money.png">
-                        <span class="mt-1 mr-3">&nbsp;約{{ recipe.price }}円</span>
+                        <img class="lg:w-4 lg:mr-1 items-end lg:mb-1 md:w-4" src="../../../public/money.png">
+                        <span class="lg:mt-1 lg:mr-3 md:text-sm md:mt-2">&nbsp;約{{ recipe.price }}円</span>
                     </div>
                 </div>
             </div>

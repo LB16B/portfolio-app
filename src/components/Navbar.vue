@@ -12,15 +12,15 @@
         </a>
         <RecipeSearch class=""  />
 
-        <div class="ml-12 flex items-center  relative w-1/12 h-14">
+        <div class="ml-6 flex items-center justify-center  relative w-40 h-14">
           <img 
           @click="pullDown"
-          class="rounded-full h-14 w-14 absolute bottom-2"
+          class="rounded-full h-14 w-14  absolute bottom-2"
           v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
           />
     
-          <div class="absolute top-12 w-40 right-2">
-            <div v-if="isPullDownVisible" class="bg-red-50 rounded mt-2 p-2 ">
+          <div class="absolute top-12 w-40 items-center">
+            <div v-if="isPullDownVisible" class="bg-pink-50 rounded mt-2 p-2 ">
               <a href="#" @click.prevent="logout"
                 class="flex items-center justify-center">
                 Logout

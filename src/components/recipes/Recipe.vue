@@ -1,7 +1,7 @@
 <template>
     <div class="lg:w-72 lg:m-3 md:m-1  sm:w-52 lg:p-4  bg-red-50 rounded-md ">
         <router-link :to="{ name: 'show_recipe', params: { recipeId: recipe.id } }">
-            <a class="block relative h-48 rounded overflow-hidden">
+            <a class="block relative h-44 rounded overflow-hidden">
                 <img 
                     alt="recipe image" 
                     class="object-cover object-center w-full h-full block" 
@@ -10,15 +10,15 @@
             </a>
             <div class="mt-4">
                 <span>{{ categoryFood }}</span>
-                <h2 class="text-gray-900 title-font text-xl font-medium">{{ recipe.title }}</h2>
-                <div class="flex  items-center">
-                    <div  class="flex w-1/2  items-center ">
-                        <img class="w-5 mr-2" src="../../../public/time.png">
-                        <span class="mt-1 mr-1 text-l">約{{ recipe.time }}分</span>
+                <h3 class="text-gray-900  text-xl ">{{ recipe.title }}</h3>
+                <div class="flex ">
+                    <div  class="flex  items-end text-black ">
+                        <img class="w-4 mr-2 mb-1" src="../../../public/time.png">
+                        <p class="mt-1 mr-3">&nbsp;約{{ recipe.time }}分</p>
                     </div>
-                    <div  class="flex w-1/2  items-center  text-base">
-                        <img class="w-5 mr-1" src="../../../public/money.png">
-                        <span class="mt-1 mr-3">約{{ recipe.price }}円</span>
+                    <div  class="flex w-1/2  items-end text-black">
+                        <img class="w-4 mr-1 items-end mb-1" src="../../../public/money.png">
+                        <span class="mt-1 mr-3">&nbsp;約{{ recipe.price }}円</span>
                     </div>
                 </div>
             </div>

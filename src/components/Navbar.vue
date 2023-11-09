@@ -19,12 +19,24 @@
           v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
           />
     
-          <div class="absolute top-12 w-40 items-center">
+          <div class="absolute top-12 w-40 items-center z-40">
             <div v-if="isPullDownVisible" class="bg-pink-50 rounded mt-2 p-2 ">
               <a href="#" @click.prevent="logout"
-                class="flex items-center justify-center">
-                Logout
+                class="flex items-center justify-center border-b-2 border-gray-300 border-opacity-30 py-2">
+                ログアウト
               </a>
+              <router-link 
+                :to="{ name: 'change_password' }"
+                class="flex items-center justify-center border-b-2 border-gray-300 border-opacity-30 py-2"
+                >
+                パスワード変更
+              </router-link>
+              <router-link 
+                :to="{ name: 'user_profile' }"
+                class="flex items-center justify-center py-2"
+                >
+                プロフィールを編集する
+            </router-link>
             </div>
           </div>
         </div>
@@ -45,19 +57,6 @@
               class="mr-5 hover:text-gray-900"
               >
               投稿したレシピ
-            </router-link>
-            <router-link 
-            :to="{ name: 'change_password' }"
-            class="mr-5 hover:text-gray-900"
-            >
-            パスワードを変更する
-            </router-link>
-
-            <router-link 
-            :to="{ name: 'user_profile' }"
-            class="mr-5 hover:text-gray-900"
-            >
-            プロフィールを編集する
             </router-link>
 
           </nav>
@@ -104,7 +103,9 @@ const isPullDownVisible = ref(false);
 
 const pullDown = () => {
   isPullDownVisible.value = !isPullDownVisible.value;
+ 
 }
+
 
 const logout = async () => {
   await store.handleLogout()

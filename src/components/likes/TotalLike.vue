@@ -8,4 +8,5 @@ import { useLikeStore } from "../../stores/like";
 
 const likeStore = useLikeStore();
 const likesCount = computed(() => likeStore.likesCount);
+
 </script>

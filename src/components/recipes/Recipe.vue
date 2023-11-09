@@ -44,7 +44,7 @@ const categoryFood = ref('')
 
 onMounted(async () => {
     await fetchAllCategoryFoods()
-    categoryFood.value = categoryFoods.value[route.params.foodId -1].name
+    categoryFood.value = categoryFoods.value[route.params.foodId -1]
 });
 
 

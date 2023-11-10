@@ -1,24 +1,30 @@
 
 <template>
-    <div v-if="filteredLike.length === 0">
-        <button 
-            class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
-            @click="addNewLike"
-        >
-            追加
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-        </button>
+    <div class="flex items-center justify-center">
+        <div 
+            v-if="filteredLike.length === 0"
+            class="flex items-center justify-center"
+            >
+            <button 
+                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+                @click="addNewLike"
+            >
+                <img src="../../../public/test.png" class="w-8 h-8 opacity-70 mt-1">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+            </button>
+        </div>
+        <div v-else>
+            <button 
+                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+                @click="removeLike"
+            >
+                <img src="../../../public/heartRemove.png" class="w-8 h-8 opacity-70 mt-1">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+            </button>
+        </div>
+        <span class="title-font   text-gray-900 text-2xl font-normal ml-4 opacity-80">{{ likesCount }}</span>
+
     </div>
-    <div v-else>
-        <button 
-            class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
-            @click="removeLike"
-        >
-            消す
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-        </button>
-    </div>
-    <span class="title-font font-medium  text-gray-900">ブックマーク数：{{ likesCount }}件</span>
 </template>
 
 <script setup>

@@ -1,4 +1,4 @@
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watchEffect, watch } from "vue";
 import { defineStore } from "pinia";
 import { useRoute, useRouter } from 'vue-router';
 import { allLikes, createLike, updateLike, removeLike,} from "../http/like-api";
@@ -14,6 +14,12 @@ export const useLikeStore = defineStore('likeStore', () => {
 
     }
 
+    let urlParameterRecipeId = route.params.recipeId;
+
+    const likesCount = computed(() => {
+        return likes.value.filter(like => like.recipe_id === Number(urlParameterRecipeId)).length;
+    });
+
     // データ追加
     const handleAddedLike = async (newLike) => {
         try{
@@ -21,6 +27,7 @@ export const useLikeStore = defineStore('likeStore', () => {
             likes.value.unshift(createdLike.data);
 
             console.log('成功');
+
         } catch (error) {
             console.error("API リクエストエラー", error);
         }
@@ -30,6 +37,7 @@ export const useLikeStore = defineStore('likeStore', () => {
         try {
             await removeLike(like.id);
             const index = likes.value.findIndex(item => item.id === like.id);
+            console.log('削除成功');
             if (index !== -1) {
                 likes.value.splice(index, 1);
                 console.log('削除成功');
@@ -40,12 +48,8 @@ export const useLikeStore = defineStore('likeStore', () => {
             console.error('API リクエストエラー', error);
         }
     };
-    
-    let urlParameterRecipeId = route.params.recipeId;
 
-    const likesCount = computed(() => {
-        return likes.value.filter(like => like.recipe_id === Number(urlParameterRecipeId)).length;
-    });
+    
 
     return {
         likes,

@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div v-if="filteredLike.length === 0">
         <button 
             class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
             @click="addNewLike"
@@ -9,7 +9,7 @@
             <meta name="csrf-token" content="{{ csrf_token() }}">
         </button>
     </div>
-    <div >
+    <div v-else>
         <button 
             class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
             @click="removeLike"
@@ -49,7 +49,6 @@ const inputtingRecipeId = ref(route.params.recipeId);
 
 
 const likesCount = computed(() => likeStore.likesCount);
-console.log('カウント', likesCount.value)
 
 
 let urlParameterRecipeId = route.params.recipeId;
@@ -61,6 +60,8 @@ const filteredLike = computed(() => {
         )
     })
 
+    console.log(filteredLike.value)
+
     const filteredLikeRecipeIds = computed(() => {
         return filteredLike.value.map(like => like.recipe_id);
     }) 
@@ -70,16 +71,9 @@ const filteredLike = computed(() => {
         filteredLikeIds.value = filteredLike.value.map(like => like.id);
     };
 
-    updateFilteredLikeIds();
-
     watch(filteredLike, () => {
-    updateFilteredLikeIds();
-    if (filteredLike.value.length >= 1 && filteredLike.value[0].id !== undefined) {
-        console.log('a', filteredLike.value[0].id);
-    } else {
-        console.log('none');
-    }
-});
+        updateFilteredLikeIds();
+    });
 
 
     const addNewLike = async(event) => {
@@ -89,11 +83,9 @@ const filteredLike = computed(() => {
         try {
             await handleAddedLike(newLike)
             fetchAllLikes();
-            // likesCount.value += 1;
         } catch (error) {
             console.log('失敗', error)
         }
-        console.log('カウントadd', likesCount.value +1)
     }
 
     const removeLike = async() => {

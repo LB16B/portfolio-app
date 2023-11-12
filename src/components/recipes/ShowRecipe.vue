@@ -46,13 +46,21 @@ import { storeToRefs } from "pinia";
 import api from "../../http/api";
 import { useLikeStore } from "../../stores/like";
 import LikesPage from "../../pages/Likes/LikesPage.vue";
+import { useReviewStore } from "../../stores/review";
   
-const likeStore = useLikeStore();
-const likesCount = computed(() => likeStore.likesCount);
 
 defineProps({
     recipes: Array,
 })
+const likeStore = useLikeStore();
+const likesCount = computed(() => likeStore.likesCount);
+
+const reviewStore = useReviewStore();
+const { fetchAllReviews } = reviewStore
+const reviewsCount = computed(() => reviewStore.reviewsCount);
+
+console.log('カウント', reviewsCount.value)
+
 
 const recipeStore = useRecipeStore()
 const { handleUpdatedRecipe, handleRemovedRecipe } = recipeStore

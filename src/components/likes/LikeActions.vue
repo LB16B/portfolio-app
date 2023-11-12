@@ -1,24 +1,25 @@
 
 <template>
     <div class="flex items-center justify-center">
+        レシピを保存する
         <div 
             v-if="filteredLike.length === 0"
             class="flex items-center justify-center"
             >
             <button 
-                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-red-200"
                 @click="addNewLike"
             >
-                <img src="../../../public/heartAdd.png" class="w-8 h-8 opacity-70 mt-1">
+                <img src="../../../public/heartAdd.png" class="w-8 h-8 opacity-70 mt-1 hover:opacity-90">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
             </button>
         </div>
         <div v-else>
             <button 
-                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-red-200"
                 @click="removeLike"
             >
-                <img src="../../../public/heartRemove.png" class="w-8 h-8 opacity-70 mt-1">
+                <img src="../../../public/heartRemove.png" class="w-8 h-8 opacity-70 mt-1 hover:opacity-90">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
             </button>
         </div>
@@ -66,7 +67,7 @@ const filteredLike = computed(() => {
         )
     })
 
-    console.log(filteredLike.value)
+
 
     const filteredLikeRecipeIds = computed(() => {
         return filteredLike.value.map(like => like.recipe_id);

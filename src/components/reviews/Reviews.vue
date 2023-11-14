@@ -2,7 +2,7 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
         
-            <div class="flex flex-wrap -m-4">
+            <div class=" -m-4">
 
     
                 <div class="flex flex-col text-center w-full">
@@ -11,12 +11,13 @@
                 </div>
 
                 <div class="text-gray-600 body-font">
-                    <div class="container px-5 py-24 mx-auto">
-                        <div class="flex flex-wrap -m-2">
+                    <div class="container px-5 py-24  border-2 w-full">
+                        <div class="flex flex-wrap -m-2 ">
                             <Review 
                                 v-for="review in paginatedReviews" 
                                 :review="review" 
                                 :key="review.id" 
+    
                             />
                         </div>
                     </div>

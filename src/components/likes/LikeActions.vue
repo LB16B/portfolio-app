@@ -1,31 +1,35 @@
-<!-- <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-</svg> -->
-<template>
-    {{ filteredLikeIds[0] }}
-    <div v-if="filteredLikeIds[0] === 0">
-        <button 
-            class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
-            @click="addNewLike"
-        >
-            追加
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-        </button>
-    </div>
 
-    <div v-else>
-        <button 
-            class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
-            @click="removeLike"
-        >
-            消す
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-        </button>
+<template>
+    <div class="flex items-center justify-center">
+        レシピを保存する
+        <div 
+            v-if="filteredLike.length === 0"
+            class="flex items-center justify-center"
+            >
+            <button 
+                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-red-200"
+                @click="addNewLike"
+            >
+                <img src="../../../public/heartAdd.png" class="w-8 h-8 opacity-70 mt-1 hover:opacity-90">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+            </button>
+        </div>
+        <div v-else>
+            <button 
+                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-red-200"
+                @click="removeLike"
+            >
+                <img src="../../../public/heartRemove.png" class="w-8 h-8 opacity-70 mt-1 hover:opacity-90">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+            </button>
+        </div>
+        <span class="title-font   text-gray-900 text-2xl font-normal ml-4 opacity-80">{{ likesCount }}</span>
+
     </div>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, computed } from 'vue'
+import { ref, reactive, onMounted, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 import { useLikeStore } from '../../stores/like';
 import { useAuthStore } from '../../stores/auth';
@@ -44,24 +48,15 @@ const newLike = reactive({
 const router = useRouter()
 const userStore = useAuthStore()
 const likeStore = useLikeStore()
-const { handleAddedLike, handleRemovedLike } = likeStore
+const { handleAddedLike, handleRemovedLike, fetchAllLikes } = likeStore
 
 const route = useRoute();
 const inputtingUserId = userStore.user.id
 const inputtingRecipeId = ref(route.params.recipeId);
 
 
-const addNewLike = async(event) => {
-    newLike.recipe_id = inputtingRecipeId
-    newLike.user_id = inputtingUserId
+const likesCount = computed(() => likeStore.likesCount);
 
-    try {
-        await handleAddedLike(newLike)
-        console.log('成功')
-    } catch (error) {
-        console.log('失敗', error)
-    }
-}
 
 let urlParameterRecipeId = route.params.recipeId;
 const userId = userStore.user.id
@@ -70,16 +65,38 @@ const filteredLike = computed(() => {
         like => like.recipe_id === Number(urlParameterRecipeId)
         && like.user_id === Number(userId)
         )
-})
+    })
 
 
-const filteredLikeIds = filteredLike.value.map(like => like.id);
 
-console.log('likeのID',filteredLikeIds[0])
-// console.log(filteredLikeIds[0])
+    const filteredLikeRecipeIds = computed(() => {
+        return filteredLike.value.map(like => like.recipe_id);
+    }) 
 
-const removeLike = async() => {
-    const likeIdToRemove = filteredLikeIds[0];
+    const filteredLikeIds = ref([]);
+    const updateFilteredLikeIds = () => {
+        filteredLikeIds.value = filteredLike.value.map(like => like.id);
+    };
+
+    watch(filteredLike, () => {
+        updateFilteredLikeIds();
+    });
+
+
+    const addNewLike = async(event) => {
+        newLike.recipe_id = inputtingRecipeId
+        newLike.user_id = inputtingUserId
+        
+        try {
+            await handleAddedLike(newLike)
+            fetchAllLikes();
+        } catch (error) {
+            console.log('失敗', error)
+        }
+    }
+
+    const removeLike = async() => {
+        const likeIdToRemove = filteredLikeIds.value[0];
 
     try {
         await handleRemovedLike({ id: likeIdToRemove });

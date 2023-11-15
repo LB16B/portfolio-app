@@ -1,5 +1,4 @@
 <template>
-
 <section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 py-24 mx-auto">
 
@@ -15,8 +14,8 @@
         </div>
 
     <h1 class="sm:text-4xl text-3xl font-medium title-font  text-gray-900 text-center mb-14">コース案内</h1>
-        <div class="flex flex-wrap -m-4 justify-center">
-        <div class="p-4 xl:w-1/4  w-full">
+        <div class="flex flex-wrap -m-4 justify-center  w-full">
+        <div class="p-4 xl:w-1/3 md:w-1/2  w-full">
             <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
             <h2 class="text-sm tracking-widest title-font mb-1 font-medium">START</h2>
             <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Free</h1>
@@ -49,7 +48,7 @@
             <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
             </div>
         </div>
-        <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+        <div class="p-4 xl:w-1/3 md:w-1/2 w-full">
             <div class="h-full p-6 rounded-lg border-2 border-pink-500 flex flex-col relative overflow-hidden">
             <span class="bg-pink-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">POPULAR</span>
             <h2 class="text-sm tracking-widest title-font mb-1 font-medium">PRO</h2>
@@ -101,3 +100,6 @@
     </section>
 </template>
 
+<script setup>
+const iframeSrc = 'https://bot.dialogflow.com/40fce196-3e19-4a7b-b8dd-82b5bc0a143a'
+</script>

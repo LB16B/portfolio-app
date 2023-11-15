@@ -11,13 +11,15 @@
             </div>
         </section>
    
+        <section  class="text-gray-600 body-font ">
+            <Reviews :reviews="filterReview" />
             <router-link 
                 :to="{ name: 'new_review', params: { recipeId: urlParameterRecipeId } }"
-                class="mb-12 flex justify-center w-30 py-2"
+                class="flex mx-auto  items-center justify-start bg-pink-500 border-0 py-2 mr-2 px-4 w-40 h-14 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0"
                 >
                 レビューを投稿する
             </router-link>
-        <Reviews :reviews="filterReview" />
+        </section>
 
     </main>
 </template>

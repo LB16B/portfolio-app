@@ -2,7 +2,8 @@
 
 <div class="flex w-3/6 relative h-3/4">
     <div class="flex-grow">
-        <input v-model="searchQuery" placeholder="レシピを検索" class=" bg-gray-100 w-5/6 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        <input v-model="searchQuery" placeholder="レシピを検索" 
+            class=" bg-gray-100 w-5/6 bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:bg-transparent focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
     </div>
     <button 
         @click="searchRecipes"
@@ -31,19 +32,13 @@ onMounted(async () => {
     filteredRecipes.value = recipes.value;
 });
 
-const searchQuery = ref(''); // 検索クエリを保持するリフ
-const filteredRecipes = ref([]); // フィルタリングされたレシピを保持するリフ
+const searchQuery = ref('');
+const filteredRecipes = ref([]);
 
 const searchRecipes = () => {
     const query = searchQuery.value.trim().toLowerCase();
-     // クエリが空の場合、現在のページにとどまるか、デフォルトのページに遷移できます
-     // router.push("/default_route"); // デフォルトのルートに遷移する場合
-    if (query === "") {
-
-    } else {
-
+    if (query !== "") {
         router.push({ name: 'search_recipe', params: { searchWord: query } });
-
     }
 
 }

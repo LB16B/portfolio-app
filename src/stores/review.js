@@ -1,17 +1,24 @@
 import { ref, reactive, computed } from "vue";
 import { defineStore } from "pinia";
 import { allReviews, createReview } from "../http/review-api";
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 export const useReviewStore = defineStore('reviewStore', () => {
     const reviews = ref([]);
     const router = useRouter();
+    const route = useRoute()
 
     // データ全件取得
     const fetchAllReviews = async () => {
         const { data } = await allReviews();
         reviews.value = data.data;
     };
+
+    let urlParameterRecipeId = route.params.recipeId;
+
+    const reviewsCount = computed(() => {
+        return reviews.value.filter(review => review.recipe_id === Number(urlParameterRecipeId)).length;
+    });
 
     // 新しいデータ作成
     const handleAddedReview = async (newReview) => {
@@ -25,6 +32,7 @@ export const useReviewStore = defineStore('reviewStore', () => {
     return {
         reviews,
         fetchAllReviews,
-        handleAddedReview
+        handleAddedReview,
+        reviewsCount
     }
 });

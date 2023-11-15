@@ -3,7 +3,6 @@
     <div class="container px-5 py-24 mx-auto">
         <div v-for="recipe in recipes" :recipe="recipe" :key="recipe.id"  class="lg:w-4/5 mx-auto flex flex-wrap">
         <img alt="recipe image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="getImagePath(recipe.filename)">
-        ss{{ recipe.category_food_id }}
         <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ recipe.title }}</h1>
@@ -47,13 +46,21 @@ import { storeToRefs } from "pinia";
 import api from "../../http/api";
 import { useLikeStore } from "../../stores/like";
 import LikesPage from "../../pages/Likes/LikesPage.vue";
+import { useReviewStore } from "../../stores/review";
   
-const likeStore = useLikeStore();
-const likesCount = computed(() => likeStore.likesCount);
 
 defineProps({
     recipes: Array,
 })
+const likeStore = useLikeStore();
+const likesCount = computed(() => likeStore.likesCount);
+
+const reviewStore = useReviewStore();
+const { fetchAllReviews } = reviewStore
+const reviewsCount = computed(() => reviewStore.reviewsCount);
+
+console.log('カウント', reviewsCount.value)
+
 
 const recipeStore = useRecipeStore()
 const { handleUpdatedRecipe, handleRemovedRecipe } = recipeStore

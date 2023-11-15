@@ -35,7 +35,7 @@ export const useAuthStore = defineStore("authStore", () => {
       }
     }
   };
-
+  
   const handleRegister = async (newUser) => {
     try {
       await register(newUser);

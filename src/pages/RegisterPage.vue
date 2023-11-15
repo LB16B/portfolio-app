@@ -33,7 +33,9 @@
                 <label for="password_confirmation">Password Confirmation</label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+            <div class="flex justify-center">
+                <button class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg" type="submit">登録</button>
+            </div>
         </form>
     </main>
 </template>

@@ -77,6 +77,7 @@ const inputtingUserId = userStore.user.id
 
 const route = useRoute();
 const inputtingRecipeId = ref(route.params.recipeId);
+console.log(inputtingUserId)
 
 const addNewReview = async(event) => {
     newReview.score = inputtingScore.value

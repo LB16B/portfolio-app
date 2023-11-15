@@ -15,14 +15,11 @@ export const useManualStore = defineStore('manualStore', () => {
 
     // 新規データ追加
     const handleAddedManual = async (newManual) => {
-        try{
+
             const { data: createdManual } = await createManual(newManual);
             manuals.value.unshift(createdManual.data);
             console.log('成功');
-            router.push({ name: 'category_ages' });
-        } catch (error) {
-            console.log("API リクエストエラー", error);
-        }
+        router.push({ name: 'top' });
     };
 
     // データ更新

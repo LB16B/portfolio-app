@@ -10,7 +10,7 @@
                     <p class="lg:w-2/3 mx-auto leading-relaxed text-base"> 20件の評価/平均3</p>
                 </div>
 
-                <div class="text-gray-600 body-font bg-red-50 h-1/2">
+                <div class="text-gray-600 body-font bg-rose-50 h-1/2">
                     <div class="container px-5 py-24   w-full">
                         <div class="flex flex-wrap -m-2 ">
                             <Review 

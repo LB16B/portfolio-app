@@ -1,6 +1,6 @@
 <template>
     <div class="p-2  md:w-1/2 w-1/3 ">
-        <div class="h-full flex items-center bg-orange-50  p-4 rounded-lg ">
+        <div class="h-full flex items-center bg-orange-100 p-4 rounded-lg ">
             <img 
                 alt="team" 
                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" 

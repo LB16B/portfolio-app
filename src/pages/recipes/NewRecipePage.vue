@@ -18,7 +18,6 @@ const recipeStore = useRecipeStore()
 const foodStore = useFoodStore()
 const { recipes } = storeToRefs(recipeStore)
 const { foods } = storeToRefs(foodStore)
-// const { totalRecipes } = storeToRefs(store)
 const { fetchAllRecipes } = recipeStore
 const { fetchAllFoods } = foodStore
 

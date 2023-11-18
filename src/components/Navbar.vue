@@ -80,10 +80,10 @@
           </div>
           <nav class="absolute right-0 bottom-6">
             <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-4 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0 text-xl">
-              Login
+              ログイン
             </router-link>
             <router-link :to="{ name: 'register' }" class="inline-flex items-center bg-pink-500 border-0 py-2 px-3 focus:outline-none text-white hover:bg-pink-600 rounded md:mt-0 text-xl">
-              Register
+              有料会員登録
             </router-link>
           </nav>
         </div>

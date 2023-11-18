@@ -2,13 +2,13 @@
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
-            <input
+            <!-- <input
             ref="input"
             type="file"
             name="image"
             accept="image/*"
             @change="setImage"
-            />
+            /> -->
             <div class="lg:w-1/2 w-full lg:h-auto h-64">
                 <section class="cropper-area">
                     <div class="img-cropper">
@@ -59,13 +59,13 @@
                         >
                         適用する
                     </a>
-                    <a
-                        href="#"
-                        role="button"
-                        @click.prevent="showFileChooser"
-                    >
-                        画像選択
-                    </a>
+                    <input
+                    ref="input"
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    @change="setImage"
+                    />
                     </div>
               </div>
             </div>
@@ -141,9 +141,6 @@ methods: {
     } else {
         alert('Sorry, FileReader API not supported');
     }
-    },
-    showFileChooser() {
-    this.$refs.input.click();
     },
     zoom(percent) {
     this.$refs.cropper.relativeZoom(percent);

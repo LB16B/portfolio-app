@@ -7,7 +7,11 @@
       </div>
   </div>
 </div>
-  <RecipeCropper  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
+  <RecipeCropper  
+    @file-selected="handleFileSelected" 
+    @trimming-data="handleTrimmingData"
+    class="bg-red-200 w-5/6 mx-auto"
+  />
 
   <section class="text-gray-600 body-font relative">
     <div class="container px-5 py-24 mx-auto">

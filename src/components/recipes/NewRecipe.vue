@@ -10,7 +10,7 @@
   <RecipeCropper  
     @file-selected="handleFileSelected" 
     @trimming-data="handleTrimmingData"
-    class="bg-red-200 w-5/6 mx-auto"
+    class="bg-red-200 w-2/3 mx-auto mt-14 rounded-2xl"
   />
 
   <section class="text-gray-600 body-font relative">

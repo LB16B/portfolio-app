@@ -1,31 +1,25 @@
 <template>
     <section class="text-gray-600 body-font overflow-hidden">
-        <div class=" px-5 py-24 mx-auto">
+        <div class="py-20 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap border-red-400">
-            <div class="lg:w-1/2 w-full lg:h-auto h-64">
-                <section class="">
-                    <div class="">
-                        <div class="">
-                            <vue-cropper
-                                ref="cropper"
-                                :view-mode="2"
-                                :auto-crop-area="1"
-                                :aspect-ratio="1"
-                                :min-container-width="240"
-                                :min-container-height="240"
-         
-                                drag-mode="none"
-                                :src="imgSrc"
-                                preview=".preview"
-                                class="w-2/3 h-2/3"
-                            />
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6  lg:mt-0">
-              <div class="flex ml-8">
-                <div class="">
+                <div class="lg:w-1/2 w-full lg:h-auto h-64 ">
+                    <vue-cropper
+                        ref="cropper"
+                        :view-mode="2"
+                        :auto-crop-area="1"
+                        :aspect-ratio="1"
+                        :min-container-width="350"
+                        :min-container-height="350"
+
+                        drag-mode="none"
+                        :src="imgSrc"
+                        preview=".preview"
+                        class="w-2/3 h-2/3"
+                    />
+
+                </div>
+            <div class="lg:w-1/2 w-full flex  items-center justify-center">
+              <div class="flex  items-center justify-center">
                     <a
                         href="#"
                         role="button"
@@ -73,7 +67,6 @@
                     >
                         画像を選択
                     </label>
-                    </div>
               </div>
             </div>
     </div>

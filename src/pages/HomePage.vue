@@ -2,8 +2,8 @@
 <section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 py-24 mx-auto">
 
-        <div class="flex flex-col text-center  mb-20 bg-red-50 w-1/3 mx-auto py-8 rounded-lg">
-            <h3 class="lg:w-2/3 mx-auto leading-relaxed  text-gray-500 font-bold text-2xl">会員登録済みの方</h3>
+        <div class="flex flex-col text-center  mb-20 bg-red-50 w-1/2 sm:w-1/3 mx-auto py-8 rounded-lg">
+            <h3 class="lg:w-2/3 mx-auto leading-relaxed  text-gray-500 font-bold sm:text-2xl text-lg">会員登録済みの方</h3>
             <div class="flex mx-auto border-2 border-pink-500 rounded overflow-hidden mt-6">
                 <router-link :to="{ name: 'login' }"
                 class="py-1 px-4 bg-pink-500 text-white focus:outline-none"

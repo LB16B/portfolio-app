@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36">
+    <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36 ">
 
       
       <div class="flex justify-center py-4 mx-auto  w-2/3"  >
@@ -67,10 +67,11 @@
 
       <div
         v-if="!store.isLoggedIn"
-          class=" mx-auto relative bg-red-100 h-20"
+          class=" mx-auto relative bg-red-100 h-20 "
         >
-        <div class=" h-full w-3/5 flex mx-auto relative">
-          <div class="absolute left-0 bottom-6">
+        <div class=" h-full sm:w-3/5 sm:flex mx-auto sm:relative">
+
+          <div class="absolute left-0 bottom-6 px-6 sm:px-0">
             <a href="http://localhost:5173/top" class="flex title-font font-medium items-center2 text-gray-900 mr-10 ">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
@@ -78,7 +79,8 @@
               <span class="ml-3 text-xl">Tailblocks</span>
             </a>
           </div>
-          <nav class="absolute right-0 bottom-6">
+
+          <nav class="absolute right-0 bottom-6 px-6 sm:px-0" >
             <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-4 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0 text-xl">
               ログイン
             </router-link>

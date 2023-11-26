@@ -104,7 +104,14 @@
         </div>
       </div>
     </section>
-
+<!-- モーダルウィンドウ -->
+<div v-if="showModal" class="modal">
+  <div class="modal-content">
+    <span class="close" @click="showModal = false">&times;</span>
+    <p>{{ modalMessage }}</p>
+    <!-- モーダル内に追加のコンテンツやボタンを追加できます -->
+  </div>
+</div>
   </template>
   
   
@@ -148,11 +155,22 @@ const titleError = ref('');
 const forbiddenWords = ['はちみつ', 'エビ'];
 const showModal = ref(false);
 const modalMessage = ref('');
+// const validateTitle = () => {
+//   const foundWord = forbiddenWords.find(word => inputtingTitle.value.includes(word));
+//   titleError.value = foundWord ? '離乳食期に' + foundWord +  'を食べるは危険です。' : '';
+// };
 const validateTitle = () => {
   const foundWord = forbiddenWords.find(word => inputtingTitle.value.includes(word));
-  console.log(foundWord)
-  titleError.value = foundWord ? '離乳食期に' + foundWord +  'を食べるは危険です。' : '';
+  if (foundWord) {
+    showModal.value = true;
+    modalMessage.value = `離乳食期に${foundWord}を食べるのは危険です。`;
+  } else {
+    showModal.value = false;
+    modalMessage.value = '';
+    addNewRecipe(); // 警告ワードが見つからなかった場合、新しいレシピの追加処理を実行します
+  }
 };
+
   
 
 

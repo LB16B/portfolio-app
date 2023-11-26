@@ -90,12 +90,12 @@
                   class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
               </div>
             </div>
-            <div class="p-2 w-full">
+            <div class=" mt-12 w-full">
               <button 
                 @click="addNewRecipe"
                 class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg"
               >
-                投稿する
+                次へ進む
               </button>
               <meta name="csrf-token" content="{{ csrf_token() }}">
               

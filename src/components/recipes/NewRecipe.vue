@@ -104,6 +104,7 @@
         </div>
       </div>
     </section>
+
   </template>
   
   
@@ -140,16 +141,21 @@
   const inputtingIngredient = ref('')
   const inputtingAmount = ref('')
   const inputtingRecipeId = ref('')
+
+// 飲食厳禁 警告
   
-  const titleError = ref('');
-
+const titleError = ref('');
 const forbiddenWords = ['はちみつ', 'エビ'];
-
+const showModal = ref(false);
+const modalMessage = ref('');
 const validateTitle = () => {
   const foundWord = forbiddenWords.find(word => inputtingTitle.value.includes(word));
-  titleError.value = foundWord ? '特定のワードが含まれています。' : '';
+  console.log(foundWord)
+  titleError.value = foundWord ? '離乳食期に' + foundWord +  'を食べるは危険です。' : '';
 };
   
+
+
   const emit  = defineEmits(['file-selected', 'added']);
   
   const trimmingInfo = ref({x: 0, y: 0, height: 0, width: 0});
@@ -179,6 +185,7 @@ const validateTitle = () => {
   
   
   const addNewRecipe = async(event) => {
+
   
   if (selectedFile.value) {
         formData.append('file', selectedFile.value);

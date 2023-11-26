@@ -64,8 +64,10 @@
                   type="text" 
                   placeholder="鮭とブロッコリーのおかゆ"
                   v-model="inputtingTitle"
+                  @blur="validateTitle"
                   class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 >
+                <span v-if="titleError" style="color: red;">{{ titleError }}</span>
               </div>
             </div>
             <div class="p-2 w-full">
@@ -139,6 +141,14 @@
   const inputtingAmount = ref('')
   const inputtingRecipeId = ref('')
   
+  const titleError = ref('');
+
+const forbiddenWords = ['はちみつ', 'エビ'];
+
+const validateTitle = () => {
+  const foundWord = forbiddenWords.find(word => inputtingTitle.value.includes(word));
+  titleError.value = foundWord ? '特定のワードが含まれています。' : '';
+};
   
   const emit  = defineEmits(['file-selected', 'added']);
   

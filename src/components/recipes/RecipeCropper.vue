@@ -1,74 +1,77 @@
 <template>
     <section class="text-gray-600 body-font overflow-hidden">
-        <div class="py-20 mx-auto">
-            <div class="lg:w-4/5 mx-auto flex flex-wrap border-red-400">
-                <div class="lg:w-1/2 w-full lg:h-auto h-64 ">
-                    <vue-cropper
-                        ref="cropper"
-                        :view-mode="2"
-                        :auto-crop-area="1"
-                        :aspect-ratio="1"
-                        :min-container-width="350"
-                        :min-container-height="350"
+        <div class="py-20 mx-auto ">
+            <div class="w-2/3 mx-auto flex flex-wrap bg-red-100">
+                <div class="border-2 flex p-8 mx-auto">
+                    <div class=" lg:h-auto h-64">
+                        <vue-cropper
+                            ref="cropper"
+                            :view-mode="2"
+                            :auto-crop-area="1"
+                            :aspect-ratio="1"
+                            :min-container-width="350"
+                            :min-container-height="350"
+    
+                            drag-mode="none"
+                            :src="imgSrc"
+                            preview=".preview"
+                            class="w-2/3 h-2/3"
+                        />
+    
+                    </div>
 
-                        drag-mode="none"
-                        :src="imgSrc"
-                        preview=".preview"
-                        class="w-2/3 h-2/3"
-                    />
-
+                    <div class="ml-8  w-full flex  items-center justify-center w-">
+                      <div class="flex  items-center justify-center">
+                            <a
+                                href="#"
+                                role="button"
+                                @click.prevent="rotate(90)"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                            >
+                                右回転
+                            </a>
+                            <a
+                                href="#"
+                                role="button"
+                                @click.prevent="rotate(-90)"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                            >
+                                左回転
+                            </a>
+                            <a
+                                href="#"
+                                role="button"
+                                @click.prevent="reset"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                            >
+                                リセット
+                            </a>
+                            <a
+                                href="#"
+                                role="button"
+                                @click.prevent="getData"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                                >
+                                適用する
+                            </a>
+                            <input
+                            ref="input"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            @change="setImage"
+                            style="display: none;"
+                            id="fileInput"
+                            >
+                            <label 
+                                for="fileInput"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                            >
+                                画像を選択
+                            </label>
+                      </div>
+                    </div>
                 </div>
-            <div class="lg:w-1/2 w-full flex  items-center justify-center">
-              <div class="flex  items-center justify-center">
-                    <a
-                        href="#"
-                        role="button"
-                        @click.prevent="rotate(90)"
-                        class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
-                    >
-                        右回転
-                    </a>
-                    <a
-                        href="#"
-                        role="button"
-                        @click.prevent="rotate(-90)"
-                        class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
-                    >
-                        左回転
-                    </a>
-                    <a
-                        href="#"
-                        role="button"
-                        @click.prevent="reset"
-                        class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
-                    >
-                        リセット
-                    </a>
-                    <a
-                        href="#"
-                        role="button"
-                        @click.prevent="getData"
-                        class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
-                        >
-                        適用する
-                    </a>
-                    <input
-                    ref="input"
-                    type="file"
-                    name="image"
-                    accept="image/*"
-                    @change="setImage"
-                    style="display: none;"
-                    id="fileInput"
-                    >
-                    <label 
-                        for="fileInput"
-                        class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
-                    >
-                        画像を選択
-                    </label>
-              </div>
-            </div>
     </div>
 </div>
 </section>
@@ -149,4 +152,3 @@ methods: {
 },
 };
 </script>
-

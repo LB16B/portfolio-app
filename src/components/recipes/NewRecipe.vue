@@ -104,13 +104,21 @@
         </div>
       </div>
     </section>
-<!-- モーダルウィンドウ -->
-<div v-if="showModal" class="modal">
-  <div class="modal-content">
-    <span class="close" @click="showModal = false">&times;</span>
-    <p>{{ modalMessage }}</p>
+
+  <!-- モーダルウィンドウ -->
+  <div v-if="showModal" class="modal">
+    <div class="modal-content h-1/2 w-2/3">
+      <span 
+        class="close cursor-pointer" 
+        @click="showModal = false"
+      >
+        &times;
+      </span>
+      <div class="h-full w-full flex justify-center items-center font-bold">
+        <p class="">{{ modalMessage }}</p>
+      </div>
+    </div>
   </div>
-</div>
   </template>
   
   

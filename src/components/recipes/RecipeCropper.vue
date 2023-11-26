@@ -1,9 +1,9 @@
 <template>
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="py-20 mx-auto ">
-            <div class="w-2/3 mx-auto flex flex-wrap bg-red-100">
-                <div class="border-2 flex p-8 mx-auto">
-                    <div class=" lg:h-auto h-64">
+            <div class="lg:w-1/2 w-4/5  mx-auto flex flex-wrap bg-red-100 rounded-lg">
+                <div class=" flex p-8 mx-auto">
+                    <div class=" lg:h-auto">
                         <vue-cropper
                             ref="cropper"
                             :view-mode="2"
@@ -20,13 +20,13 @@
     
                     </div>
 
-                    <div class="ml-8  w-full flex  items-center justify-center w-">
-                      <div class="flex  items-center justify-center">
+                    <div class="ml-8  w-full flex  items-center justify-center">
+                      <div class="">                       
                             <a
                                 href="#"
                                 role="button"
                                 @click.prevent="rotate(90)"
-                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0   lg:w-22"
                             >
                                 右回転
                             </a>
@@ -34,7 +34,7 @@
                                 href="#"
                                 role="button"
                                 @click.prevent="rotate(-90)"
-                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
                             >
                                 左回転
                             </a>
@@ -42,7 +42,7 @@
                                 href="#"
                                 role="button"
                                 @click.prevent="reset"
-                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
                             >
                                 リセット
                             </a>
@@ -50,25 +50,27 @@
                                 href="#"
                                 role="button"
                                 @click.prevent="getData"
-                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
+                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
                                 >
                                 適用する
                             </a>
-                            <input
-                            ref="input"
-                            type="file"
-                            name="image"
-                            accept="image/*"
-                            @change="setImage"
-                            style="display: none;"
-                            id="fileInput"
-                            >
-                            <label 
-                                for="fileInput"
-                                class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  w-22"
-                            >
-                                画像を選択
-                            </label>
+                            <div class="mt-8 mx-auto flex items-center justify-center">
+                                <input
+                                ref="input"
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                @change="setImage"
+                                style="display: none;"
+                                id="fileInput"
+                                >
+                                <label 
+                                    for="fileInput"
+                                    class=" inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
+                                >
+                                    画像を選択
+                                </label>
+                            </div>
                       </div>
                     </div>
                 </div>

@@ -3,17 +3,16 @@
     <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36 ">
 
       
-      <div class="flex justify-center py-4 mx-auto  w-2/3"  >
-        <a href="http://localhost:5173/top" class="flex title-font font-medium items-center2 text-gray-900 mr-10 ">
-          <img src="../../public/logo.png">
-          <span class="ml-3 text-xl">Tailblocks</span>
+      <div class="flex justify-center py-4 mx-auto  w-4/5 relative "  >
+        <a href="http://localhost:5173/top" class="absolute top-4 -left-10 flex items-center justify-center">
+          <img class="sm:w-2/3 w-48 " src="../../public/logo.png">
         </a>
-        <RecipeSearch class=""  />
+        <RecipeSearch class="-right-10"  />
 
-        <div class="ml-6 flex items-center justify-center  relative w-40 h-14">
+        <div class="ml-6 flex items-center justify-center absolute right-20  w-40 h-14">
           <img 
           @click="pullDown"
-          class="rounded-full h-14 w-14  absolute bottom-2"
+          class="rounded-full h-14 w-14 "
           v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
           />
     
@@ -40,19 +39,19 @@
         </div>
 
       </div>
-        <div class="md:mr-auto  flex flex-wrap  mx-auto justify-center text-xl pt-8 relative w-3/5">
+        <div class="md:mr-auto  flex flex-wrap  mx-auto justify-center text-xl pt-12 relative w-3/5">
           <nav 
             v-if="store.isLoggedIn"
             class="absolute bottom-0">
             <router-link 
               :to="{ name: 'new_recipe' }"
-              class="mr-5 hover:text-gray-900 "
+              class="mr-5  hover:text-pink-600 hover:border-b-2 border-pink-400"
               >
               レシピを投稿する
             </router-link>
             <router-link 
               :to="{ name: 'my_recipes' }"
-              class="mr-5 hover:text-gray-900"
+              class="mr-5 hover:text-pink-600 hover:border-b-2 border-pink-400"
               >
               投稿したレシピ
             </router-link>
@@ -67,8 +66,8 @@
         v-if="!store.isLoggedIn"
           class=" mx-auto relative bg-red-100 h-28 "
         >
-        <div class=" h-full w-2/3  sm:flex mx-auto sm:relative  ">
-
+        >
+        <div class=" h-full w-2/3  sm:flex mx-auto sm:relative ">
           <div class="absolute left-0 top-2 sm:top-2 bottom-6 px-6  sm:px-0">
             <a href="http://localhost:5173" class="flex title-font font-medium  text-gray-900 ">
               <img class="sm:w-2/3 w-48 " src="../../public/logo.png">

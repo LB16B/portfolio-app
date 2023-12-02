@@ -39,7 +39,7 @@
         </div>
 
       </div>
-        <div class="md:mr-auto  flex flex-wrap  mx-auto justify-center text-xl pt-12 relative w-3/5">
+        <div class="md:mr-auto  flex flex-wrap  mx-auto justify-center text-xl pt-10 relative w-3/5">
           <nav 
             v-if="store.isLoggedIn"
             class="absolute bottom-0">

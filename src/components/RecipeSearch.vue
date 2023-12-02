@@ -3,7 +3,7 @@
 <div class="flex w-3/6 relative h-3/4">
     <div class="flex-grow">
         <input v-model="searchQuery" placeholder="レシピを検索" 
-            class=" bg-gray-100 w-5/6 bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:bg-transparent focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            class="  w-5/6 bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
     </div>
     <button 
         @click="searchRecipes"

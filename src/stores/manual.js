@@ -24,21 +24,20 @@ export const useManualStore = defineStore('manualStore', () => {
 
     // データ更新
     const handleUpdatedManual = async (manual) => {
-        try {
+
             const { data: updatedManual } = await updateManual(manual.id, {
                 body: manual.body,
+                recipe_id: manual.recipe_id,
             });
 
             // 更新後のデータを反映
             const index = manuals.value.findIndex(item => item.id === manual.id);
             if (index !== -1) {
                 manuals.value[index].body = updatedManual.data.body;
+                manuals.value[index].recipe_id = updatedManual.data.recipe_id;
             }
 
             console.log("変更しました。")
-        } catch (error) {
-            console.log("API リクエストエラー", error);
-        }
     }
 
     return {

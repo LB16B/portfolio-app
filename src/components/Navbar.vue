@@ -5,9 +5,7 @@
       
       <div class="flex justify-center py-4 mx-auto  w-2/3"  >
         <a href="http://localhost:5173/top" class="flex title-font font-medium items-center2 text-gray-900 mr-10 ">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
+          <img src="../../public/logo.png">
           <span class="ml-3 text-xl">Tailblocks</span>
         </a>
         <RecipeSearch class=""  />
@@ -67,24 +65,21 @@
 
       <div
         v-if="!store.isLoggedIn"
-          class=" mx-auto relative bg-red-100 h-20 "
+          class=" mx-auto relative bg-red-100 h-28 "
         >
-        <div class=" h-full sm:w-3/5 sm:flex mx-auto sm:relative">
+        <div class=" h-full w-2/3  sm:flex mx-auto sm:relative  ">
 
-          <div class="absolute left-0 bottom-6 px-6 sm:px-0">
-            <a href="http://localhost:5173/top" class="flex title-font font-medium items-center2 text-gray-900 mr-10 ">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-              <span class="ml-3 text-xl">Tailblocks</span>
+          <div class="absolute left-0 top-2 sm:top-2 bottom-6 px-6  sm:px-0">
+            <a href="http://localhost:5173" class="flex title-font font-medium  text-gray-900 ">
+              <img class="sm:w-2/3 w-48 " src="../../public/logo.png">
             </a>
           </div>
 
           <nav class="absolute right-0 bottom-6 px-6 sm:px-0" >
-            <router-link :to="{ name: 'login' }" class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-4 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0 text-xl">
+            <router-link :to="{ name: 'login' }" class="inline-flex text-xs sm:text-sm md:text-base items-center lg:text-lg  bg-pink-500 border-0 py-2 mr-2 px-4 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0">
               ログイン
             </router-link>
-            <router-link :to="{ name: 'register' }" class="inline-flex items-center bg-pink-500 border-0 py-2 px-3 focus:outline-none text-white hover:bg-pink-600 rounded md:mt-0 text-xl">
+            <router-link :to="{ name: 'register' }" class="inline-flex text-xs sm:text-sm md:text-base lg:text-lg items-center bg-pink-500 border-0 py-2 px-3 focus:outline-none text-white hover:bg-pink-600 rounded md:mt-0">
               有料会員登録
             </router-link>
           </nav>
@@ -99,13 +94,13 @@ import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import RecipeSearch from './RecipeSearch.vue';
 
+
 const router = useRouter
 const store = useAuthStore()
 const isPullDownVisible = ref(false);
 
 const pullDown = () => {
   isPullDownVisible.value = !isPullDownVisible.value;
- 
 }
 
 

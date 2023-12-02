@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="form-floating mb-4 w-2/3 mx-auto">
-                <input type="email" class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" :class="{ 'is-invalid': errors.email && errors.email[0] }" id="email" v-model="form.email" placeholder="name@example.com" />
+                <input type="text" class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" :class="{ 'is-invalid': errors.email && errors.email[0] }" v-model="form.email" placeholder="name@example.com" />
                 <label for="email">メールアドレス</label>
                 <div class="invalid-feedback" v-if="errors.email && errors.email[0]">
                     {{ errors.email && errors.email[0] }}

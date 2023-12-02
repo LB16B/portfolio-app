@@ -12,7 +12,7 @@
         <div class="ml-6 flex items-center justify-center absolute right-20  w-40 h-14">
           <img 
           @click="pullDown"
-          class="rounded-full h-14 w-14 "
+          class="rounded-full h-14 w-14 cursor-pointer"
           v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
           />
     
@@ -42,7 +42,13 @@
         <div class="md:mr-auto  flex flex-wrap  mx-auto justify-center text-xl pt-10 relative w-3/5">
           <nav 
             v-if="store.isLoggedIn"
-            class="absolute bottom-0">
+            class="absolute -bottom-2">
+            <router-link 
+              :to="{ name: 'top' }"
+              class="mr-5  hover:text-pink-600 hover:border-b-2  border-pink-400"
+              >
+              レシピを検索する
+            </router-link>
             <router-link 
               :to="{ name: 'new_recipe' }"
               class="mr-5  hover:text-pink-600 hover:border-b-2 border-pink-400"
@@ -65,7 +71,6 @@
       <div
         v-if="!store.isLoggedIn"
           class=" mx-auto relative bg-red-100 h-28 "
-        >
         >
         <div class=" h-full w-2/3  sm:flex mx-auto sm:relative ">
           <div class="absolute left-0 top-2 sm:top-2 bottom-6 px-6  sm:px-0">

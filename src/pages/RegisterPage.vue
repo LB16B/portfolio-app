@@ -1,11 +1,12 @@
 <template>
-    <main class=" mx-auto mb-52">
+    <main class="mx-auto mb-52">
         <form 
             class="mx-auto bg-red-100 w-1/2 mt-48 pt-20" 
             @submit.prevent="handleSubmit">
             <h1 class="mb-20 mx-auto h2 text-center">有料会員登録フォーム</h1>
             <div class="form-floating mb-4 w-2/3 mx-auto">
-                <input type="text" class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" :class="{ 'is-invalid': errors.name && errors.name[0] }" id="name" v-model="form.name" placeholder="Your name" />
+                <input type="text" 
+                class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" :class="{ 'is-invalid': errors.name && errors.name[0] }" id="name" v-model="form.name" placeholder="Your name" />
                 <label for="name">名前</label>
                 <div class="invalid-feedback" v-if="errors.name && errors.name[0]">
                     {{ errors.name && errors.name[0] }}

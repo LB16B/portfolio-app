@@ -38,6 +38,7 @@
                     'is-valid-text-5': form.password.length >= 5 && form.password.length <= 8,
                     'is-valid-upper': /^(?=.*[A-Z])/.test(form.password),
                     'is-valid-num': /^(?=.*\d).+$/.test(form.password),
+                    'is-valid-no-safe': form.password.length >= 8 ||  /^(?=.*[A-Z])/.test(form.password) || /^(?=.*\d).+$/.test(form.password),
                     'is-valid-safe': form.password.length >= 8 &&  /^(?=.*[A-Z])(?=.*\d).+$/.test(form.password)
                 }">
 
@@ -96,31 +97,38 @@ const handleSubmit = async () => {
 .is-valid-text-1 {
     opacity: .7;
     width: 15%;
-    background-color: #4eccec;
+    background-color: #ec4e4e;
     border-radius: 8px;
 }
 .is-valid-text-3 {
     opacity: .7;
     width: 30%;
-    background-color: #4eccec;
+    background-color: #ec4e83;
     border-radius: 8px;
 }
 .is-valid-text-5 {
     opacity: .7;
     width: 60%;
-    background-color: #4eccec;
+    background-color: #5e4eec;
     border-radius: 8px;
 }
 .is-valid-upper {
     opacity: .7;
-    background-color: #ecad4e;
+    background-color: #6b4eec;
     border-radius: 8px;
 }
 .is-valid-num {
     opacity: .7;
-    background-color: #eca74e;
+    background-color: #984eec;
     border-radius: 8px;
 }
+.is-valid-no-safe {
+    opacity: .7;
+    width: 90%;
+    background-color: rgb(255, 160, 18);
+    border-radius: 8px;
+}
+
 .is-valid-safe {
     opacity: .7;
     width: 100%;

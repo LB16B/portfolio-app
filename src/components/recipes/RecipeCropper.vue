@@ -2,6 +2,7 @@
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="py-20 mx-auto ">
             <div class="lg:w-1/2 w-4/5  mx-auto flex flex-wrap bg-red-100 rounded-lg">
+                
                 <div class=" flex p-8 mx-auto">
                     <div class=" lg:h-auto">
                         <vue-cropper

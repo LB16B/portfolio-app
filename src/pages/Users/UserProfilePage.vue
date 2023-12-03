@@ -11,7 +11,6 @@
     :fileName="authStore.user.filename"
     @file-selected="handleFileSelected" 
     @trimming-data="handleTrimmingData"
-    class="bg-red-200 bg-opacity-20 w-1/2 mx-auto my-20"
 />
 
 <div class="bg-red-200 bg-opacity-20 w-1/2 mx-auto p-14">

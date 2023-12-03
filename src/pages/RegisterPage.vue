@@ -22,6 +22,7 @@
             <div class="form-floating mb-4 w-2/3 mx-auto">
                 <input type="password" class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" :class="{ 'is-invalid': errors.password && errors.password[0] }" id="password" v-model="form.password" placeholder="Password" />
                 <label for="password">パスワード</label>
+                <p class="text-red-500">※大文字含む英数字8文字以上</p>
                 <div class="invalid-feedback" v-if="errors.password && errors.password[0]">
                     {{ errors.password && errors.password[0] }}
                 </div>

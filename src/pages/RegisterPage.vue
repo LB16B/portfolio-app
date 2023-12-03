@@ -33,6 +33,9 @@
                 <div
                 class="border-2 w-full h-4 mt-2 bg-slate-400 opacity-40 rounded-lg"
                 :class="{
+                    'is-valid-text-1': form.password.length >= 1 && form.password.length <= 3,
+                    'is-valid-text-3': form.password.length >= 3 && form.password.length <= 5,
+                    'is-valid-text-5': form.password.length >= 5 && form.password.length <= 8,
                     'is-valid-upper': /^(?=.*[A-Z])/.test(form.password),
                     'is-valid-num': /^(?=.*\d).+$/.test(form.password),
                     'is-valid-safe': form.password.length >= 8 &&  /^(?=.*[A-Z])(?=.*\d).+$/.test(form.password)
@@ -90,15 +93,31 @@ const handleSubmit = async () => {
     /* 有効なパスワードを示すためのその他のスタイルを追加 */
 }
 
+.is-valid-text-1 {
+    opacity: .7;
+    width: 15%;
+    background-color: #4eccec;
+    border-radius: 8px;
+}
+.is-valid-text-3 {
+    opacity: .7;
+    width: 30%;
+    background-color: #4eccec;
+    border-radius: 8px;
+}
+.is-valid-text-5 {
+    opacity: .7;
+    width: 60%;
+    background-color: #4eccec;
+    border-radius: 8px;
+}
 .is-valid-upper {
     opacity: .7;
-    width: 35%;
-    background-color: #4eccec;
+    background-color: #ecad4e;
     border-radius: 8px;
 }
 .is-valid-num {
     opacity: .7;
-    width: 65%;
     background-color: #eca74e;
     border-radius: 8px;
 }

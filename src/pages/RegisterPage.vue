@@ -24,21 +24,22 @@
                     class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" 
                     :class="{
                         'is-invalid': errors.password && errors.password[0],
-                        'is-valid': form.password.length >= 8
+                        'is-valid': form.password.length >= 8 &&  /^(?=.*[A-Z])(?=.*\d).+$/.test(form.password)
                     }"
                     id="password" 
                     v-model="form.password" 
                     placeholder="Password" 
                 />
+                <p class="mt-2">パスワード強度メーター</p>
                 <div
-                class="border-2 w-full h-4 mt-2 bg-slate-400 opacity-40 rounded-lg"
+                class="border-2 w-full h-4 bg-slate-400 opacity-40 rounded-lg"
                 :class="{
                     'is-valid-text-1': form.password.length >= 1 && form.password.length <= 3,
                     'is-valid-text-3': form.password.length >= 3 && form.password.length <= 5,
                     'is-valid-text-5': form.password.length >= 5 && form.password.length <= 8,
-                    'is-valid-upper': /^(?=.*[A-Z])/.test(form.password),
-                    'is-valid-num': /^(?=.*\d).+$/.test(form.password),
-                    'is-valid-no-safe': form.password.length >= 8 ||  /^(?=.*[A-Z])/.test(form.password) || /^(?=.*\d).+$/.test(form.password),
+                    'is-valid-upper': /^(?=.*[A-Z])/.test(form.password) && form.password.length >= 8,
+                    'is-valid-num': /^(?=.*\d).+$/.test(form.password) && form.password.length >= 8,
+                    'is-valid-no-safe': form.password.length >= 8 &&   /^(?=.*[A-Z])/.test(form.password) ||  /^(?=.*\d).+$/.test(form.password),
                     'is-valid-safe': form.password.length >= 8 &&  /^(?=.*[A-Z])(?=.*\d).+$/.test(form.password)
                 }">
 
@@ -90,7 +91,7 @@ const handleSubmit = async () => {
 
 <style scoped>
 .is-valid {
-    border: 1px solid #34D399; /* 緑色のボーダー */
+    border: 1px solid #3ff7b3; /* 緑色のボーダー */
     /* 有効なパスワードを示すためのその他のスタイルを追加 */
 }
 

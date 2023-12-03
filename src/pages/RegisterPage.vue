@@ -20,7 +20,25 @@
                 </div>
             </div>
             <div class="form-floating mb-4 w-2/3 mx-auto">
-                <input type="password" class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" :class="{ 'is-invalid': errors.password && errors.password[0] }" id="password" v-model="form.password" placeholder="Password" />
+                <input type="password" 
+                    class="form-control focus:border-pink-500  focus:ring-2 focus:ring-pink-300" 
+                    :class="{
+                        'is-invalid': errors.password && errors.password[0],
+                        'is-valid': form.password.length >= 8
+                    }"
+                    id="password" 
+                    v-model="form.password" 
+                    placeholder="Password" 
+                />
+                <div
+                class="border-2 w-full h-4 mt-2 bg-slate-400 opacity-40 rounded-lg"
+                :class="{
+                    'is-valid-upper': /^(?=.*[A-Z])/.test(form.password),
+                    'is-valid-num': /^(?=.*\d).+$/.test(form.password),
+                    'is-valid-safe': form.password.length >= 8 &&  /^(?=.*[A-Z])(?=.*\d).+$/.test(form.password)
+                }">
+
+                </div>
                 <label for="password">パスワード(※大文字含む英数字8文字以上)</label>
                 <!-- <p class="text-red-500">※大文字含む英数字8文字以上</p> -->
                 <div class="invalid-feedback" v-if="errors.password && errors.password[0]">
@@ -67,6 +85,27 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
+.is-valid {
+    border: 1px solid #34D399; /* 緑色のボーダー */
+    /* 有効なパスワードを示すためのその他のスタイルを追加 */
+}
 
-
+.is-valid-upper {
+    opacity: .7;
+    width: 35%;
+    background-color: #4eccec;
+    border-radius: 8px;
+}
+.is-valid-num {
+    opacity: .7;
+    width: 65%;
+    background-color: #eca74e;
+    border-radius: 8px;
+}
+.is-valid-safe {
+    opacity: .7;
+    width: 100%;
+    background-color: #34D399;
+    border-radius: 8px;
+}
 </style>

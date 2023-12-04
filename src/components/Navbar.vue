@@ -1,11 +1,11 @@
 <template>
 
-    <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36 ">
+    <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36">
 
       
-      <div class="flex justify-center py-4 mx-auto  w-4/5 relative "  >
-        <a href="http://localhost:5173/top" class="absolute top-4 -left-10 flex items-center justify-center">
-          <img class="sm:w-2/3 w-48 " src="../../public/logo.png">
+      <div class="flex justify-center py-4 mx-auto w-full xl:w-4/5 relative "  >
+        <a href="http://localhost:5173/top" class="absolute lg:top-10 lg:left-2  xl:top-4 xl:-left-10 flex items-center justify-center">
+          <img class="xl:w-2/3 lg:w-72 " src="../../public/logo.png">
         </a>
         <RecipeSearch class="-right-10"  />
 

@@ -1,15 +1,6 @@
 
 <template>
 
-<!-- <iframe
-    allow="microphone;"
-    width="350"
-    height="430"
-    src="https://console.dialogflow.com/api-client/demo/embedded/5a8fce82-864c-41b6-8469-30df317b244e">
-</iframe>
-
- -->
-
 
     <main>
         <section class="reactive text-gray-600 body-font bg-opacity-20  bg-red-100 mx-auto w-1/3 relative h-96 mt-32">

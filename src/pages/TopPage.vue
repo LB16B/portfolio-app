@@ -28,7 +28,10 @@
                 検索する
             </button>
         </section>
-        <Recipes :recipes="recipes" />
+
+        <div class=" w-4/5 mx-auto  flex items-center justify-center ">
+            <Recipes :recipes="recipes" class="mx-auto flex items-center justify-center ml-20" />
+        </div>
     </main>
 
     <div>

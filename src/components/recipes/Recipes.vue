@@ -1,12 +1,13 @@
 <template>
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-wrap mx-auto sm:w-full  xl:w-11/12">
+        <div class="container px-5 py-24 flex justify-start">
+            <div class="flex flex-wrap sm:w-full w-9/12 xl:w-11/12">
                 <Recipe v-for="recipe in recipes" 
                     :recipe="recipe" 
                     :key="recipe.id" 
                     @updated="handleUpdatedRecipe" 
                     @removed="handleRemovedRecipe"
+                    class=""
                 />
             </div>
         </div>

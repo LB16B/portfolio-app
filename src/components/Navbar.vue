@@ -5,14 +5,14 @@
       
       <div class="flex justify-center py-4 mx-auto w-full xl:w-4/5 relative "  >
         <a href="http://localhost:5173/top" class="absolute lg:top-10 lg:left-2  xl:top-4 xl:-left-10 flex items-center justify-center">
-          <img class="xl:w-2/3 lg:w-72 " src="../../public/logo.png">
+          <img class="xl:w-2/3 lg:w-64 " src="../../public/logo.png">
         </a>
-        <RecipeSearch class="-right-10"  />
+        <RecipeSearch class="xl:-right-10 lg:-right-6 lg:top-4"  />
 
-        <div class="ml-6 flex items-center justify-center absolute right-20  w-40 h-14">
+        <div class="ml-6 flex items-center justify-center absolute right-20 lg:top-12  w-40 h-14">
           <img 
           @click="pullDown"
-          class="rounded-full h-14 w-14 cursor-pointer"
+          class="rounded-full h-14 w-14 lg:w-20 lg:h-20 cursor-pointer"
           v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
           />
     

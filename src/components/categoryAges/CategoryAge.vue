@@ -1,7 +1,7 @@
 <template>
     <p
         @click="selectMenuItem"
-        class="text-lg text-gray-900 font-medium title-font mb-2">{{ category.stage }}
+        class="text-lg z-50 text-gray-900 font-medium title-font mb-2">{{ category.stage }}
     </p>
 </template>
 

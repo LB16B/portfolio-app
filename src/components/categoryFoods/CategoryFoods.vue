@@ -1,17 +1,17 @@
 <template>
 
 
-    <div class="relative w-80">
+    <div class="relative w-80 ">
       <div class="">
         <button 
           v-if="selectedMenuItem === null"
           @click="toggleMenu" 
-          class="bg-pink-200 p-2 font-bold rounded-lg w-60">
+          class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72   xl:w-80">
           食材カテゴリを選ぶ
         </button>
         <button
           v-else
-          @click="toggleMenu" class="bg-pink-200 font-bold p-2 rounded-lg w-60">
+          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72  xl:w-60">
           {{ selectedMenuItem.name }}
         </button>
       </div>
@@ -19,10 +19,9 @@
 
       <div 
         v-if="isMenuOpen" 
-        class=" bg-white p-4 text-center  rounded-lg shadow-md border-2 w-60"
+        class="absolute top-10 mx-auto bg-white z-0  border-2 mr-10 p-4 text-center  rounded-lg shadow-md lg:w-72  xl:w-60"
         @mouseenter="changeCursor('pointer')"
         @mouseleave="changeCursor('auto')"
-        style="z-index: 999;"
         >
         <div
         v-for="categoryFood in categoryFoods"

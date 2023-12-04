@@ -15,33 +15,29 @@ export const useManualStore = defineStore('manualStore', () => {
 
     // 新規データ追加
     const handleAddedManual = async (newManual) => {
-        try{
+
             const { data: createdManual } = await createManual(newManual);
             manuals.value.unshift(createdManual.data);
             console.log('成功');
-            router.push({ name: 'category_ages' });
-        } catch (error) {
-            console.log("API リクエストエラー", error);
-        }
+        router.push({ name: 'top' });
     };
 
     // データ更新
     const handleUpdatedManual = async (manual) => {
-        try {
+
             const { data: updatedManual } = await updateManual(manual.id, {
                 body: manual.body,
+                recipe_id: manual.recipe_id,
             });
 
             // 更新後のデータを反映
             const index = manuals.value.findIndex(item => item.id === manual.id);
             if (index !== -1) {
                 manuals.value[index].body = updatedManual.data.body;
+                manuals.value[index].recipe_id = updatedManual.data.recipe_id;
             }
 
             console.log("変更しました。")
-        } catch (error) {
-            console.log("API リクエストエラー", error);
-        }
     }
 
     return {

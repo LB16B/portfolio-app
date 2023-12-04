@@ -64,6 +64,7 @@
               href="#"
               role="button"
               @click.prevent="showFileChooser"
+              class="bg-red-500"
           >
               画像選択
           </a>
@@ -166,7 +167,7 @@ created() {
 }
 };
 </script>
-<style>
+<!-- <style>
 
 
 
@@ -204,4 +205,4 @@ background: #ccc;
 .cropped-image img {
 max-width: 100%;
 }
-</style>
+</style> -->

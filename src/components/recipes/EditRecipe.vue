@@ -7,7 +7,11 @@
           </div>
       </div>
     </div>
-      <EditRecipeCropper :fileName="props.recipe.filename"  @file-selected="handleFileSelected" @trimming-data="handleTrimmingData" />
+      <EditRecipeCropper 
+        :fileName="props.recipe.filename"  
+        @file-selected="handleFileSelected"
+        @trimming-data="handleTrimmingData" 
+      />
       
     
       <section class="text-gray-600 body-font relative">

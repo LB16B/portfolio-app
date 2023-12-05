@@ -3,12 +3,12 @@
 
 
     <main>
-        <section class="reactive text-gray-600 body-font bg-opacity-20 rounded-lg  bg-red-100 mx-auto md:w-2/3 lg:w-1/2 xl:w-1/3 relative h-96 mt-32">
+        <section class="reactive text-gray-600 body-font bg-opacity-20 rounded-lg  bg-red-100 mx-auto md:w-2/3 lg:w-1/2 xl:w-1/3 relative h-80 mt-20">
             <h2 class="text-gray-600 body-font text-2xl pt-8  font-bold mt-12 w-100 h-20 flex items-center justify-center">離乳食レシピ検索</h2>
             <div class="absolute z-50 top-28 inset-x-0 container mt-4">
                 <div class="mx-auto flex items-center justify-center " >
                     <CategoryAges
-                        class="absolute top-0   mx-auto flex items-center justify-center"
+                        class="absolute -top-8   mx-auto z-50"
                         :categoryAges="categoryAges"
                         @categoryAgeSelected="handleCategoryAgeSelected"
                     />
@@ -16,7 +16,7 @@
             </div>
             <div>
                 <CategoryFoods
-                    class="absolute top-32   mx-auto flex items-center justify-center"
+                    class="absolute top-24   mx-auto flex items-center justify-center z-40"
                     :categoryFoods="categoryFoods"
                     @categoryFoodSelected="handleCategoryFoodSelected"
                 />

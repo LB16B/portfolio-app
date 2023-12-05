@@ -3,7 +3,7 @@
 
 
     <main>
-        <section class="reactive text-gray-600 body-font bg-opacity-20  bg-red-100 mx-auto md:w-2/3 lg:w-1/2 xl:w-1/3 relative h-96 mt-32">
+        <section class="reactive text-gray-600 body-font bg-opacity-20 rounded-lg  bg-red-100 mx-auto md:w-2/3 lg:w-1/2 xl:w-1/3 relative h-96 mt-32">
             <h2 class="text-gray-600 body-font text-2xl pt-8  font-bold mt-12 w-100 h-20 flex items-center justify-center">離乳食レシピ検索</h2>
             <div class="absolute z-50 top-28 inset-x-0 container mt-4">
                 <div class="mx-auto flex items-center justify-center " >

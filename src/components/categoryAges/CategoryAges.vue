@@ -18,7 +18,7 @@
 
         <div 
           v-if="isMenuOpen" 
-          class=" bg-white z-50 border-2  p-4 text-center  rounded-lg shadow-md lg:w-72   xl:w-80"
+          class=" bg-white z-50 border-2  p-4 text-center  rounded-lg shadow-md lg:w-72  md:w-48  xl:w-80"
           @mouseenter="changeCursor('pointer')"
           @mouseleave="changeCursor('auto')"
           

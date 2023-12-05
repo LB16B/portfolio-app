@@ -35,12 +35,12 @@
     </main>
 
     <div>
-        <df-messenger
+        <!-- <df-messenger
           intent="WELCOME"
           chat-title="aisatsu"
           agent-id="5a8fce82-864c-41b6-8469-30df317b244e"
           language-code="ja"
-        ></df-messenger>
+        ></df-messenger> -->
       </div>
 </template>
 

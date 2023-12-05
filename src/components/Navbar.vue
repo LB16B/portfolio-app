@@ -1,11 +1,13 @@
 <template>
 
-    <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36">
+    <div v-if="store.isLoggedIn" class="reactive text-gray-600 body-font bg-red-100 reactive md:h-28 xl:h-36">
 
       
       <div class="flex justify-center py-4 mx-auto w-full xl:w-4/5 relative "  >
-        <a href="http://localhost:5173/top" class="absolute lg:top-10 lg:left-2  xl:top-4 xl:-left-10 flex items-center justify-center">
-          <img class="xl:w-2/3 lg:w-64 " src="../../public/logo.png">
+        <a href="http://localhost:5173/top" 
+          class="absolute md:left-2 md:top-2 lg:top-10 lg:left-2  xl:top-4 xl:-left-10 flex items-center justify-center"
+        >
+          <img class="xl:w-2/3 lg:w-62 md:w-60 " src="../../public/logo.png">
         </a>
         <RecipeSearch class="xl:-right-10 lg:-right-6 lg:top-4"  />
 
@@ -39,7 +41,7 @@
         </div>
 
       </div>
-        <div class="md:mr-auto  flex flex-wrap  mx-auto justify-center text-xl pt-10 relative w-3/5">
+        <div class="md:mr-auto md:absolute md:right-40 xl:right-0 xl:top-2 md:top-16 ml:right-0  flex flex-wrap  mx-auto justify-center text-xl pt-10 xl:relative w-3/5">
           <nav 
             v-if="store.isLoggedIn"
             class="absolute -bottom-2">

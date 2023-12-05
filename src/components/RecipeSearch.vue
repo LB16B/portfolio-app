@@ -7,7 +7,7 @@
     </div>
     <button 
         @click="searchRecipes"
-        class="absolute md:-right-8 md:top-2 md:h-8 flex items-center justify-center text-white bg-pink-500 border-0 py-2 w-24 focus:outline-none hover:bg-pink-600 rounded text-lg">
+        class="absolute md:-right-8 xl:right-4 md:top-2 md:h-8 flex items-center justify-center text-white bg-pink-500 border-0 py-2 w-24 focus:outline-none hover:bg-pink-600 rounded text-lg">
         検索する
     </button>
 </div>

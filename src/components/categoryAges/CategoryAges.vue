@@ -5,7 +5,7 @@
       <div class="">
         <button
           v-if="selectedMenuItem === null"
-          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72  xl:w-80">
+          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72 md:w-48  xl:w-80">
           月齢を選ぶ
         </button>
         <button

@@ -8,7 +8,7 @@
             <div class="absolute z-50 top-28 inset-x-0 container mt-4">
                 <div class="mx-auto flex items-center justify-center " >
                     <CategoryAges
-                        class="mb-4 mx-auto  absolute left-4 xl:left-0"
+                        class="absolute top-0   mx-auto flex items-center justify-center"
                         :categoryAges="categoryAges"
                         @categoryAgeSelected="handleCategoryAgeSelected"
                     />

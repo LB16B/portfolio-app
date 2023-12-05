@@ -27,6 +27,7 @@
         v-for="categoryFood in categoryFoods"
         :categoryFood="categoryFood"
         :key="categoryFood.id"
+        class="border-b-2 mb-2"
       >
       <p
         @click="selectMenuItem(categoryFood)"

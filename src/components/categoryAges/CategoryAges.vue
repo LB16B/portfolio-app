@@ -27,7 +27,7 @@
           v-for="category in categoryAges"
           :category="category"
           :key="category.id" 
-          class="z-50"
+          class="z-50 border-b-2 mb-2"
           >
         <p
           @click="selectMenuItem(category)"

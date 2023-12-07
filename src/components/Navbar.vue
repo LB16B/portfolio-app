@@ -19,7 +19,7 @@
           />
     
           <div class="absolute top-12 w-40 items-center z-40">
-            <div v-if="isPullDownVisible" class="bg-pink-50 rounded mt-2 p-2 ">
+            <div v-if="isPullDownVisible" class="bg-pink-50 shadow-md rounded mt-7 p-2 ">
               <a href="#" @click.prevent="logout"
                 class="flex items-center justify-center border-b-2 border-gray-300 border-opacity-30 py-2">
                 ログアウト

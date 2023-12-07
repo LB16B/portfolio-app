@@ -3,23 +3,23 @@
         <div class="py-20 flex items-center justify-center mx-auto">
             <div class="xl:w-1/2 w-4/5  mx-auto flex flex-wrap bg-red-100 py-20 rounded-lg ">
 
-            <div class="xl:w-96 xl:h-96  lg:w-80 lg:h-80">
-                <div class=" w-full ">
+            <div class="xl:w-72 xl:h-72">
+                <div class=" w-full md:px-20">
                     <vue-cropper
                         ref="cropper"
                         :view-mode="2"
                         :auto-crop-area="1"
                         :aspect-ratio="1"
-                        :min-container-width="300"
-                        :min-container-height="300"
+                        :min-container-width="250"
+                        :min-container-height="250"
                         drag-mode="none"
                         :src="imageData"
                         preview=".preview"
-                        class="xl:w-96 xl:h-96 xl:ml-20 lg:w-80 lg:h-80 lg:ml-20"
+                        class="xl:w-80 xl:h-80 md:w-64 "
                     />
                 </div>
             </div>
-            <div class="flex  items-center justify-center xl:w-1/2 xl:ml-20 lg:ml-40">
+            <div class="flex  items-center justify-center xl:w-1/3 xl:ml-60 lg:ml-40   ">
                 <div class="">
                     <a
                         href="#"

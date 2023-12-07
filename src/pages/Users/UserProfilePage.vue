@@ -13,7 +13,7 @@
     @trimming-data="handleTrimmingData"
 />
 
-<div class="bg-red-200 bg-opacity-20 w-1/2 mx-auto p-14">
+<div class="bg-red-400 bg-opacity-20 md:w-4/5 xl:w-1/2 mx-auto p-14 rounded-lg">
     <form @submit.prevent="handleSubmit">
     <div class="mb-8 flex flex-col">
         <label 

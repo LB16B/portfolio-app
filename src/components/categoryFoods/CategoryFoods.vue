@@ -11,7 +11,7 @@
         </button>
         <button
           v-else
-          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg md:w-48  lg:w-72  xl:w-60">
+          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72  xl:w-80">
           {{ selectedMenuItem.name }}
         </button>
       </div>
@@ -19,7 +19,7 @@
 
       <div 
         v-if="isMenuOpen" 
-        class="flex flex-wrap pt-4 px-4 absolute top-10 mx-auto bg-white z-0  border-2 shadow-xl text-center  rounded-lg   md:w-2/3 xl:w-60"
+        class="flex flex-wrap pt-4 px-4 absolute top-10 mx-auto bg-white z-0  border-2 shadow-xl text-center  rounded-lg   md:w-2/3 xl:w-full"
         @mouseenter="changeCursor('pointer')"
         @mouseleave="changeCursor('auto')"
         >

@@ -9,7 +9,7 @@
                 >
             </a>
             <div class="mt-4">
-                <span>{{ categoryFood }}</span>
+                <p class="text-sm">{{ categoryFood.name }}</p>
                 <h3 class="text-gray-900  lg:text-xl ">{{ recipe.title }}</h3>
                 <div class="flex md:text-sm">
                     <div  class="flex  items-end text-black md:mr-2">
@@ -21,6 +21,8 @@
                         <span class="lg:mt-1 lg:mr-3 md:text-sm md:mt-2">&nbsp;約{{ recipe.price }}円</span>
                     </div>
                 </div>
+                <p class="text-sm">{{ categoryAge.stage }}</p>
+
             </div>
         </router-link>
     </div>
@@ -33,22 +35,19 @@ import { useRecipeStore } from "../../stores/recipe";
 import RecipeActions from './RecipeActions.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useCategoryFoodStore } from "../../stores/category-food";
+import { useCategoryAgeStore } from "../../stores/categoryage";
 import CategoryFoods from "../../components/categoryFoods/CategoryFoods.vue";
 import api from "../../http/api";
 
 const route = useRoute();
 const categoryFoodStore = useCategoryFoodStore()
+const categoryAgeStore = useCategoryAgeStore()
 const { categoryFoods } = storeToRefs(categoryFoodStore)
+const { categoryAges } = storeToRefs(categoryAgeStore)
 const { fetchAllCategoryFoods } = categoryFoodStore
+const { fetchAllCategoryAges } = categoryAgeStore
 const categoryFood = ref('')
-
-onMounted(async () => {
-    await fetchAllCategoryFoods()
-    categoryFood.value = categoryFoods.value[route.params.foodId -1]
-});
-
-
-
+const categoryAge = ref('')
 
 const path = "http://localhost:8000/recipe_images/";
 
@@ -60,6 +59,13 @@ const props = defineProps({
     recipe: Object,
     selectedFile: Object 
 })
+
+onMounted(async () => {
+    await fetchAllCategoryFoods()
+    await fetchAllCategoryAges()
+    categoryFood.value =  categoryFoods.value[props.recipe.category_food_id]
+    categoryAge.value = categoryAges.value[props.recipe.category_age_id]
+});
 
 
 </script>

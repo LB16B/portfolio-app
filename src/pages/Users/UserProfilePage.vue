@@ -28,6 +28,7 @@
             v-model="name"
             class="h-8 w-10/12 flex items-center mx-auto bg-white rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none  leading-8 transition-colors duration-200 ease-in-out" 
         />
+        <p v-if="!name" class="text-red-500 ml-16">※名前を入力してください</p>
     </div>
     <div class="mb-8 flex flex-col">
         <label 
@@ -42,6 +43,7 @@
             v-model="email"
             class="h-8 w-10/12 flex items-center mx-auto bg-white rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none  leading-8 transition-colors duration-200 ease-in-out"
         />
+
         <p v-if="!isEmailValid" class="text-red-500 ml-16">※正しい形式のメールアドレスを入力してください</p>
     </div>
     <button 

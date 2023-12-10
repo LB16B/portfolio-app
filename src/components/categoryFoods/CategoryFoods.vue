@@ -11,7 +11,7 @@
         </button>
         <button
           v-else
-          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72  xl:w-60">
+          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg md:w-48  lg:w-72  xl:w-60">
           {{ selectedMenuItem.name }}
         </button>
       </div>

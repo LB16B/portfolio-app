@@ -7,8 +7,10 @@
 
  
 
-
-
+        
+        <div v-if="showError" class="text-red-500 mt-2 text-lg font-bold ml-32">
+            <p>※調理手順を入力してください</p>
+          </div>
         <div class="flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2   items-center flex">
             <div class="p-2 sm:w-1/2 w-full h-18 flex items-center ">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
@@ -258,6 +260,7 @@ const validateTitle = () => {
   }
   
 };
+const showError = ref(false);
 
 const addNewFood = async () => {
     try {
@@ -268,6 +271,12 @@ const addNewFood = async () => {
             { ingredient: inputtingIngredient4, amount: inputtingAmount4 },
             { ingredient: inputtingIngredient5, amount: inputtingAmount5 }
         ];
+
+
+    if (inputtingIngredient.value.trim() === '') {
+      showError.value = true;
+      return;
+    }
 
         const promises = foodItems.map(async (foodItem) => {
             const newFoodData = {

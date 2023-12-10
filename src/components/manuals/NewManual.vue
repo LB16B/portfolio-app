@@ -127,7 +127,7 @@ const addNewManual = async () => {
         ];
 
     // 空のinputtingBodyを検出してエラーメッセージを表示
-    if (manualItems.some(item => item.body.value.trim() === '')) {
+    if (inputtingBody.value.trim() === '') {
       showError.value = true;
       return; // 空の場合は処理を終了する
     }

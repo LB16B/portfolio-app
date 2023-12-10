@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class="relative w-80 ">
+    <div class="relative ">
       <div class="">
         <button 
           v-if="selectedMenuItem === null"
@@ -19,7 +19,7 @@
 
       <div 
         v-if="isMenuOpen" 
-        class="absolute top-10 mx-auto bg-white z-0  border-2 mr-10 p-4 text-center  rounded-lg shadow-md lg:w-72  xl:w-60"
+        class="flex flex-wrap pt-4 px-4 absolute top-10 mx-auto bg-white z-0  border-2 shadow-xl text-center  rounded-lg   md:w-2/3 xl:w-60"
         @mouseenter="changeCursor('pointer')"
         @mouseleave="changeCursor('auto')"
         >
@@ -27,11 +27,11 @@
         v-for="categoryFood in categoryFoods"
         :categoryFood="categoryFood"
         :key="categoryFood.id"
-        class="border-b-2 mb-2"
+        class=" mb-2  w-1/2"
       >
       <p
         @click="selectMenuItem(categoryFood)"
-        class="text-lg text-gray-900 font-medium title-font mb-2">{{ categoryFood.name }}
+        class="text-lg border-b-2 text-gray-900 font-medium title-font mb-2">{{ categoryFood.name }}
       </p>
     </div>
     </div>
@@ -42,7 +42,7 @@
 
 <script setup>
 import { useCategoryFoodStore } from '../../stores/category-food';
-import CategoryFood from '../categoryFoods/CategoryFood.vue';
+
 import { ref, computed } from "vue";
 
 const emits = defineEmits(["categoryFoodSelected"]);

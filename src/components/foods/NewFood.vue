@@ -9,8 +9,6 @@
 
 
 
-
-
         <div class="flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2   items-center flex">
             <div class="p-2 sm:w-1/2 w-full h-18 flex items-center ">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
@@ -20,7 +18,8 @@
                     <input 
                         type="text" 
                         placeholder="冷凍ほうれん草"
-                        v-model="inputtingIngredient1"
+                        v-model="inputtingIngredient"
+                        @blur="validateTitle"
                         class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         >
 
@@ -34,7 +33,7 @@
                 <input 
                     type="text" 
                     placeholder="10g"
-                    v-model="inputtingAmount1"
+                    v-model="inputtingAmount"
                     class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     >
                 </div>
@@ -51,6 +50,7 @@
                         type="text" 
                         placeholder="さつまいも(皮むき)"
                         v-model="inputtingIngredient2"
+                        @blur="validateTitle"
                         class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         >
 
@@ -81,6 +81,7 @@
                         type="text" 
                         placeholder="にんじん"
                         v-model="inputtingIngredient3"
+                        @blur="validateTitle"
                         class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         >
 
@@ -111,6 +112,7 @@
                         type="text" 
                         placeholder="昆布"
                         v-model="inputtingIngredient4"
+                        @blur="validateTitle"
                         class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         >
 
@@ -140,6 +142,7 @@
                     <input 
                         type="text" 
                         placeholder="絹豆腐"
+                        @blur="validateTitle"
                         v-model="inputtingIngredient5"
                         class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         >
@@ -171,6 +174,21 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </div>
     </section>
+
+      <!-- モーダルウィンドウ -->
+  <div v-if="showModal" class="modal">
+    <div class="modal-content h-1/2 w-1/3 ">
+      <span 
+        class="close cursor-pointer" 
+        @click="showModal = false"
+      >
+        &times;
+      </span>
+      <div class="h-full  flex justify-center items-center font-bold mx-auto text-center">
+        <p class="text-lg">{{ modalMessage }}<br>このままレシピを投稿することはできません。</p>
+      </div>
+    </div>
+  </div>
 </template>
 
     
@@ -217,6 +235,29 @@ onBeforeRouteUpdate((to, from, next) => {
     const recipeId = to.params.recipe_id;
     next();
 });
+
+// 飲食厳禁 警告
+const titleError = ref('');
+const forbiddenWords = [
+  'はちみつ', 'エビ', 'こんにゃく', '納豆', 'もち', 'ゼリー', 'マグロ', 'イカ',
+  'そば', 'ピーナッツ', 'カニ'
+];
+const showModal = ref(false);
+const modalMessage = ref('');
+const validateTitle = () => {
+  const foundWord = forbiddenWords.find(
+    word => inputtingIngredient.value.includes(word) 
+        || inputtingIngredient2.value.includes(word)
+        || inputtingIngredient3.value.includes(word)
+        || inputtingIngredient4.value.includes(word)
+        || inputtingIngredient5.value.includes(word)
+    );
+  if (foundWord) {
+    showModal.value = true;
+    modalMessage.value = `離乳食期に${foundWord}を食べるのは危険です。`;
+  }
+  
+};
 
 const addNewFood = async () => {
     try {

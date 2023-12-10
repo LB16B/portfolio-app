@@ -10,10 +10,13 @@
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">調理手順</h1>
               </div>
  
+              
+              <div class="w-2/3 mx-auto ">
+                <div class="flex flex-wrap -m-2">
 
-
-        <div class="w-2/3 mx-auto ">
-          <div class="flex flex-wrap -m-2">
+            <div v-if="showError" class="text-red-500 mt-2 text-lg font-bold">
+              ※調理手順を入力してください
+            </div>
   
             <div class="p-2 w-full">
               <div class="relative">
@@ -106,6 +109,8 @@ const inputtingBody3 = ref('')
 const inputtingBody4 = ref('')
 const inputtingBody5 = ref('')
 
+const showError = ref(false);
+
 onBeforeRouteUpdate((to,from, next) => {
     const recipeId = to.params.recipeId;
     next();
@@ -120,6 +125,12 @@ const addNewManual = async () => {
             { body: inputtingBody4 },
             { body: inputtingBody5 }
         ];
+
+    // 空のinputtingBodyを検出してエラーメッセージを表示
+    if (manualItems.some(item => item.body.value.trim() === '')) {
+      showError.value = true;
+      return; // 空の場合は処理を終了する
+    }
 
         const promises = manualItems.map(async (manualItem) => {
             const newManualData = {

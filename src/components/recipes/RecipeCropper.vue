@@ -94,7 +94,7 @@ components: {
 },
 data() {
     return {
-    imgSrc: 'src/assets/images/2.png',
+    imgSrc: 'src/assets/images/no_image.png',
     cropImg: '',
     data: null,
     

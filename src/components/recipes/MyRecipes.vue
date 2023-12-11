@@ -1,7 +1,7 @@
 <template>
     <section class="text-gray-600 body-font">
         <div class="container px-5 mx-auto">
-            <div class="flex flex-wrap -m-4">
+            <div class="flex flex-wrap -m-4 bg-red-100 py-12">
                 <MyRecipe v-for="recipe in recipes" 
                     :recipe="recipe" 
                     :key="recipe.id" 

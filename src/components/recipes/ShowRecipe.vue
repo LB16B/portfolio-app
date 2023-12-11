@@ -32,7 +32,8 @@
                 </div>
             </div>
   
-            <LikesPage />
+            <!-- <LikesPage /> -->
+            <LikeActionsPage />
         </div>
         </div>
     </div>
@@ -47,6 +48,7 @@ import api from "../../http/api";
 import { useLikeStore } from "../../stores/like";
 import LikesPage from "../../pages/Likes/LikesPage.vue";
 import { useReviewStore } from "../../stores/review";
+import LikeActionsPage from "../../pages/Likes/LikeActionsPage.vue";
   
 
 defineProps({

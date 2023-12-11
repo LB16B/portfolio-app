@@ -41,7 +41,7 @@
         </div>
 
       </div>
-        <div class="md:mr-auto md:absolute md:right-40 xl:right-0 xl:top-2 md:top-16 ml:right-0  flex flex-wrap  mx-auto justify-center text-xl pt-10 xl:relative w-3/5">
+        <div class="md:mr-auto md:absolute md:right-40 xl:right-0 xl:top-2 md:top-16 ml:right-0  flex flex-wrap  mx-auto justify-center text-xl pt-10 xl:relative w-full">
           <nav 
             v-if="store.isLoggedIn"
             class="absolute -bottom-2">
@@ -62,6 +62,12 @@
               class="mr-5 hover:text-pink-600 hover:border-b-2 border-pink-400"
               >
               投稿したレシピ
+            </router-link>
+            <router-link 
+              :to="{ name: 'likes' }"
+              class="mr-5 hover:text-pink-600 hover:border-b-2 border-pink-400"
+              >
+              お気に入りレシピ
             </router-link>
 
           </nav>

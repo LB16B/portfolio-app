@@ -1,6 +1,17 @@
 <template>
     <div class="xl:w-72   flex justify-start lg:w-64 m-2  sm:w-52 lg:p-4 md:p-4  bg-red-50 rounded-md ">
+        <div v-if="hasLikes">
+            <div
+            @click="handleDelete"
+                class="bg-pink-500 w-8 h-8 flex items-center rounded-full mb-2"
+            >
+                <img src="../../assets/images/delete.png" class="w-2/3 h-2/3 mx-auto ">
+            </div>
+        </div>
         <router-link :to="{ name: 'show_recipe', params: { recipeId: recipe.id } }">
+            <div>
+
+              </div>
             <a class="block relative h-44 rounded overflow-hidden">
                 <img 
                     alt="recipe image" 
@@ -46,6 +57,7 @@ const { categoryFoods } = storeToRefs(categoryFoodStore)
 const { categoryAges } = storeToRefs(categoryAgeStore)
 const { fetchAllCategoryFoods } = categoryFoodStore
 const { fetchAllCategoryAges } = categoryAgeStore
+import { useLikeStore } from "../../stores/like";
 const categoryFood = ref('')
 const categoryAge = ref('')
 
@@ -60,14 +72,40 @@ const props = defineProps({
     selectedFile: Object 
 })
 
+const likeStore = useLikeStore();
+
 onMounted(async () => {
     await fetchAllCategoryFoods()
     await fetchAllCategoryAges()
     categoryFood.value =  categoryFoods.value[props.recipe.category_food_id]
     categoryAge.value = categoryAges.value[props.recipe.category_age_id]
+
 });
 
+// const hasLikes = 'likes' in route.query;
+// もしくは以下のようにも書くことができます：
+const hasLikes = route.path.includes('likes');
 
+// デバッグ用にコンソールに出力する場合
+if (hasLikes) {
+    console.log('URLに likes が含まれています！');
+}
+
+const handleDelete = async () => {
+    try {
+        // このrecipeに対応するlikeを検索
+        const targetLike = likeStore.likes.find(like => like.recipe_id === props.recipe.id);
+        
+        if (targetLike) {
+            // 対応するlikeが見つかった場合は削除
+            await likeStore.handleRemovedLike(targetLike);
+        } else {
+            console.warn('該当するlikeが見つかりませんでした');
+        }
+    } catch (error) {
+        console.error('likeの削除中にエラーが発生しました', error);
+    }
+}
 </script>
 
 

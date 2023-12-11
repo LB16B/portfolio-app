@@ -1,19 +1,20 @@
 <template>
-    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <router-link :to="{ name: 'edit_recipe', params: { recipeId: recipe.id } }">
-            <a class="block relative h-48 rounded overflow-hidden">
-                <img 
-                    alt="recipe image" 
-                    class="object-cover object-center w-full h-full block" 
-                    :src="getImagePath(recipe.filename)"
-                >
-            </a>
-            <div class="mt-4">
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.title }}</h3>
-                <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
-                <span class="mt-1 mr-3">{{ recipe.time }}分</span><span class="mt-1">{{ recipe.price }}円</span>
+    <div class="p-4 w-full border-b-4 flex">
+        <a class="block relative w-1/3  rounded overflow-hidden 0">
+            <img 
+            alt="recipe image" 
+            class="object-cover object-center w-2/3 block" 
+            :src="getImagePath(recipe.filename)"
+            >
+        </a>
+        <div class="mt-4 w-1/2">
+            <h2 class="text-gray-900 title-font text-xl font-medium">{{ recipe.title }}</h2>
+            <router-link :to="{ name: 'edit_recipe', params: { recipeId: recipe.id } }">
+                <div class="bg-pink-500 w-10 h-10 rounded-full flex items-center">
+                    <img src="../../assets//images/edit.png" class="mx-auto  w-6">
+                </div>
+            </router-link>
             </div>
-        </router-link>
     </div>
     
     

@@ -7,7 +7,7 @@
     
                 <div class="flex flex-col text-center w-full mb-8">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">レビュー</h1>
-                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{ reviews.length }}件の評価/平均3</p>
+                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{ reviews.length }}件の評価/平均{{ averageScore }}</p>
                 </div>
 
                 <div class="text-gray-600 body-font bg-rose-50 h-1/2">
@@ -72,6 +72,17 @@ const totalPages = computed(() => {
 const paginate = (page) => {
     currentPage.value = page;
 };
+
+const averageScore = computed(() => {
+    if (props.reviews.length === 0) return 0;
+
+    // reduceメソッドで合計を計算
+    const totalScore = props.reviews.reduce((accumulator, review) => {
+        return accumulator + review.score;
+    }, 0);
+
+    return (totalScore / props.reviews.length).toFixed(1); // 平均スコアを小数点1桁で表示
+});
 </script>
 
 <style>

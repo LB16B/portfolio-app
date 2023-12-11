@@ -1,9 +1,6 @@
 <template>
     <main>
         <Recipes :recipes="filteredRecipes" />
-        <div v-if="authStore.user">
-{{ authStore  }}
-        </div>
     </main>
 </template>
 <script setup>

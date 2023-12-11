@@ -1,5 +1,5 @@
 <template>
-    <div class="xl:w-72   flex justify-start lg:w-64 m-2  sm:w-52 lg:p-4 md:p-4  bg-red-50 rounded-md ">
+    <div class="xl:w-72 flex-col flex justify-start lg:w-64 m-2  sm:w-52 lg:p-4 md:p-4  bg-red-50 rounded-md ">
         <div v-if="hasLikes">
             <div
             @click="handleDelete"

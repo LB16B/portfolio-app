@@ -6,11 +6,11 @@
 
     
                 <div class="flex flex-col text-center w-full mb-8">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">レビュー</h1>
-                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{ reviews.length }}件の評価/平均{{ averageScore }}</p>
+                    <h1 class="h1 font-medium title-font mb-4 text-gray-900">レビュー</h1>
+                    <p class="lg:w-2/3 mx-auto leading-relaxed text-xl">{{ reviews.length }}件の評価/評価平均{{ averageScore }}</p>
                 </div>
 
-                <div class="text-gray-600 body-font bg-rose-50 h-1/2">
+                <div class="text-gray-600 body-font bg-red-100 rounded-xl h-1/2">
                     <div class="container px-5 py-24   w-full">
                         <div class="flex flex-wrap -m-2 ">
                             <Review 

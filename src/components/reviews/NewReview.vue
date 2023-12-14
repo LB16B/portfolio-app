@@ -20,8 +20,10 @@
                 type="number" 
                 placeholder="3"
                 v-model="inputtingScore"
+                @input="validateScore"
                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             >
+            <p v-if="scoreError" class="text-red-500 text-xs mt-1">{{ scoreError }}</p>
             </div>
         </div>
         <div class="p-2 w-full">
@@ -77,7 +79,18 @@ const inputtingUserId = userStore.user.id
 
 const route = useRoute();
 const inputtingRecipeId = ref(route.params.recipeId);
-console.log(inputtingUserId)
+const scoreError = ref('')
+
+const validateScore = () => {
+  const score = inputtingScore.value;
+  if (isNaN(score) || score === '') {
+    scoreError.value = '数字を入力してください';
+  } else if (!Number.isInteger(parseFloat(score))) {
+    scoreError.value = '整数で入力してください';
+  } else {
+    scoreError.value = '';
+  }
+};
 
 const addNewReview = async(event) => {
     newReview.score = inputtingScore.value

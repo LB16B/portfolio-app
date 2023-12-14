@@ -29,11 +29,11 @@
         <div class="p-2 w-full">
             <div class="relative">
             <label for="email" class="leading-7 text-sm text-gray-600">本文</label>
-            <input 
-                type="text"
-                placeholder="美味しかった。"
+            <textarea
+                placeholder="生後5ヶ月の息子が喜んで食べていました！また作ります！"
                 v-model="inputtingBody"
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                class="w-full h-32 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+            ></textarea>
             </div>
         </div>
 
@@ -60,6 +60,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useReviewStore } from '../../stores/review';
 import api from "../../http/api";
 import { useAuthStore } from '../../stores/auth';
+import { nl2br } from '../../common';
 
 const newReview = reactive({
     score: '',
@@ -92,9 +93,10 @@ const validateScore = () => {
   }
 };
 
+
 const addNewReview = async(event) => {
     newReview.score = inputtingScore.value
-    newReview.body = inputtingBody.value
+    newReview.body = nl2br(inputtingBody.value)
     newReview.recipe_id = inputtingRecipeId.value
     newReview.user_id = inputtingUserId
 

@@ -9,7 +9,7 @@
             <div class="flex-grow">
                 <h2 class="text-gray-900 title-font font-medium">{{ matchingUser.name }}</h2>
                 <p class=" text-yellow-400">{{ displayStars(review.score) }}</p>
-                <p class="text-gray-500">{{ review.body }}</p>
+                <p class="text-gray-500" v-html="convertLineBreaks(review.body)"></p>
             </div>
         </div>
     </div>
@@ -21,6 +21,7 @@ import { useReviewStore } from "../../stores/review";
 import { useRoute, useRouter } from 'vue-router';
 import { useUserProfileStore } from '../../stores/userprofile';
 import api from "../../http/api";
+import { nl2br } from "../../common";
 
 const props = defineProps({
     review: Object
@@ -39,6 +40,9 @@ onMounted(async () => {
     matchingUser.value = userStore.users.find(u => u.id === props.review.user_id);
 });
 
+const convertLineBreaks = (text) => {
+  return text.replace(/\n/g, '<br>'); // 改行文字を<br>タグに変換して返す
+};
 
 const displayStars = (score) => {
   if (props.review.score === 1) {

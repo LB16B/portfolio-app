@@ -1,38 +1,50 @@
 <template>
-    <div>
-      <h1>パスワード変更</h1>
-      <form @submit.prevent="handleSubmit">
-        <div>
+  <div class="text-gray-600 body-font mt-12 relative">
+    <div class="container px-5 pt-11 mx-auto">
+        <div class="flex flex-col text-center w-full">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">パスワードを変更する</h1>
+            <div class="lg:w-1/3 mx-auto leading-relaxed text-base border-2"></div>
+        </div>
+    </div>
+    </div>
+    <div class="text-gray-600 body-font relative mt-6 w-2/4 mx-auto">
+      <div class="container py-20 mx-auto bg-red-100 rounded-xl ">
+      <form @submit.prevent="handleSubmit" class="flex flex-col -m-2 lg:w-2/3 mx-auto">
+        <div class="flex flex-col ">
           <label for="currentPassword">現在のパスワード</label>
           <input
             type="password"
             v-model="currentPassword"
             required
-            class="border-2"
+            class="w-full  bg-opacity-50 rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>
   
-        <div>
+        <div class="flex flex-col mt-6">
           <label for="newPassword">新しいパスワード</label>
           <input
             type="password"
             v-model="newPassword"
             required
-            class="border-2"
+            class="w-full  bg-opacity-50 rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>
   
-        <div>
+        <div class="flex flex-col mt-6">
           <label for="newConfirmPassword">新しいパスワード（確認）</label>
           <input
             type="password"
             v-model="newConfirmPassword"
-            class="border-2"
+            class="w-full  bg-opacity-50 rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <button type="submit" class="border-2 bg-gray-400">変更</button>
+        <button type="submit"
+        class="flex mx-auto mt-8 text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg"
+        >
+            変更</button>
       </form>
+    </div>
     </div>
   </template>
   

@@ -9,7 +9,7 @@
     </div>
     <div class="text-gray-600 body-font relative mt-6 w-2/4 mx-auto">
       <div class="container py-20 mx-auto bg-red-100 rounded-xl ">
-      <form @submit.prevent="handleSubmit" class="flex flex-col -m-2 lg:w-2/3 mx-auto">
+      <form @submit.prevent="handleSubmit" class="flex flex-col -m-2 lg:w-2/3 mx-auto"  novalidate>
         <div class="flex flex-col ">
           <label for="currentPassword">現在のパスワード</label>
           <input
@@ -18,8 +18,9 @@
             required
             class="w-full  bg-opacity-50 rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
+          <p class="text-red-500 mt-2" v-if="errorCurrentMessage">{{ errorCurrentMessage }}</p> 
         </div>
-  
+
         <div class="flex flex-col mt-6">
           <label for="newPassword">新しいパスワード</label>
           <input
@@ -28,15 +29,17 @@
             required
             class="w-full  bg-opacity-50 rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
+          <p class="text-red-500 mt-2" v-if="errorNewMessage">{{ errorNewMessage }}</p>
         </div>
   
         <div class="flex flex-col mt-6">
-          <label for="newConfirmPassword">新しいパスワード（確認）</label>
+          <label for="newConfirmPassword">新しいパスワード（再確認）</label>
           <input
             type="password"
             v-model="newConfirmPassword"
             class="w-full  bg-opacity-50 rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
+          <p class="text-red-500 mt-2" v-if="errorConfirmationMessage">{{ errorConfirmationMessage }}</p>
         </div>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <button type="submit"
@@ -57,8 +60,41 @@
   const currentPassword = ref('');
   const newPassword = ref('');
   const newConfirmPassword = ref('');
+  const errorCurrentMessage = ref('');
+  const errorNewMessage = ref('');
+  const errorConfirmationMessage = ref('');
   
   const handleSubmit = () => {
+    if (currentPassword.value.length === 0) {
+  errorCurrentMessage.value = '※現在のパスワードを入力してください。'; 
+} else if (currentPassword.value.length <= 7) {
+  errorCurrentMessage.value = '※現在のパスワードは8文字以上で入力してください。'; 
+} else {
+  errorCurrentMessage.value = ''; // エラーがない場合はエラーメッセージをリセット
+}
+
+if (newPassword.value.length === 0) {
+  errorNewMessage.value = '※新しいパスワードを入力してください。'; 
+} else if (newPassword.value.length <= 7) {
+  errorNewMessage.value = '※新しいパスワードは8文字以上で入力してください。'; 
+} else if (!/[A-Z0-9]/.test(newPassword.value)) {
+  errorNewMessage.value = '※パスワードは大文字含む英数字を必ず入れてください。'; 
+} else {
+  errorNewMessage.value = ''; // エラーがない場合はエラーメッセージをリセット
+}
+
+if (newConfirmPassword.value.length === 0) {
+  errorConfirmationMessage.value = '※新しいパスワード（再確認）を入力してください。'; 
+} else if (newConfirmPassword.value.length <= 7) {
+  errorConfirmationMessage.value = '※新しいパスワード（再確認）は8文字以上で入力してください。'; 
+} else {
+  errorConfirmationMessage.value = ''; // エラーがない場合はエラーメッセージをリセット
+}
+
+  if (newPassword.value.trim() !== newConfirmPassword.value.trim()) {
+  errorNewMessage.value = '※入力された新しいパスワードと新しいパスワード(再確認)の値が一致しません。'; 
+  return; 
+}
     const requestData = {
       current_password: currentPassword.value,
       new_password: newPassword.value,

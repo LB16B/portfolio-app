@@ -114,10 +114,20 @@ const isPullDownVisible = ref(false);
 const pullDown = () => {
   isPullDownVisible.value = !isPullDownVisible.value;
 }
-
-
 const logout = async () => {
-  await store.handleLogout()
-  router.push({ name: 'login' })
+  const confirmed = window.confirm('本当にログアウトしますか？'); // アラートメッセージを表示
+
+  if (confirmed) {
+    await store.handleLogout();
+    router.push({ name: 'login' });
+  } else {
+    // ユーザーがキャンセルした場合の処理
+    // キャンセル時に行うべきアクションをここに記述します
+  }
 }
+
+// const logout = async () => {
+//   await store.handleLogout()
+//   router.push({ name: 'login' })
+// }
 </script>

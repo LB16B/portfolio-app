@@ -1,41 +1,33 @@
 <template>
-  <section class="text-gray-600 body-font overflow-hidden">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="lg:w-4/5 mx-auto flex flex-wrap">
-        <input
-            ref="input"
-            type="file"
-            name="image"
-            accept="image/*"
-            @change="setImage"
-        />
+    <section class="text-gray-600 body-font overflow-hidden">
+        <div class="py-20 mx-auto ">
+            <div class="lg:w-1/2 w-4/5  mx-auto flex flex-wrap bg-red-100 rounded-lg">
 
-        <div class="lg:w-1/2 w-full lg:h-auto h-64">
-          <section class="cropper-area">
-              <div class="img-cropper">
+
+        <div class=" flex p-8 mx-auto">
+            <div class=" lg:h-auto">
+  
                   <vue-cropper
                       ref="cropper"
-                      :aspect-ratio="10 / 10"
+                      :view-mode="2"
+                      :auto-crop-area="1"
+                      :aspect-ratio="1"
+                      :min-container-width="350"
+                      :min-container-height="350"
                       :src="imageData"
                       preview=".preview"
-                      class="cropper-area-img"
+                      class="w-2/3 h-2/3"
                   />
-              </div>
-          </section>
-      </div>
-      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6  lg:mt-0">
-        <div class="content">
-            <section class="preview-area">
-                <p>Preview</p>
-                <div class="preview" />
-            </section>
-        </div>
-      <div class="flex ml-8">
-        <div class="actions">
+                </div>
+
+ 
+      <div class="ml-8  w-full flex  items-center justify-center">
+        <div class="">
           <a
               href="#"
               role="button"
               @click.prevent="rotate(90)"
+              class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
           >
               右回転
           </a>
@@ -43,6 +35,7 @@
               href="#"
               role="button"
               @click.prevent="rotate(-90)"
+              class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
           >
               左回転
           </a>
@@ -50,6 +43,7 @@
               href="#"
               role="button"
               @click.prevent="reset"
+              class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
           >
               リセット
           </a>
@@ -57,22 +51,33 @@
               href="#"
               role="button"
               @click.prevent="getData"
+              class="inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
               >
               適用する
           </a>
-          <a
-              href="#"
-              role="button"
-              @click.prevent="showFileChooser"
-              class="bg-red-500"
-          >
-              画像選択
-          </a>
+          <div class="mt-8 mx-auto flex items-center justify-center">
+            <input
+            ref="input"
+            type="file"
+            name="image"
+            accept="image/*"
+            @change="setImage"
+            style="display: none;"
+            id="fileInput"
+            >
+            <label 
+                for="fileInput"
+                class=" inline-flex items-center bg-pink-500 border-0 py-2 mr-2 px-2 text-white focus:outline-none hover:bg-pink-600 rounded md:mt-0  lg:w-22"
+            >
+                画像を選択
+            </label>
+        </div>
 
         </div>
       </div>
+
     </div>
-    </div>
+</div>
   </div>
 </section>
 

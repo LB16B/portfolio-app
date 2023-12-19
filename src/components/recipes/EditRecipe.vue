@@ -15,14 +15,13 @@
       
     
       <section class="text-gray-600 body-font relative">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="lg:w-1/2 md:w-2/3 mx-auto">
+        <div class="container px-5 py-24 mx-auto bg-red-100 rounded-lg lg:w-1/2">
+          <div class=" mx-auto">
             <div class="flex flex-wrap -m-2">
-    
               <div class="p-2 w-full">
                 <div class="relative">
                   <label for="name" class="leading-7 text-sm text-gray-600">カテゴリー</label>
-                  <div class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                  <div class="w-full  bg-white  rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     <div class="flex ">
                       <div class="w-1/3">
                         <input
@@ -69,7 +68,7 @@
                     type="text" 
                     placeholder="鮭とブロッコリーのおかゆ"
                     v-model="editingRecipeTitle"
-                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    class="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   >
                 </div>
               </div>
@@ -80,7 +79,7 @@
                     type="number"
                     placeholder="30"
                     v-model="editingRecipeTime"
-                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    class="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                 </div>
               </div>
               <div class="p-2 w-full">
@@ -90,7 +89,7 @@
                     type="number"
                     placeholder="1200"
                     v-model="editingRecipePrice"
-                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    class="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                 </div>
               </div>
               <div class="p-2 w-full">

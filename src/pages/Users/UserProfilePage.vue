@@ -13,7 +13,7 @@
     @trimming-data="handleTrimmingData"
 />
 
-<div class="bg-red-200 bg-opacity-20 w-1/2 mx-auto p-14">
+<div class="bg-red-400 bg-opacity-20 md:w-4/5 xl:w-1/2 mx-auto p-14 rounded-lg">
     <form @submit.prevent="handleSubmit">
     <div class="mb-8 flex flex-col">
         <label 
@@ -26,8 +26,9 @@
             type="text"
             id="name" 
             v-model="name"
-            class="h-8 w-10/12 flex items-center mx-auto"
+            class="h-8 w-10/12 flex items-center mx-auto bg-white rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none  leading-8 transition-colors duration-200 ease-in-out" 
         />
+        <p v-if="!name" class="text-red-500 ml-16">※名前を入力してください</p>
     </div>
     <div class="mb-8 flex flex-col">
         <label 
@@ -40,8 +41,10 @@
             type="email" 
             id="email" 
             v-model="email"
-            class="h-8 w-10/12 flex items-center mx-auto"
+            class="h-8 w-10/12 flex items-center mx-auto bg-white rounded border  focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-300 text-base outline-none  leading-8 transition-colors duration-200 ease-in-out"
         />
+
+        <p v-if="!isEmailValid" class="text-red-500 ml-16">※正しい形式のメールアドレスを入力してください</p>
     </div>
     <button 
         type="submit"
@@ -113,6 +116,11 @@ const handleFileSelected = (filename) => {
     }
 };
 
+const isEmailValid = computed(() => {
+  // メールアドレスの形式をチェックする正規表現
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email.value);
+});
 
 const handleSubmit = () => {
     if (selectedFile.value !== null) {

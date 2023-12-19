@@ -1,13 +1,13 @@
 <template>
 
-<div class="flex w-3/6 relative h-3/4">
-    <div class="flex-grow">
-        <input v-model="searchQuery" placeholder="レシピを検索" 
-            class="  w-5/6 bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+<div class="flex md:w-96 xl:w-3/6 relative mx-auto justify-center  xl:h-3/4">
+    <div class="flex-grow md:mt-2">
+        <input @keydown.enter="searchRecipes" v-model="searchQuery" placeholder="レシピを検索" 
+            class=" md:h-8 w-5/6 bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
     </div>
     <button 
         @click="searchRecipes"
-        class="absolute right-0 text-white bg-pink-500 border-0 py-2 w-24 focus:outline-none hover:bg-pink-600 rounded text-lg">
+        class="absolute md:-right-8 xl:right-4 md:top-2 md:h-8 flex items-center justify-center text-white bg-pink-500 border-0 py-2 w-24 focus:outline-none hover:bg-pink-600 rounded text-lg">
         検索する
     </button>
 </div>

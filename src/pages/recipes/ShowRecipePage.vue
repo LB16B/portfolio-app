@@ -39,6 +39,7 @@ import Manuals from "../../components/manuals/manuals.vue";
 import api from "../../http/api";
 import ReviewPage from "../../pages/Reviews/ReviewsPage.vue";
 import Reviews from "../../components/reviews/Reviews.vue";
+import LikeActionsPage from "../../pages/Likes/LikeActionsPage.vue";
 
 
 

@@ -30,6 +30,7 @@ export const useRecipeStore = defineStore('recipeStore', () => {
             time: recipe.time,
             price: recipe.price,
             category_age_id: recipe.category_age_id,
+            category_food_id: recipe.category_food_id,
             filename: recipe.filename
         })
         const currentRecipe = recipes.value.find(item => item.id === recipe.id)
@@ -37,6 +38,7 @@ export const useRecipeStore = defineStore('recipeStore', () => {
         currentRecipe.time = updatedRecipe.data.time
         currentRecipe.price = updatedRecipe.data.price
         currentRecipe.category_age_id = updatedRecipe.data.category_age_id
+        currentRecipe.category_food_id = updatedRecipe.data.category_food_id
         currentRecipe.filename = updatedRecipe.data.filename
 
         router.push({ name: 'edit_food', params: { recipeId: recipe.id } });

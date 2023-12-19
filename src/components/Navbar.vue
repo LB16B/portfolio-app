@@ -1,23 +1,25 @@
 <template>
 
-    <div v-if="store.isLoggedIn" class="text-gray-600 body-font bg-red-100 reactive h-36 ">
+    <div v-if="store.isLoggedIn" class="reactive text-gray-600 body-font bg-red-100 reactive md:h-28 xl:h-36">
 
       
-      <div class="flex justify-center py-4 mx-auto  w-4/5 relative "  >
-        <a href="http://localhost:5173/top" class="absolute top-4 -left-10 flex items-center justify-center">
-          <img class="sm:w-2/3 w-48 " src="../../public/logo.png">
+      <div class="flex justify-center py-4 mx-auto w-full xl:w-4/5 relative "  >
+        <a href="http://localhost:5173/top" 
+          class="absolute md:left-2 md:top-2 lg:top-10 lg:left-2  xl:top-4 xl:-left-10 flex items-center justify-center"
+        >
+          <img class="xl:w-2/3 lg:w-62 md:w-60 " src="../../public/logo.png">
         </a>
-        <RecipeSearch class="-right-10"  />
+        <RecipeSearch class="xl:-right-10 lg:-right-6 lg:top-4"  />
 
-        <div class="ml-6 flex items-center justify-center absolute right-20  w-40 h-14">
+        <div class="ml-6 flex items-center justify-center absolute right-20 lg:top-12  w-40 h-14">
           <img 
           @click="pullDown"
-          class="rounded-full h-14 w-14 cursor-pointer"
+          class="rounded-full h-14 w-14 lg:w-20 lg:h-20 cursor-pointer"
           v-if="store.user && store.user.filename" :src="'http://localhost:8000/profile_images/' + store.user.filename"
           />
     
           <div class="absolute top-12 w-40 items-center z-40">
-            <div v-if="isPullDownVisible" class="bg-pink-50 rounded mt-2 p-2 ">
+            <div v-if="isPullDownVisible" class="bg-pink-50 shadow-md rounded mt-7 p-2 ">
               <a href="#" @click.prevent="logout"
                 class="flex items-center justify-center border-b-2 border-gray-300 border-opacity-30 py-2">
                 ログアウト
@@ -39,7 +41,7 @@
         </div>
 
       </div>
-        <div class="md:mr-auto  flex flex-wrap  mx-auto justify-center text-xl pt-10 relative w-3/5">
+        <div class="md:mr-auto md:absolute md:right-40 xl:right-0 xl:top-2 md:top-16 ml:right-0  flex flex-wrap  mx-auto justify-center text-xl pt-10 xl:relative w-full">
           <nav 
             v-if="store.isLoggedIn"
             class="absolute -bottom-2">
@@ -60,6 +62,12 @@
               class="mr-5 hover:text-pink-600 hover:border-b-2 border-pink-400"
               >
               投稿したレシピ
+            </router-link>
+            <router-link 
+              :to="{ name: 'likes' }"
+              class="mr-5 hover:text-pink-600 hover:border-b-2 border-pink-400"
+              >
+              お気に入りレシピ
             </router-link>
 
           </nav>
@@ -106,10 +114,20 @@ const isPullDownVisible = ref(false);
 const pullDown = () => {
   isPullDownVisible.value = !isPullDownVisible.value;
 }
-
-
 const logout = async () => {
-  await store.handleLogout()
-  router.push({ name: 'login' })
+  const confirmed = window.confirm('本当にログアウトしますか？'); // アラートメッセージを表示
+
+  if (confirmed) {
+    await store.handleLogout();
+    router.push({ name: 'login' });
+  } else {
+    // ユーザーがキャンセルした場合の処理
+    // キャンセル時に行うべきアクションをここに記述します
+  }
 }
+
+// const logout = async () => {
+//   await store.handleLogout()
+//   router.push({ name: 'login' })
+// }
 </script>

@@ -1,25 +1,25 @@
 <template>
     <section class="text-gray-600 body-font overflow-hidden mx-auto ">
-        <div class="py-20 flex items-center justify-center">
-            <div class="lg:w-1/2 w-4/5  mx-auto flex flex-wrap bg-red-100 py-20 rounded-lg ">
+        <div class="py-20 flex items-center justify-center mx-auto">
+            <div class="xl:w-1/2 w-4/5  mx-auto flex flex-wrap bg-red-100 py-20 rounded-lg ">
 
-            <div class="w-1/2">
-                <div class="">
+            <div class="xl:w-72 xl:h-72">
+                <div class=" w-full md:px-20">
                     <vue-cropper
                         ref="cropper"
                         :view-mode="2"
                         :auto-crop-area="1"
                         :aspect-ratio="1"
-                        :min-container-width="320"
-                        :min-container-height="320"
+                        :min-container-width="250"
+                        :min-container-height="250"
                         drag-mode="none"
                         :src="imageData"
                         preview=".preview"
-                        class="p-12"
+                        class="xl:w-80 xl:h-80 md:w-64 "
                     />
                 </div>
             </div>
-            <div class="flex  items-center justify-center w-1/2">
+            <div class="flex  items-center justify-center xl:w-1/3 xl:ml-60 lg:ml-40   ">
                 <div class="">
                     <a
                         href="#"

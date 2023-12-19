@@ -1,31 +1,26 @@
 
 <template>
 
-<!-- <iframe
-    allow="microphone;"
-    width="350"
-    height="430"
-    src="https://console.dialogflow.com/api-client/demo/embedded/5a8fce82-864c-41b6-8469-30df317b244e">
-</iframe>
-
- -->
-
 
     <main>
-        <section class="reactive text-gray-600 body-font bg-opacity-20  bg-red-100 mx-auto w-1/3 relative h-96 mt-32">
+        <section class="reactive text-gray-600 body-font bg-opacity-20 rounded-lg  bg-red-100 mx-auto md:w-2/3 lg:w-1/2 xl:w-1/3 relative h-80 mt-20">
             <h2 class="text-gray-600 body-font text-2xl pt-8  font-bold mt-12 w-100 h-20 flex items-center justify-center">離乳食レシピ検索</h2>
-            <div class="absolute left-8 top-32 inset-x-0 container  t-6 mx-auto items-center justify-center flex" style="z-index: 3;">
-                <div class="flex flex-col" >
+            <div class="absolute z-50 top-28 inset-x-0 container mt-4">
+                <div class="mx-auto flex items-center justify-center " >
                     <CategoryAges
-                        class="mb-4"
+                        class="absolute -top-8 md:left-16 xl:left-0   mx-auto z-50"
                         :categoryAges="categoryAges"
                         @categoryAgeSelected="handleCategoryAgeSelected"
                     />
-                    <CategoryFoods
-                        :categoryFoods="categoryFoods"
-                        @categoryFoodSelected="handleCategoryFoodSelected"
-                    />
                 </div>
+            </div>
+            <div>
+                <CategoryFoods
+                    class="absolute top-24   mx-auto flex items-center justify-center z-40"
+                    :categoryFoods="categoryFoods"
+                    @categoryFoodSelected="handleCategoryFoodSelected"
+                />
+
             </div>
             <button 
                 @click="searchCategoryRecipes"
@@ -33,16 +28,20 @@
                 検索する
             </button>
         </section>
-        <Recipes :recipes="recipes" />
+
+        <div class=" md:w-full  xl:w-4/5 mx-auto  flex items-center justify-center ">
+            <Recipes :recipes="recipes" class="  mx-auto flex items-center justify-center ml-20" />
+        </div>
     </main>
 
     <div>
+    
         <df-messenger
-          intent="WELCOME"
-          chat-title="aisatsu"
-          agent-id="5a8fce82-864c-41b6-8469-30df317b244e"
-          language-code="ja"
-        ></df-messenger>
+        intent="WELCOME"
+        chat-title="yumuyum"
+        agent-id="5a8fce82-864c-41b6-8469-30df317b244e"
+        language-code="ja"
+      ></df-messenger>
       </div>
 </template>
 

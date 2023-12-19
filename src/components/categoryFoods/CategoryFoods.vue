@@ -1,17 +1,17 @@
 <template>
 
 
-    <div class="relative w-80">
+    <div class="relative ">
       <div class="">
         <button 
           v-if="selectedMenuItem === null"
           @click="toggleMenu" 
-          class="bg-pink-200 p-2 font-bold rounded-lg w-60">
+          class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72 md:w-48   xl:w-80">
           食材カテゴリを選ぶ
         </button>
         <button
           v-else
-          @click="toggleMenu" class="bg-pink-200 font-bold p-2 rounded-lg w-60">
+          @click="toggleMenu" class="bg-pink-200 font-bold  p-2 rounded-lg lg:w-72  xl:w-80">
           {{ selectedMenuItem.name }}
         </button>
       </div>
@@ -19,19 +19,19 @@
 
       <div 
         v-if="isMenuOpen" 
-        class=" bg-white p-4 text-center  rounded-lg shadow-md border-2 w-60"
+        class="flex flex-wrap pt-4 px-4 absolute top-10 mx-auto bg-white z-0  border-2 shadow-xl text-center  rounded-lg   md:w-2/3 xl:w-full"
         @mouseenter="changeCursor('pointer')"
         @mouseleave="changeCursor('auto')"
-        style="z-index: 999;"
         >
         <div
         v-for="categoryFood in categoryFoods"
         :categoryFood="categoryFood"
         :key="categoryFood.id"
+        class=" mb-2  w-1/2"
       >
       <p
         @click="selectMenuItem(categoryFood)"
-        class="text-lg text-gray-900 font-medium title-font mb-2">{{ categoryFood.name }}
+        class="text-lg border-b-2 text-gray-900 font-medium title-font mb-2">{{ categoryFood.name }}
       </p>
     </div>
     </div>
@@ -42,7 +42,7 @@
 
 <script setup>
 import { useCategoryFoodStore } from '../../stores/category-food';
-import CategoryFood from '../categoryFoods/CategoryFood.vue';
+
 import { ref, computed } from "vue";
 
 const emits = defineEmits(["categoryFoodSelected"]);

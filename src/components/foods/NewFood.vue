@@ -1,72 +1,81 @@
 <template>
-<section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
+<section class="text-gray-600 body-font ">
+    <div class="container px-5 py-24 mx-auto bg-red-50 w-2/3 mt-32 rounded-xl">
         <div class="text-center mb-20">
             <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">必要な材料と容量</h1>
         </div>
 
-        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-            <div class="p-2 sm:w-1/2 w-full">
-                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+ 
+
+        
+        <div v-if="showError" class="text-red-500 mt-2 text-lg font-bold ml-32">
+            <p>※調理手順を入力してください</p>
+          </div>
+        <div class="flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2   items-center flex">
+            <div class="p-2 sm:w-1/2 w-full h-18 flex items-center ">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                         <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                         <path d="M22 4L12 14.01l-3-3"></path>
                     </svg>
                     <input 
                         type="text" 
-                        placeholder="にんじん"
+                        placeholder="冷凍ほうれん草"
                         v-model="inputtingIngredient"
-                        class="title-font font-medium bg-gray-100">
-                </div>
+                        @blur="validateTitle"
+                        class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        >
+
             </div>
-            <div class="p-2 sm:w-1/2 w-full">
-                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+            <div class="p-2 w-1/2 ">
+                <div class="w-full h-18 flex items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                     <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                     <path d="M22 4L12 14.01l-3-3"></path>
                 </svg>
                 <input 
                     type="text" 
-                    placeholder="大さじ1"
+                    placeholder="10g"
                     v-model="inputtingAmount"
-                    class="title-font font-medium bg-gray-100">
+                    class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-            <div class="p-2 sm:w-1/2 w-full">
-                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+        <div class="flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2   items-center flex">
+            <div class="p-2 sm:w-1/2 w-full h-18 flex items-center ">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                         <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                         <path d="M22 4L12 14.01l-3-3"></path>
                     </svg>
                     <input 
                         type="text" 
-                        placeholder="にんじん"
+                        placeholder="さつまいも(皮むき)"
                         v-model="inputtingIngredient2"
-                        class="title-font font-medium bg-gray-100">
-                </div>
+                        @blur="validateTitle"
+                        class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        >
+
             </div>
-            <div class="p-2 sm:w-1/2 w-full">
-                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+            <div class="p-2 w-1/2 ">
+                <div class="w-full h-18 flex items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                     <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                     <path d="M22 4L12 14.01l-3-3"></path>
                 </svg>
                 <input 
                     type="text" 
-                    placeholder="大さじ1"
+                    placeholder="20"
                     v-model="inputtingAmount2"
-                    class="title-font font-medium bg-gray-100">
+                    class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-            <div class="p-2 sm:w-1/2 w-full">
-                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+        <div class="flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2   items-center flex">
+            <div class="p-2 sm:w-1/2 w-full h-18 flex items-center ">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                         <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                         <path d="M22 4L12 14.01l-3-3"></path>
                     </svg>
@@ -74,32 +83,114 @@
                         type="text" 
                         placeholder="にんじん"
                         v-model="inputtingIngredient3"
-                        class="title-font font-medium bg-gray-100">
-                </div>
+                        @blur="validateTitle"
+                        class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        >
+
             </div>
-            <div class="p-2 sm:w-1/2 w-full">
-                <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-yellow-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+            <div class="p-2 w-1/2 ">
+                <div class="w-full h-18 flex items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                     <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                     <path d="M22 4L12 14.01l-3-3"></path>
                 </svg>
                 <input 
                     type="text" 
-                    placeholder="大さじ1"
+                    placeholder="1本"
                     v-model="inputtingAmount3"
-                    class="title-font font-medium bg-gray-100">
+                    class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
                 </div>
             </div>
         </div>
-        
+
+        <div class="flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2   items-center flex">
+            <div class="p-2 sm:w-1/2 w-full h-18 flex items-center ">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <path d="M22 4L12 14.01l-3-3"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        placeholder="昆布"
+                        v-model="inputtingIngredient4"
+                        @blur="validateTitle"
+                        class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        >
+
+            </div>
+            <div class="p-2 w-1/2 ">
+                <div class="w-full h-18 flex items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                    <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    placeholder="2枚"
+                    v-model="inputtingAmount4"
+                    class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2   items-center flex">
+            <div class="p-2 sm:w-1/2 w-full h-18 flex items-center ">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <path d="M22 4L12 14.01l-3-3"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        placeholder="絹豆腐"
+                        @blur="validateTitle"
+                        v-model="inputtingIngredient5"
+                        class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        >
+
+            </div>
+            <div class="p-2 w-1/2 ">
+                <div class="w-full h-18 flex items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-pink-400 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                    <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    placeholder="100g"
+                    v-model="inputtingAmount5"
+                    class="h-18 w-full bg-opacity-50 rounded border border-pink-100 focus:border-pink-500 focus:ring-2 focus:ring-pink-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    >
+                </div>
+            </div>
+        </div>
+
+
+
         <button 
             @click="addNewFood"
-            class="flex mx-auto mt-16 text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">
-            投稿する
+            class="flex mx-auto mt-16 text-white bg-pink-400 border-0 py-2 px-8 focus:outline-none hover:bg-pink-500 rounded text-lg">
+            調理手順の記入へ進む
         </button>
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </div>
     </section>
+
+      <!-- モーダルウィンドウ -->
+  <div v-if="showModal" class="modal">
+    <div class="modal-content h-1/2 w-1/3 ">
+      <span 
+        class="close cursor-pointer" 
+        @click="showModal = false"
+      >
+        &times;
+      </span>
+      <div class="h-full  flex justify-center items-center font-bold mx-auto text-center">
+        <p class="text-lg">{{ modalMessage }}<br>このままレシピを投稿することはできません。</p>
+      </div>
+    </div>
+  </div>
 </template>
 
     
@@ -137,19 +228,55 @@ const inputtingIngredient2 = ref('')
 const inputtingAmount2 = ref('')
 const inputtingIngredient3 = ref('')
 const inputtingAmount3 = ref('')
+const inputtingIngredient4 = ref('')
+const inputtingAmount4 = ref('')
+const inputtingIngredient5 = ref('')
+const inputtingAmount5 = ref('')
 
 onBeforeRouteUpdate((to, from, next) => {
     const recipeId = to.params.recipe_id;
     next();
 });
 
+// 飲食厳禁 警告
+const titleError = ref('');
+const forbiddenWords = [
+  'はちみつ', 'エビ', 'こんにゃく', '納豆', 'もち', 'ゼリー', 'マグロ', 'イカ',
+  'そば', 'ピーナッツ', 'カニ'
+];
+const showModal = ref(false);
+const modalMessage = ref('');
+const validateTitle = () => {
+  const foundWord = forbiddenWords.find(
+    word => inputtingIngredient.value.includes(word) 
+        || inputtingIngredient2.value.includes(word)
+        || inputtingIngredient3.value.includes(word)
+        || inputtingIngredient4.value.includes(word)
+        || inputtingIngredient5.value.includes(word)
+    );
+  if (foundWord) {
+    showModal.value = true;
+    modalMessage.value = `離乳食期に${foundWord}を食べるのは危険です。`;
+  }
+  
+};
+const showError = ref(false);
+
 const addNewFood = async () => {
     try {
         const foodItems = [
             { ingredient: inputtingIngredient, amount: inputtingAmount },
             { ingredient: inputtingIngredient2, amount: inputtingAmount2 },
-            { ingredient: inputtingIngredient3, amount: inputtingAmount3 }
+            { ingredient: inputtingIngredient3, amount: inputtingAmount3 },
+            { ingredient: inputtingIngredient4, amount: inputtingAmount4 },
+            { ingredient: inputtingIngredient5, amount: inputtingAmount5 }
         ];
+
+
+    if (inputtingIngredient.value.trim() === '') {
+      showError.value = true;
+      return;
+    }
 
         const promises = foodItems.map(async (foodItem) => {
             const newFoodData = {
